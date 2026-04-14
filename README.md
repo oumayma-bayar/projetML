@@ -225,7 +225,6 @@ result = predict_patient({
   - Rééquilibrage avec `SMOTE` (imbalanced-learn)
   - Ajustement du seuil de décision (`predict_proba > 0.3`)
   - Exploration de `XGBoost` ou `LightGBM`
-  - Déploiement API REST avec `FastAPI` + `uvicorn`
 
 ---
 
