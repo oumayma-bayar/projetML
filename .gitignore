@@ -1,0 +1,20 @@
+# --- Environnements Pyodide (Le coupable de votre erreur) ---
+# Ces fichiers sont trop lourds pour GitHub (plus de 100 Mo)
+Presentation/pyodide/
+presentation_diabetic_files/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints
+
+# --- Système & Divers ---
+.DS_Store
+Thumbs.db
+.quarto/
