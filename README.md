@@ -11,7 +11,7 @@
 **Prédiction de la réadmission hospitalière en moins de 30 jours chez les patients diabétiques**  
 *Modèle Random Forest · Accuracy 88.9% · 101 766 patients · 130 hôpitaux américains*
 
-[🔬 Ouvrir dans Colab](https://colab.research.google.com/github/votre-username/diabetai/blob/main/Version_final.ipynb) · [🌐 Démo Web](https://votre-username.github.io/diabetai) · [📊 Dataset UCI](https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008)
+[🔬 Ouvrir dans Colab](https://colab.research.google.com/github/votre-username/diabetai/blob/main/Version_final.ipynb) · [🌐 Démo Web]([https://votre-username](https://github.com/oumayma-bayar/projetML.git.io/DashBoard) · [📊 Dataset UCI](https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008)
 
 </div>
 
