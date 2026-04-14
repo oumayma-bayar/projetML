@@ -1,0 +1,2647 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="presentation_diabetic_files/libs/clipboard/clipboard.min.js"></script>
+<script src="presentation_diabetic_files/libs/quarto-html/tabby.min.js"></script>
+<script src="presentation_diabetic_files/libs/quarto-html/popper.min.js"></script>
+<script src="presentation_diabetic_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="presentation_diabetic_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="presentation_diabetic_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="presentation_diabetic_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.37">
+
+  <meta name="author" content="Lahouel Manar &amp; Bayar Oumayma">
+  <title>Presentation ML</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="presentation_diabetic_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="presentation_diabetic_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="presentation_diabetic_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link rel="stylesheet" href="styles.css">
+  <link href="presentation_diabetic_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="presentation_diabetic_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="presentation_diabetic_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="presentation_diabetic_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="presentation_diabetic_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="presentation_diabetic_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/editor/editor.main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    
+  <style type="text/css">
+  .monaco-editor pre {
+    background-color: unset !important;
+  }
+
+  .qpyodide-editor-toolbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .qpyodide-editor-toolbar-left-buttons, .qpyodide-editor-toolbar-right-buttons {
+    display: flex;
+  }
+
+  .qpyodide-non-interactive-loading-container.qpyodide-cell-needs-evaluation, .qpyodide-non-interactive-loading-container.qpyodide-cell-evaluated {
+    justify-content: center;
+    display: flex;
+    background-color: rgba(250, 250, 250, 0.65);
+    border: 1px solid rgba(233, 236, 239, 0.65);
+    border-radius: 0.5rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .qpyodide-r-project-logo {
+    color: #2767B0; /* R Project's blue color */
+  }
+
+  .qpyodide-icon-status-spinner {
+    color: #7894c4;
+  }
+
+  .qpyodide-icon-run-code {
+    color: #0d9c29
+  }
+
+  .qpyodide-output-code-stdout {
+    color: #111;
+  }
+
+  .qpyodide-output-code-stderr {
+    color: #db4133;
+  }
+
+  .qpyodide-editor {
+    border: 1px solid #EEEEEE;
+  }
+
+  .qpyodide-editor-toolbar {
+    background-color: #EEEEEE;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .qpyodide-button {
+    background-color: #EEEEEE;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    text-align: center;
+    color: #000;
+    border-color: #dee2e6;
+    border: 1px solid rgba(0,0,0,0);
+    padding: 0.375rem 0.75rem;
+    font-size: .9rem;
+    border-radius: 0.25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  }
+
+  .qpyodide-button:hover {
+    color: #000;
+    background-color: #d9dce0;
+    border-color: #c8ccd0;
+  }
+
+  .qpyodide-button:disabled,.qpyodide-button.disabled,fieldset:disabled .qpyodide-button {
+    pointer-events: none;
+    opacity: .65
+  }
+
+  .qpyodide-button-reset {
+    color: #696969; /*#4682b4;*/
+  }
+
+  .qpyodide-button-copy {
+    color: #696969;
+  }
+
+
+  /* Custom styling for RevealJS Presentations*/
+
+  /* Reset the style of the interactive area */
+  .reveal div.qpyodide-interactive-area {
+    display: block;
+    box-shadow: none;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+  } 
+
+  /* Provide space to entries */
+  .reveal div.qpyodide-output-code-area pre div {
+    margin: 1px 2px 1px 10px;
+  }
+
+  /* Collapse the inside code tags to avoid extra space between line outputs */
+  .reveal pre div code.qpyodide-output-code-stdout, .reveal pre div code.qpyodide-output-code-stderr {
+    padding: 0;
+    display: contents;
+  }
+
+  .reveal pre div code.qpyodide-output-code-stdout {
+    color: #111;
+  }
+
+  .reveal pre div code.qpyodide-output-code-stderr {
+    color: #db4133;
+  }
+
+
+  /* Create a border around console and output (does not effect graphs) */
+  .reveal div.qpyodide-console-area {
+    border: 1px solid #EEEEEE;
+    box-shadow: 2px 2px 10px #EEEEEE;
+  }
+
+  /* Cap output height and allow text to scroll */
+  /* TODO: Is there a better way to fit contents/max it parallel to the monaco editor size? */
+  .reveal div.qpyodide-output-code-area pre {
+    max-height: 400px;
+    overflow: scroll;
+  }
+  </style>
+  <script type="module">
+  // Document level settings ----
+
+  // Determine if we need to install python packages
+  globalThis.qpyodideInstallPythonPackagesList = [''];
+
+  // Check to see if we have an empty array, if we do set to skip the installation.
+  globalThis.qpyodideSetupPythonPackages = !(qpyodideInstallPythonPackagesList.indexOf("") !== -1);
+
+  // Display a startup message?
+  globalThis.qpyodideShowStartupMessage = true;
+
+  // Describe the webR settings that should be used
+  globalThis.qpyodideCustomizedPyodideOptions = {
+    "indexURL": "https://cdn.jsdelivr.net/pyodide/v0.27.2/full/",
+    "env": {
+      "HOME": "/home/pyodide",
+    }, 
+    stdout: (text) => {qpyodideAddToOutputArray(text, "out");},
+    stderr: (text) => {qpyodideAddToOutputArray(text, "error");}
+  }
+
+  // Store cell data
+  globalThis.qpyodideCellDetails = [{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\n\nprint(\"✅ Bibliothèques importées avec succès\")\nprint(f\"  pandas    {pd.__version__}\")\nprint(f\"  numpy     {np.__version__}\")","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(f\"✅ Dataset chargé : {df.shape[0]:,} lignes × {df.shape[1]} colonnes\")\nprint(f\"Colonnes : {df.columns.tolist()[:8]} ...\")\ndf.head(3)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(\"=\" * 50)\nprint(\"INFORMATIONS GÉNÉRALES\")\nprint(\"=\" * 50)\nprint(df.dtypes.to_string())\nprint(f\"\\nShape : {df.shape}\")\nprint(f\"\\nStatistiques descriptives (numériques) :\")\ndf.describe().round(2)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(\"Distribution de 'readmitted' :\")\nprint(df['readmitted'].value_counts())\nprint(f\"\\nPourcentages :\")\nprint(df['readmitted'].value_counts(normalize=True).mul(100).round(1).astype(str) + \" %\")","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nfig, axes = plt.subplots(2, 2, figsize=(13, 9), facecolor='#0b0f1a')\nfig.suptitle('Exploration — Diabetic Dataset', color='#38bdf8', fontsize=14, fontweight='bold')\ncolors = ['#38bdf8', '#818cf8', '#34d399']\n\ncounts = df['readmitted'].value_counts()\naxes[0,0].pie(counts, labels=counts.index, autopct='%1.1f%%',\n              colors=colors, startangle=90, textprops={'color':'#e2e8f0'})\naxes[0,0].set_title('Distribution readmitted', color='#94a3b8')\n\ndf_g = df[df['gender'].isin(['Male','Female'])]\ngr = df_g.groupby(['gender','readmitted']).size().unstack(fill_value=0)\ngr.plot(kind='bar', ax=axes[0,1], color=colors)\naxes[0,1].set_title('Réadmission par Genre', color='#94a3b8')\naxes[0,1].tick_params(rotation=0)\n\ndf.boxplot(column='time_in_hospital', by='readmitted', ax=axes[1,0],\n           boxprops=dict(color='#38bdf8'), whiskerprops=dict(color='#38bdf8'),\n           medianprops=dict(color='#34d399'))\naxes[1,0].set_title('Durée séjour vs Réadmission', color='#94a3b8')\n\ndf.boxplot(column='num_medications', by='readmitted', ax=axes[1,1],\n           boxprops=dict(color='#818cf8'), whiskerprops=dict(color='#818cf8'),\n           medianprops=dict(color='#34d399'))\naxes[1,1].set_title('Nb médicaments vs Réadmission', color='#94a3b8')\n\nfor ax in axes.flat:\n    ax.set_facecolor('#111827')\n    ax.set_xlabel('')\n\nplt.tight_layout(); plt.suptitle(''); plt.show()","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\ndf.replace('?', np.nan, inplace=True)\ntotal = len(df)\nmissing = df.isnull().sum()\npct = (missing / total * 100).round(2)\nresult = pd.DataFrame({'Manquants': missing, 'Pourcentage (%)': pct})\nresult = result[result['Manquants'] > 0].sort_values('Pourcentage (%)', ascending=False)\nprint(\"Colonnes avec valeurs manquantes :\")\nprint(result.to_string())","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True)\nprint(f\"✅ Dimensions après suppression : {df.shape}\")\n\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nprint(f\"✅ Valeurs manquantes restantes : {df.isnull().sum().sum()}\")","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\n\nprint(\"Distribution cible binaire :\")\nprint(df['readmitted_bin'].value_counts())\nprint(f\"\\nTaux réadmission <30j : {df['readmitted_bin'].mean():.2%}\")\n\nfig, ax = plt.subplots(figsize=(6,4), facecolor='#0b0f1a')\nbars = ax.bar(['Non réadmis (0)', 'Réadmis <30j (1)'],\n              df['readmitted_bin'].value_counts().sort_index(),\n              color=['#38bdf8','#f87171'], width=0.5)\nax.set_facecolor('#111827')\nax.tick_params(colors='#94a3b8')\nax.spines[:].set_color('#1e293b')\nax.set_ylabel('Patients', color='#94a3b8')\nax.set_title('Distribution Cible Binaire', color='#38bdf8', fontweight='bold')\nfor bar in bars:\n    ax.text(bar.get_x()+bar.get_width()/2, bar.get_height()+200,\n            f'{int(bar.get_height()):,}', ha='center', color='#e2e8f0', fontsize=9)\nplt.tight_layout(); plt.show()","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\n\nprint(f\"✅ Colonnes catégorielles encodées : {len(cat_cols)}\")\nprint(cat_cols)\nprint(f\"\\n✅ Dimensions finales : {df.shape}\")\ndf.head(3)","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nprint(f\"X features : {X.shape}\")\nprint(f\"y cible    : {y.shape}\")\nprint(f\"\\nTrain : {X_train.shape}  |  Test : {X_test.shape}\")\nprint(f\"Taux cible train : {y_train.mean():.2%}\")\nprint(f\"Taux cible test  : {y_test.mean():.2%}\")","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nprint(\"✅ Modèle entraîné avec succès\")\nprint(pipeline)","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nacc_tr = accuracy_score(y_train, pipeline.predict(X_train))\nacc_te = accuracy_score(y_test, y_pred)\nprint(f\"Accuracy Train : {acc_tr:.4f}\")\nprint(f\"Accuracy Test  : {acc_te:.4f}\")\nprint(f\"Écart          : {acc_tr - acc_te:.4f}  {'⚠️ Surapprentissage?' if acc_tr-acc_te > 0.05 else '✅ OK'}\")\nprint(\"\\n── Rapport de Classification ──\")\nprint(classification_report(y_test, y_pred, target_names=['Non réadmis <30j','Réadmis <30j']))","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\ncm = confusion_matrix(y_test, y_pred)\nfig, ax = plt.subplots(figsize=(7,5), facecolor='#0b0f1a')\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues',\n            xticklabels=['Non réadmis','Réadmis <30j'],\n            yticklabels=['Non réadmis','Réadmis <30j'],\n            ax=ax, linewidths=0.5, linecolor='#1e293b',\n            annot_kws={\"size\":14, \"color\":\"white\"})\nax.set_title('Matrice de Confusion — Random Forest', color='#38bdf8', fontweight='bold', pad=15)\nax.set_ylabel('Réel', color='#94a3b8')\nax.set_xlabel('Prédit', color='#94a3b8')\nax.tick_params(colors='#94a3b8')\nax.set_facecolor('#111827')\nplt.tight_layout(); plt.show()","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nmodels_cmp = {\n    'Logistic Regression': LogisticRegression(max_iter=1000, random_state=42),\n    'Decision Tree':       DecisionTreeClassifier(random_state=42),\n    'Random Forest':       RandomForestClassifier(n_estimators=100, random_state=42),\n}\nresults = []\nfor name, model in models_cmp.items():\n    pipe = Pipeline([('scaler', StandardScaler()), ('model', model)])\n    pipe.fit(X_train, y_train)\n    tr = accuracy_score(y_train, pipe.predict(X_train))\n    te = accuracy_score(y_test,  pipe.predict(X_test))\n    results.append({'Modèle': name, 'Train': round(tr,4), 'Test': round(te,4)})\n    print(f\"{name:25s} → Train: {tr:.4f} | Test: {te:.4f}\")\n\nresults_df = pd.DataFrame(results)\nfig, ax = plt.subplots(figsize=(9,5), facecolor='#0b0f1a')\nx = np.arange(len(results_df)); w = 0.35\nax.bar(x-w/2, results_df['Train'], w, label='Train', color='#38bdf8', alpha=0.9)\nax.bar(x+w/2, results_df['Test'],  w, label='Test',  color='#34d399', alpha=0.9)\nax.set_xticks(x); ax.set_xticklabels(results_df['Modèle'], color='#94a3b8')\nax.set_ylim(0.8, 1.0); ax.set_ylabel('Accuracy', color='#94a3b8')\nax.set_title('Comparaison des Modèles', color='#38bdf8', fontweight='bold')\nax.legend(framealpha=0.2, labelcolor='#e2e8f0')\nax.set_facecolor('#111827'); ax.spines[:].set_color('#1e293b')\nplt.tight_layout(); plt.show()","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nrf_model = pipeline.named_steps['model']\nimportances = pd.Series(rf_model.feature_importances_, index=X.columns)\nimportances = importances.sort_values(ascending=False).head(15)\n\nfig, ax = plt.subplots(figsize=(10,6), facecolor='#0b0f1a')\ncolors_bar = ['#38bdf8' if i < 5 else '#818cf8' if i < 10 else '#34d399' for i in range(15)]\nimportances.plot(kind='barh', color=colors_bar, ax=ax, edgecolor='none')\nax.invert_yaxis()\nax.set_title('Top 15 Features les Plus Importantes', color='#38bdf8', fontweight='bold')\nax.set_xlabel('Importance', color='#94a3b8')\nax.set_facecolor('#111827'); ax.spines[:].set_color('#1e293b')\nplt.tight_layout(); plt.show()\n\nprint(\"\\nTop 5 :\")\nprint(importances.head(5).to_string())","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+
+
+  </script>
+  <script type="module">
+  // Declare startupMessageqpyodide globally
+  globalThis.qpyodideStartupMessage = document.createElement("p");
+
+  // Function to set the button text
+  globalThis.qpyodideSetInteractiveButtonState = function(buttonText, enableCodeButton = true) {
+    document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+      btn.innerHTML = buttonText;
+      btn.disabled = !enableCodeButton;
+    });
+  }
+
+  // Function to update the status message in non-interactive cells
+  globalThis.qpyodideUpdateStatusMessage = function(message) {
+    document.querySelectorAll(".qpyodide-status-text.qpyodide-cell-needs-evaluation").forEach((elem) => {
+      elem.innerText = message;
+    });
+  }
+
+  // Function to update the status message
+  globalThis.qpyodideUpdateStatusHeader = function(message) {
+
+    if (!qpyodideShowStartupMessage) return;
+
+    qpyodideStartupMessage.innerHTML = message;
+  }
+
+  // Status header update with customized spinner message
+  globalThis.qpyodideUpdateStatusHeaderSpinner = function(message) {
+
+    qpyodideUpdateStatusHeader(`
+      <i class="fa-solid fa-spinner fa-spin qpyodide-icon-status-spinner"></i>
+      <span>${message}</span>
+    `);
+  }
+
+
+  // Function that attaches the document status message
+  function qpyodideDisplayStartupMessage(showStartupMessage) {
+    if (!showStartupMessage) {
+      return;
+    }
+
+    // Get references to header elements
+    const headerHTML = document.getElementById("title-block-header");
+    const headerRevealJS = document.getElementById("title-slide");
+
+    // Create the outermost div element for metadata
+    const quartoTitleMeta = document.createElement("div");
+    quartoTitleMeta.classList.add("quarto-title-meta");
+
+    // Create the first inner div element
+    const firstInnerDiv = document.createElement("div");
+    firstInnerDiv.setAttribute("id", "qpyodide-status-message-area");
+
+    // Create the second inner div element for "Pyodide Status" heading and contents
+    const secondInnerDiv = document.createElement("div");
+    secondInnerDiv.setAttribute("id", "qpyodide-status-message-title");
+    secondInnerDiv.classList.add("quarto-title-meta-heading");
+    secondInnerDiv.innerText = "Pyodide Status";
+
+    // Create another inner div for contents
+    const secondInnerDivContents = document.createElement("div");
+    secondInnerDivContents.setAttribute("id", "qpyodide-status-message-body");
+    secondInnerDivContents.classList.add("quarto-title-meta-contents");
+
+    // Describe the Pyodide state
+    qpyodideStartupMessage.innerText = "🟡 Loading...";
+    qpyodideStartupMessage.setAttribute("id", "qpyodide-status-message-text");
+    // Add `aria-live` to auto-announce the startup status to screen readers
+    qpyodideStartupMessage.setAttribute("aria-live", "assertive");
+
+    // Append the startup message to the contents
+    secondInnerDivContents.appendChild(qpyodideStartupMessage);
+
+    // Combine the inner divs and contents
+    firstInnerDiv.appendChild(secondInnerDiv);
+    firstInnerDiv.appendChild(secondInnerDivContents);
+    quartoTitleMeta.appendChild(firstInnerDiv);
+
+    // Determine where to insert the quartoTitleMeta element
+    if (headerHTML || headerRevealJS) {
+      // Append to the existing "title-block-header" element or "title-slide" div
+      (headerHTML || headerRevealJS).appendChild(quartoTitleMeta);
+    } else {
+      // If neither headerHTML nor headerRevealJS is found, insert after "Pyodide-monaco-editor-init" script
+      const monacoScript = document.getElementById("qpyodide-monaco-editor-init");
+      const header = document.createElement("header");
+      header.setAttribute("id", "title-block-header");
+      header.appendChild(quartoTitleMeta);
+      monacoScript.after(header);
+    }
+  }
+
+  qpyodideDisplayStartupMessage(qpyodideShowStartupMessage);
+  </script>
+  <script type="module">
+  // Create a logging setup
+  globalThis.qpyodideMessageArray = []
+
+  // Add messages to array
+  globalThis.qpyodideAddToOutputArray = function(message, type) {
+    qpyodideMessageArray.push({ message, type });
+  }
+
+  // Function to reset the output array
+  globalThis.qpyodideResetOutputArray = function() {
+    qpyodideMessageArray = [];
+  }
+
+  globalThis.qpyodideRetrieveOutput = function() {
+    return qpyodideMessageArray.map(entry => entry.message).join('\n');
+  }
+
+  // Start a timer
+  const initializePyodideTimerStart = performance.now();
+
+  // Encase with a dynamic import statement
+  globalThis.qpyodideInstance = await import(
+    qpyodideCustomizedPyodideOptions.indexURL + "pyodide.mjs").then(
+     async({ loadPyodide }) => {
+
+      console.log("Start loading Pyodide");
+      
+      // Populate Pyodide options with defaults or new values based on `pyodide`` meta
+      let mainPyodide = await loadPyodide(
+        qpyodideCustomizedPyodideOptions
+      );
+      
+      // Setup a namespace for global scoping
+      // await loadedPyodide.runPythonAsync("globalScope = {}"); 
+      
+      // Update status to reflect the next stage of the procedure
+      qpyodideUpdateStatusHeaderSpinner("Initializing Python Packages");
+
+      // Load the `micropip` package to allow installation of packages.
+      await mainPyodide.loadPackage("micropip");
+      await mainPyodide.runPythonAsync(`import micropip`);
+
+      // Load the `pyodide_http` package to shim uses of `requests` and `urllib3`.
+      // This allows for `pd.read_csv(url)` to work flawlessly.
+      // Details: https://github.com/coatless-quarto/pyodide/issues/9
+      await mainPyodide.loadPackage("pyodide_http");
+      await mainPyodide.runPythonAsync(`
+      import pyodide_http
+      pyodide_http.patch_all()  # Patch all libraries
+      `);
+
+      // Load the `matplotlib` package with necessary environment hook
+      await mainPyodide.loadPackage("matplotlib");
+
+      // Set the backend for matplotlib to be interactive.
+      await mainPyodide.runPythonAsync(`
+      import matplotlib
+      matplotlib.use("module://matplotlib_pyodide.html5_canvas_backend")
+      from matplotlib import pyplot as plt
+      `);
+
+      // Unlock interactive buttons
+      qpyodideSetInteractiveButtonState(
+        `<i class="fa-solid fa-play qpyodide-icon-run-code"></i> <span>Run Code</span>`, 
+        true
+      );
+
+      // Set document status to viable
+      qpyodideUpdateStatusHeader(
+        "🟢 Ready!"
+      );
+
+      // Assign Pyodide into the global environment
+      globalThis.mainPyodide = mainPyodide;
+
+      console.log("Completed loading Pyodide");
+      return mainPyodide;
+    }
+  );
+
+  // Stop timer
+  const initializePyodideTimerEnd = performance.now();
+
+  // Create a function to retrieve the promise object.
+  globalThis._qpyodideGetInstance = function() {
+      return qpyodideInstance;
+  }
+
+  </script>
+</head>
+<body class="quarto-light">
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs/loader.js"></script>
+<script type="module" id="qpyodide-monaco-editor-init">
+
+  // Configure the Monaco Editor's loader
+  require.config({
+    paths: {
+      'vs': 'https://cdn.jsdelivr.net/npm/monaco-editor@0.46.0/min/vs'
+    }
+  });
+</script>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Presentation ML</h1>
+  <p class="subtitle">Classification Binaire : Diabetic Hospital Readmission</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Lahouel Manar &amp; Bayar Oumayma 
+</div>
+</div>
+</div>
+
+</section>
+<section id="section" class="slide level2 center">
+<h2></h2>
+<div style="text-align:center;padding:2em 0;">
+<h1 style="font-family:'DM Serif Display',serif;font-size:2.4em;color:#e2e8f0;line-height:1.15;margin-bottom:0.3em;">
+Classification Binaire<br> <span style="color:#38bdf8;">Diabetic Hospital Readmission</span>
+</h1>
+</div>
+</section>
+<section id="plan" class="slide level2">
+<h2>Plan</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;margin-top:0.3em;">
+
+<div style="display:flex;flex-direction:column;gap:0.8em;">
+
+  <div style="background:rgba(17,24,39,0.85);border:1px solid rgba(56,189,248,0.22);border-radius:12px;padding:1em 1.3em;">
+    <div style="color:#38bdf8;font-weight:700;font-size:0.95em;margin-bottom:0.5em;">📊 Dataset</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0.6em;">
+      <span class="badge">101 766 lignes</span>
+      <span class="badge">50 colonnes</span>
+      <span class="badge badge-purple">CSV</span>
+      <span class="badge badge-green">10 ans</span>
+    </div>
+    <div style="font-size:0.78em;color:#94a3b8;line-height:1.6;">
+      Données cliniques <strong style="color:#e2e8f0;">1999–2008</strong> · 130 hôpitaux américains<br>
+      Source : <em style="color:#818cf8;">UCI Machine Learning Repository</em>
+    </div>
+  </div>
+
+  <div style="background:rgba(17,24,39,0.85);border:1px solid rgba(56,189,248,0.22);border-radius:12px;padding:1em 1.3em;">
+    <div style="color:#38bdf8;font-weight:700;font-size:0.95em;margin-bottom:0.4em;">🎯 Objectif</div>
+    <div style="font-size:0.82em;color:#e2e8f0;line-height:1.6;">
+      Prédire la <strong style="color:#38bdf8;">réadmission hospitalière</strong> d'un patient diabétique dans
+      <span style="background:rgba(56,189,248,0.15);color:#38bdf8;font-weight:700;padding:1px 8px;border-radius:6px;font-family:monospace;">&lt; 30 jours</span>
+    </div>
+    <div style="margin-top:0.5em;font-size:0.76em;color:#64748b;">
+      Variable cible : <code style="color:#818cf8;background:rgba(129,140,248,0.12);padding:1px 6px;border-radius:4px;">readmitted</code>
+      → binaire <code style="color:#34d399;">0</code> (non) / <code style="color:#f87171;">1</code> (&lt;30j)
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5em;">
+    <div class="metric-card" style="padding:0.7em;"><span class="value" style="font-size:1.4em;">11.2%</span><span class="label">Réadmis &lt;30j</span></div>
+    <div class="metric-card" style="padding:0.7em;"><span class="value" style="font-size:1.4em;">54%</span><span class="label">Femmes</span></div>
+    <div class="metric-card" style="padding:0.7em;"><span class="value" style="font-size:1.4em;">4.4j</span><span class="label">Séjour moy.</span></div>
+  </div>
+
+</div>
+
+<div style="background:rgba(17,24,39,0.85);border:1px solid rgba(56,189,248,0.22);border-radius:12px;padding:1em 1.3em;font-family: sans-serif;">
+  <div style="color:#38bdf8;font-weight:700;font-size:0.95em;margin-bottom:0.8em;">⚙️ Plan du Pipeline ETL</div>
+
+  <div style="margin-bottom:0.6em;">
+    <div style="display:flex;align-items:center;gap:0.6em;margin-bottom:0.3em;">
+      <div style="width:26px;height:26px;background:#38bdf8;color:#0b0f1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.78em;flex-shrink:0;box-shadow:0 0 12px rgba(56,189,248,0.4);">E</div>
+      <strong style="color:#38bdf8;font-size:0.88em;">Extraction &amp; Exploration</strong>
+    </div>
+    <div style="margin-left:38px;display:flex;flex-direction:column;gap:3px;">
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">📥 Étape 1 — Chargement CSV (101k lignes)</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">🔍 Étape 2 — EDA : types, stats, distribution cible</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">🧹 Étape 3 — Nettoyage : NaN, doublons, valeurs aberrantes</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:#334155;font-size:0.8em;margin:0 0 0.6em 12px;">↓</div>
+
+  <div style="margin-bottom:0.6em;">
+    <div style="display:flex;align-items:center;gap:0.6em;margin-bottom:0.3em;">
+      <div style="width:26px;height:26px;background:#818cf8;color:#0b0f1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.78em;flex-shrink:0;box-shadow:0 0 12px rgba(129,140,248,0.4);">T</div>
+      <strong style="color:#818cf8;font-size:0.88em;">Transformation &amp; Préparation</strong>
+    </div>
+    <div style="margin-left:38px;display:flex;flex-direction:column;gap:3px;">
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(129,140,248,0.06);border-left:2px solid #818cf8;padding:3px 8px;border-radius:0 4px 4px 0;">🏷️ Étape 4 — Binarisation de readmitted → 0 / 1</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(129,140,248,0.06);border-left:2px solid #818cf8;padding:3px 8px;border-radius:0 4px 4px 0;">🔤 Étape 5 — Encodage : LabelEncoder (catégorielles)</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(129,140,248,0.06);border-left:2px solid #818cf8;padding:3px 8px;border-radius:0 4px 4px 0;">✂️ Étape 6 — Split 80/20 stratifié + StandardScaler</div>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:#334155;font-size:0.8em;margin:0 0 0.6em 12px;">↓</div>
+
+  <div>
+    <div style="display:flex;align-items:center;gap:0.6em;margin-bottom:0.3em;">
+      <div style="width:26px;height:26px;background:#34d399;color:#0b0f1a;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.78em;flex-shrink:0;box-shadow:0 0 12px rgba(52,211,153,0.4);">L</div>
+      <strong style="color:#34d399;font-size:0.88em;">Loading &amp; Learning</strong>
+    </div>
+    <div style="margin-left:38px;display:flex;flex-direction:column;gap:3px;">
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">🤖 Étape 7 — Pipeline : Scaler + Random Forest</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">📈 Étape 8 — Accuracy, F1, ROC-AUC, matrice confusion</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">⚖️ Étape 9–10 — Comparaison 3 modèles · Top 15 features</div>
+    </div>
+  </div>
+
+  <div style="margin-top:0.8em;padding:0.5em 0.8em;background:linear-gradient(135deg,rgba(52,211,153,0.1),rgba(56,189,248,0.1));border:1px solid rgba(52,211,153,0.3);border-radius:8px;text-align:center;">
+    <span style="font-size:0.78em;color:#34d399;font-weight:600;">🏆 Meilleur modèle : Random Forest — Accuracy 88.9%</span>
+  </div>
+</div>
+
+</div>
+</section>
+<section id="étape-0-configuration-de-lenvironnement" class="slide level2">
+<h2>⚙️ Étape 0 — Configuration de l’Environnement</h2>
+<div id="qpyodide-insertion-location-1"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div style="display:flex;gap:8px;margin-top:0.8em;flex-wrap:wrap;">
+<p><span class="badge">pandas</span> <span class="badge">numpy</span> <span class="badge badge-purple">scikit-learn</span> <span class="badge badge-green">matplotlib</span> <span class="badge badge-green">seaborn</span></p>
+</div>
+</section>
+<section id="étape-1-chargement-des-données" class="slide level2">
+<h2>📥 Étape 1 — Chargement des Données</h2>
+<div id="qpyodide-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="metric-card">
+<span class="value">101k</span><span class="label">Patients</span>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="metric-card">
+<span class="value">50</span><span class="label">Variables</span>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="metric-card">
+<span class="value">10</span><span class="label">Ans de données</span>
+</div>
+</div></div>
+</section>
+<section id="étape-2-exploration-informations-générales" class="slide level2">
+<h2>🔍 Étape 2 — Exploration : Informations Générales</h2>
+<div id="qpyodide-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="étape-2-distribution-de-la-variable-cible" class="slide level2">
+<h2>🔍 Étape 2 — Distribution de la Variable Cible</h2>
+<div id="qpyodide-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="fragment">
+<p>⚠️ Dataset <strong>déséquilibré</strong> — seulement ~11% de réadmissions en moins de 30j</p>
+</div>
+</section>
+<section id="étape-2-visualisations-eda" class="slide level2">
+<h2>🔍 Étape 2 — Visualisations EDA</h2>
+<div id="qpyodide-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="étape-3-valeurs-manquantes" class="slide level2">
+<h2>🧹 Étape 3 — Valeurs Manquantes</h2>
+<div id="qpyodide-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="étape-3-suppression-remplissage" class="slide level2">
+<h2>🧹 Étape 3 — Suppression &amp; Remplissage</h2>
+<div id="qpyodide-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Stratégie</th>
+<th>Colonnes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Suppression &gt;50% NaN</td>
+<td><code>weight</code>, <code>max_glu_serum</code>, <code>A1Cresult</code></td>
+</tr>
+<tr class="even">
+<td>Médiane</td>
+<td>Variables numériques</td>
+</tr>
+<tr class="odd">
+<td>Mode</td>
+<td>Variables catégorielles</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="étape-4-binarisation-de-la-variable-cible" class="slide level2">
+<h2>🎯 Étape 4 — Binarisation de la Variable Cible</h2>
+<div id="qpyodide-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="étape-5-encodage-des-variables-catégorielles" class="slide level2">
+<h2>🔢 Étape 5 — Encodage des Variables Catégorielles</h2>
+<div id="qpyodide-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="fragment">
+<p>Toutes les variables sont maintenant <strong>numériques</strong> — prêtes pour scikit-learn</p>
+</div>
+</section>
+<section id="étape-6-train-test-split-80-20" class="slide level2">
+<h2>✂️ Étape 6 — Train / Test Split (80% / 20%)</h2>
+<div id="qpyodide-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="metric-card">
+<span class="value">80%</span><span class="label">Train — ~81 400 lignes</span>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="metric-card">
+<span class="value">20%</span><span class="label">Test — ~20 350 lignes</span>
+</div>
+</div></div>
+<div class="fragment">
+Split <strong>stratifié</strong> → équilibre des classes préservé
+</div>
+</section>
+<section id="étape-7-pipeline-scikit-learn" class="slide level2">
+<h2>🤖 Étape 7 — Pipeline Scikit-learn</h2>
+<div id="qpyodide-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<div class="pipeline-step">
+<div class="step-num">
+1
+</div>
+<div class="step-content">
+<strong>StandardScaler</strong><span>Normalise μ=0, σ=1 — évite les biais d’échelle</span>
+</div>
+</div>
+<div class="pipeline-step">
+<div class="step-num">
+2
+</div>
+<div class="step-content">
+<strong>RandomForestClassifier</strong><span>100 arbres — robuste au surapprentissage</span>
+</div>
+</div>
+</section>
+<section id="étape-8-accuracy-rapport-de-classification" class="slide level2">
+<h2>📊 Étape 8 — Accuracy &amp; Rapport de Classification</h2>
+<div id="qpyodide-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="étape-8-matrice-de-confusion" class="slide level2">
+<h2>📊 Étape 8 — Matrice de Confusion</h2>
+<div id="qpyodide-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="étape-9-comparaison-des-modèles" class="slide level2">
+<h2>⚖️ Étape 9 — Comparaison des Modèles</h2>
+<div id="qpyodide-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="étape-10-importance-des-features-top-15" class="slide level2">
+<h2>🔎 Étape 10 — Importance des Features (Top 15)</h2>
+<div id="qpyodide-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="dashboard-interactif-résultats-complets" class="slide level2">
+<h2>🎨 Dashboard Interactif — Résultats Complets</h2>
+<div class="dash-outer">
+<style>
+.dash-outer {
+  width: 100%;
+  height: 72vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 12px;
+  background: #060d1f;
+  scrollbar-width: thin;
+  scrollbar-color: #1e3a70 transparent;
+}
+.dash-outer::-webkit-scrollbar { width: 5px; }
+.dash-outer::-webkit-scrollbar-thumb { background: #1e3a70; border-radius: 3px; }
+.dash-outer::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:#060d1f;padding:20px;}
+.wrap{max-width:960px;margin:0 auto;}
+
+/* Header */
+.hdr{background:linear-gradient(135deg,#0c1a3a 0%,#0f2a5e 60%,#0c1a3a 100%);
+     border:1px solid #1e3a70;border-radius:16px;padding:24px 28px 20px;
+     margin-bottom:16px;position:relative;overflow:hidden;}
+.hdr::before{content:'';position:absolute;top:-40px;right:-40px;
+  width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(circle,rgba(56,189,248,.12) 0%,transparent 70%);}
+.hdr h1{font-size:19px;font-weight:600;color:#e2e8f0;letter-spacing:-.01em;}
+.hdr p{font-size:12px;color:#64748b;margin-top:4px;}
+.badge{display:inline-block;font-size:10px;font-weight:600;padding:2px 10px;
+       border-radius:20px;background:rgba(56,189,248,.12);color:#38bdf8;
+       border:1px solid rgba(56,189,248,.25);margin-top:10px;margin-right:6px;
+       font-family:'DM Mono',monospace;}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.kpi{background:#0c1629;border:1px solid #1e3a70;border-radius:12px;
+     padding:14px 16px;position:relative;overflow:hidden;}
+.kpi::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+            background:var(--kc);opacity:.6;border-radius:0 0 12px 12px;}
+.kpi-label{font-size:10px;color:#475569;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;}
+.kpi-val{font-size:22px;font-weight:600;color:var(--kc);font-family:'DM Mono',monospace;}
+.kpi-sub{font-size:10px;color:#475569;margin-top:3px;}
+
+/* Tabs */
+.tabs{display:flex;gap:4px;margin-bottom:14px;background:#0c1629;
+      padding:4px;border-radius:10px;border:1px solid #1e3a70;}
+.tab{flex:1;padding:9px 0;text-align:center;font-size:12px;font-weight:500;
+     color:#475569;border-radius:7px;cursor:pointer;transition:all .2s;
+     border:none;background:transparent;}
+.tab.active{background:#1e3a70;color:#e2e8f0;}
+.tab:hover:not(.active){color:#94a3b8;}
+.panel{display:none;}.panel.active{display:block;}
+
+/* Card */
+.card{background:#0c1629;border:1px solid #1e3a70;border-radius:14px;
+      padding:20px 22px;margin-bottom:14px;}
+.card-title{font-size:11px;font-weight:600;color:#38bdf8;text-transform:uppercase;
+            letter-spacing:.07em;margin-bottom:14px;padding-bottom:8px;
+            border-bottom:1px solid #1e3a70;}
+
+/* Form */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+.field label{display:block;font-size:11px;color:#64748b;margin-bottom:5px;letter-spacing:.03em;}
+.field select{width:100%;height:36px;background:#060d1f;border:1px solid #1e3a70;
+  border-radius:8px;padding:0 10px;font-size:12px;color:#cbd5e1;outline:none;
+  transition:border .2s;font-family:'DM Sans',sans-serif;}
+.field select:focus{border-color:#38bdf8;}
+.sl-row{display:flex;align-items:center;gap:10px;}
+.sl-row input[type=range]{flex:1;-webkit-appearance:none;height:4px;
+  background:#1e3a70;border-radius:2px;outline:none;}
+.sl-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;
+  width:16px;height:16px;border-radius:50%;background:#38bdf8;cursor:pointer;
+  border:2px solid #060d1f;box-shadow:0 0 0 3px rgba(56,189,248,.2);}
+.sl-val{font-size:13px;font-weight:600;color:#38bdf8;min-width:34px;text-align:right;
+        font-family:'DM Mono',monospace;}
+
+/* Button */
+.btn{width:100%;height:46px;margin-top:18px;
+     background:linear-gradient(135deg,#0369a1,#0ea5e9);
+     color:white;border:none;border-radius:10px;font-size:14px;font-weight:600;
+     cursor:pointer;transition:opacity .2s;letter-spacing:.02em;
+     font-family:'DM Sans',sans-serif;}
+.btn:hover{opacity:.85;}
+
+/* Result */
+.result{border-radius:12px;padding:18px 20px;margin-top:16px;display:none;
+        border:1px solid transparent;transition:all .3s;}
+.result.high  {background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);}
+.result.medium{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3);}
+.result.low   {background:rgba(74,222,128,.08);border-color:rgba(74,222,128,.3);}
+.res-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.res-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;
+           justify-content:center;font-size:20px;flex-shrink:0;}
+.high   .res-icon{background:rgba(239,68,68,.15);}
+.medium .res-icon{background:rgba(251,191,36,.15);}
+.low    .res-icon{background:rgba(74,222,128,.15);}
+.res-title{font-size:16px;font-weight:600;color:#e2e8f0;}
+.res-sub  {font-size:12px;color:#64748b;margin-top:2px;}
+.gauge-wrap{margin:10px 0 14px;}
+.gauge-labels{display:flex;justify-content:space-between;font-size:10px;color:#475569;margin-bottom:5px;}
+.gauge-track{height:10px;background:#1e3a70;border-radius:5px;overflow:hidden;}
+.gauge-fill{height:100%;border-radius:5px;transition:width .8s cubic-bezier(.4,0,.2,1);width:0;}
+.high   .gauge-fill{background:linear-gradient(90deg,#f87171,#ef4444);}
+.medium .gauge-fill{background:linear-gradient(90deg,#fbbf24,#f59e0b);}
+.low    .gauge-fill{background:linear-gradient(90deg,#4ade80,#22c55e);}
+.gauge-pct{font-size:24px;font-weight:700;margin-top:8px;font-family:'DM Mono',monospace;}
+.high   .gauge-pct{color:#f87171;}.medium .gauge-pct{color:#fbbf24;}.low .gauge-pct{color:#4ade80;}
+.brow{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.brow .blbl{font-size:11px;color:#64748b;width:130px;flex-shrink:0;}
+.brow .btrack{flex:1;height:8px;background:#1e3a70;border-radius:4px;overflow:hidden;}
+.brow .bfill{height:100%;border-radius:4px;transition:width .7s ease;width:0;}
+.brow .bpct{font-size:11px;font-weight:600;min-width:38px;text-align:right;
+             font-family:'DM Mono',monospace;color:#94a3b8;}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.tag{font-size:10px;padding:3px 10px;border-radius:20px;font-weight:600;letter-spacing:.03em;}
+.tag-risk{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.25);}
+.tag-ok  {background:rgba(74,222,128,.12);color:#4ade80;border:1px solid rgba(74,222,128,.2);}
+.note{font-size:11px;color:#475569;margin-top:14px;padding:10px 14px;background:#060d1f;
+      border-left:3px solid #1e3a70;border-radius:0 8px 8px 0;line-height:1.6;}
+
+/* Overview panel */
+.donut-wrap{display:flex;align-items:center;gap:24px;padding:8px 0;}
+.donut-labels{display:flex;flex-direction:column;gap:14px;}
+.dl-item{font-size:12px;color:#94a3b8;display:flex;align-items:center;gap:10px;}
+.dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.dl-val{font-weight:700;color:#e2e8f0;font-family:'DM Mono',monospace;}
+.model-row{display:flex;align-items:center;justify-content:space-between;
+           padding:9px 0;border-bottom:1px solid #0f2040;}
+.model-row:last-child{border-bottom:none;}
+.mname{font-size:12px;color:#cbd5e1;flex:1;}
+.mbars{display:flex;gap:5px;align-items:center;}
+.mbar{height:20px;border-radius:4px;display:flex;align-items:center;
+      justify-content:flex-end;padding-right:6px;}
+.mbar span{font-size:10px;font-weight:700;color:#fff;}
+.mbadge{font-size:9px;padding:1px 7px;border-radius:10px;margin-left:6px;
+        background:rgba(56,189,248,.15);color:#38bdf8;font-weight:600;}
+.alert{background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);
+       border-radius:10px;padding:10px 14px;margin-bottom:14px;
+       font-size:12px;color:#fbbf24;line-height:1.6;}
+.pipeline-list{display:flex;flex-direction:column;}
+.pl-step{display:flex;align-items:flex-start;gap:10px;margin-bottom:4px;}
+.pl-dot{width:14px;height:14px;border-radius:50%;border:2.5px solid;flex-shrink:0;margin-top:3px;}
+.pl-line{display:flex;flex-direction:column;align-items:center;}
+.pl-connector{width:2px;height:14px;background:#1e3a70;margin:0 auto;}
+.pl-content{padding-bottom:8px;}
+.pl-title{font-size:12px;font-weight:600;color:#cbd5e1;}
+.pl-desc{font-size:10px;color:#475569;margin-top:2px;}
+
+/* Factor bars */
+.factor-row{margin-bottom:10px;}
+.factor-label{display:flex;justify-content:space-between;font-size:11px;color:#94a3b8;margin-bottom:3px;}
+.factor-bar-bg{height:6px;background:#1e3a70;border-radius:3px;overflow:hidden;}
+.factor-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,#38bdf8,#0ea5e9);}
+
+/* Classification table */
+.cls-table{width:100%;border-collapse:collapse;font-size:12px;}
+.cls-table th{text-align:center;padding:9px 12px;color:#475569;
+               border-bottom:1px solid #1e3a70;font-weight:500;
+               text-transform:uppercase;letter-spacing:.05em;}
+.cls-table th:first-child{text-align:left;}
+.cls-table td{padding:9px 12px;color:#cbd5e1;border-bottom:1px solid #0f2040;text-align:center;}
+.cls-table td:first-child{text-align:left;font-weight:500;}
+.cls-table tr:last-child td{border-bottom:none;background:#0a1628;}
+.good{color:#4ade80;font-weight:700;}.bad{color:#f87171;font-weight:700;}
+.pill2{display:inline-block;font-size:10px;padding:2px 8px;border-radius:12px;
+       font-weight:600;font-family:'DM Mono',monospace;}
+.pill-r{background:rgba(239,68,68,.15);color:#f87171;}
+.pill-m{background:rgba(251,191,36,.12);color:#fbbf24;}
+.pill-g{background:rgba(74,222,128,.12);color:#4ade80;}
+
+/* History */
+.hist-table{width:100%;border-collapse:collapse;font-size:11px;}
+.hist-table th{text-align:left;padding:8px 10px;color:#475569;
+               border-bottom:1px solid #1e3a70;font-weight:500;
+               text-transform:uppercase;letter-spacing:.05em;}
+.hist-table td{padding:8px 10px;color:#cbd5e1;border-bottom:1px solid #0f2040;}
+.hist-table tr:last-child td{border-bottom:none;}
+
+.wrap { max-width: 100% !important; width: 100% !important; padding: 16px !important; margin: 0 !important; }
+.kpi-val { font-size: 18px !important; }
+.hdr h1 { font-size: 15px !important; }
+</style>
+
+<div class="wrap">
+
+<!-- Header -->
+<div class="hdr">
+  <h1>🏥&nbsp; Prédiction Réadmission Hospitalière — Diabète</h1>
+  <p>Random Forest · 101 766 patients · 130 hôpitaux américains (1999–2008) · Classification binaire &lt;30j</p>
+  <span class="badge">Accuracy 88.9%</span>
+  <span class="badge">AUC-ROC 0.842</span>
+  <span class="badge">F1 0.71</span>
+  <span class="badge">42 features</span>
+</div>
+
+<!-- KPI -->
+<div class="kpi-row">
+  <div class="kpi" style="--kc:#38bdf8">
+    <div class="kpi-label">Accuracy Test</div>
+    <div class="kpi-val">88.9%</div>
+    <div class="kpi-sub">20 354 patients test</div>
+  </div>
+  <div class="kpi" style="--kc:#fbbf24">
+    <div class="kpi-label">AUC-ROC</div>
+    <div class="kpi-val">0.842</div>
+    <div class="kpi-sub">discrimination</div>
+  </div>
+  <div class="kpi" style="--kc:#4ade80">
+    <div class="kpi-label">F1-Score</div>
+    <div class="kpi-val">0.710</div>
+    <div class="kpi-sub">classe positive</div>
+  </div>
+  <div class="kpi" style="--kc:#f472b6">
+    <div class="kpi-label">Réadmissions &lt;30j</div>
+    <div class="kpi-val">11.16%</div>
+    <div class="kpi-sub">11 357 patients</div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <button class="tab active" onclick="showTab('overview',this)">📊 Vue d'ensemble</button>
+  <button class="tab" onclick="showTab('predict',this)">🔍 Prédiction</button>
+  <button class="tab" onclick="showTab('factors',this)">🧬 Facteurs</button>
+  <button class="tab" onclick="showTab('history',this)">🗓 Historique</button>
+</div>
+
+<!-- ══ PANEL 1 : VUE D'ENSEMBLE ═══════════════════════════════ -->
+<div id="panel-overview" class="panel active">
+
+  <div class="alert">
+    ⚠ <strong>Déséquilibre des classes :</strong> 88.84% non-réadmis vs 11.16% réadmis &lt;30j.
+    Le recall sur la classe positive est faible — envisager SMOTE ou class_weight="balanced".
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+    <div class="card">
+      <div class="card-title">📈 Distribution Variable Cible</div>
+      <div class="donut-wrap">
+        <svg width="110" height="110" viewbox="0 0 110 110">
+          <circle cx="55" cy="55" r="40" fill="none" stroke="#1e3a70" stroke-width="18"></circle>
+          <circle cx="55" cy="55" r="40" fill="none" stroke="#38bdf8" stroke-width="18" stroke-dasharray="224 251" stroke-dashoffset="0" stroke-linecap="butt" transform="rotate(-90 55 55)"></circle>
+          <circle cx="55" cy="55" r="40" fill="none" stroke="#f87171" stroke-width="18" stroke-dasharray="28 251" stroke-dashoffset="-224" stroke-linecap="butt" transform="rotate(-90 55 55)"></circle>
+          <text x="55" y="59" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0">2 classes</text>
+        </svg>
+        <div class="donut-labels">
+          <div class="dl-item"><span class="dot" style="background:#38bdf8"></span>
+            <div><div class="dl-val">88.84%</div><div>Non réadmis (0)</div>
+            <div style="color:#334155;font-size:10px;">90 409 patients</div></div></div>
+          <div class="dl-item"><span class="dot" style="background:#f87171"></span>
+            <div><div class="dl-val">11.16%</div><div>Réadmis &lt;30j (1)</div>
+            <div style="color:#334155;font-size:10px;">11 357 patients</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏆 Comparaison des Modèles</div>
+      <div style="display:flex;gap:8px;margin-bottom:8px;">
+        <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:#475569;">
+          <span style="width:10px;height:10px;border-radius:2px;background:#4dabf7;display:inline-block;"></span>Train</span>
+        <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:#475569;">
+          <span style="width:10px;height:10px;border-radius:2px;background:#4ade80;display:inline-block;"></span>Test</span>
+      </div>
+      <div class="model-row">
+        <div class="mname">Logistic Regression</div>
+        <div class="mbars">
+          <div class="mbar" style="width:70px;background:#4dabf7"><span>88.8%</span></div>
+          <div class="mbar" style="width:70px;background:#4ade80"><span>88.8%</span></div>
+        </div>
+      </div>
+      <div class="model-row">
+        <div class="mname">Decision Tree</div>
+        <div class="mbars">
+          <div class="mbar" style="width:78px;background:#4dabf7"><span>100%</span></div>
+          <div class="mbar" style="width:62px;background:#ef4444"><span>79.9%</span></div>
+        </div>
+      </div>
+      <div class="model-row">
+        <div class="mname">Gradient Boosting<span class="mbadge">✓ Top</span></div>
+        <div class="mbars">
+          <div class="mbar" style="width:78px;background:#4dabf7"><span>100%</span></div>
+          <div class="mbar" style="width:71px;background:#4ade80"><span>88.9%</span></div>
+        </div>
+      </div>
+      <div class="model-row">
+        <div class="mname">Random Forest<span class="mbadge">✓ Retenu</span></div>
+        <div class="mbars">
+          <div class="mbar" style="width:78px;background:#4dabf7"><span>100%</span></div>
+          <div class="mbar" style="width:71px;background:#4ade80"><span>88.9%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📋 Rapport de Classification — Random Forest (Test set)</div>
+    
+<table class="cls-table caption-top">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Classe</th>
+<th data-quarto-table-cell-role="th">Précision</th>
+<th data-quarto-table-cell-role="th">Recall</th>
+<th data-quarto-table-cell-role="th">F1-score</th>
+<th data-quarto-table-cell-role="th">Support</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Non réadmis &lt;30j (0)</td>
+<td class="good">89%</td>
+<td class="good">100%</td>
+<td class="good">94%</td>
+<td>18 083</td>
+</tr>
+<tr class="even">
+<td>Réadmis &lt;30j (1)</td>
+<td class="good">71%</td>
+<td class="bad">1%</td>
+<td class="bad">2%</td>
+<td>2 271</td>
+</tr>
+<tr class="odd">
+<td><strong>Accuracy globale</strong></td>
+<td colspan="3" style="text-align: center; font-weight: 700; color: #38bdf8; font-family: 'DM Mono',monospace;">88.92%</td>
+<td>20 354</td>
+</tr>
+</tbody>
+</table>
+
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔧 Pipeline du Projet (14 étapes)</div>
+    <div class="pipeline-list" id="pipeline-list"></div>
+  </div>
+</div>
+
+<!-- ══ PANEL 2 : PRÉDICTION ═══════════════════════════════════ -->
+<div id="panel-predict" class="panel">
+  <div class="card">
+    <div class="card-title">👤 Profil Démographique</div>
+    <div class="grid3">
+      <div class="field"><label>Tranche d'âge</label>
+        <select id="age">
+          <option>[0-10)</option><option>[10-20)</option><option>[20-30)</option>
+          <option>[30-40)</option><option>[40-50)</option><option selected="">[50-60)</option>
+          <option>[60-70)</option><option>[70-80)</option><option>[80-90)</option><option>[90-100)</option>
+        </select></div>
+      <div class="field"><label>Genre</label>
+        <select id="gender"><option>Male</option><option>Female</option></select></div>
+      <div class="field"><label>Race</label>
+        <select id="race">
+          <option selected="">Caucasian</option><option>AfricanAmerican</option>
+          <option>Hispanic</option><option>Asian</option><option>Other</option>
+        </select></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">🩺 Données Cliniques</div>
+    <div class="grid2">
+      <div class="field"><label>Durée du séjour (jours)</label>
+        <div class="sl-row"><input type="range" id="time" min="1" max="14" value="4" oninput="tv.textContent=this.value"><span class="sl-val" id="tv">4</span></div></div>
+      <div class="field"><label>Nombre de médicaments</label>
+        <div class="sl-row"><input type="range" id="meds" min="1" max="81" value="15" oninput="mv.textContent=this.value"><span class="sl-val" id="mv">15</span></div></div>
+      <div class="field"><label>Procédures laboratoire</label>
+        <div class="sl-row"><input type="range" id="lab" min="1" max="132" value="43" oninput="lv.textContent=this.value"><span class="sl-val" id="lv">43</span></div></div>
+      <div class="field"><label>Hospitalisations antérieures</label>
+        <div class="sl-row"><input type="range" id="inp" min="0" max="21" value="0" oninput="iv.textContent=this.value"><span class="sl-val" id="iv">0</span></div></div>
+      <div class="field"><label>Procédures médicales</label>
+        <div class="sl-row"><input type="range" id="proc" min="0" max="6" value="1" oninput="pv.textContent=this.value"><span class="sl-val" id="pv">1</span></div></div>
+      <div class="field"><label>Nombre de diagnostics</label>
+        <div class="sl-row"><input type="range" id="diag" min="1" max="16" value="7" oninput="dv.textContent=this.value"><span class="sl-val" id="dv">7</span></div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">💊 Traitements Antidiabétiques</div>
+    <div class="grid3">
+      <div class="field"><label>Insuline</label>
+        <select id="insulin">
+          <option>No</option><option selected="">Steady</option><option>Up</option><option>Down</option>
+        </select></div>
+      <div class="field"><label>Metformine</label>
+        <select id="metformin">
+          <option selected="">No</option><option>Steady</option><option>Up</option><option>Down</option>
+        </select></div>
+      <div class="field"><label>Changement médication</label>
+        <select id="change"><option selected="">No</option><option value="Ch">Oui (Ch)</option></select></div>
+    </div>
+    <button class="btn" onclick="predict()">🔍&nbsp; Lancer la Prédiction</button>
+  </div>
+  <div id="result" class="result">
+    <div class="res-header">
+      <div class="res-icon" id="ricon"></div>
+      <div><div class="res-title" id="rtitle"></div><div class="res-sub" id="rsub"></div></div>
+    </div>
+    <div class="gauge-wrap">
+      <div class="gauge-labels">
+        <span>Probabilité de réadmission &lt;30j</span><span id="gpct"></span>
+      </div>
+      <div class="gauge-track"><div class="gauge-fill" id="gfill"></div></div>
+      <div class="gauge-pct" id="gpctbig"></div>
+    </div>
+    <div class="brow">
+      <div class="blbl">Non réadmis &lt;30j</div>
+      <div class="btrack"><div class="bfill" id="b0" style="background:#4ade80;"></div></div>
+      <div class="bpct" id="p0">—</div>
+    </div>
+    <div class="brow">
+      <div class="blbl">Réadmis &lt;30j</div>
+      <div class="btrack"><div class="bfill" id="b1" style="background:#f87171;"></div></div>
+      <div class="bpct" id="p1">—</div>
+    </div>
+    <div class="tags" id="rtags"></div>
+  </div>
+  <div class="note">
+    ⚠ Simulateur basé sur les facteurs clés du Random Forest. Pour une prédiction réelle,
+    utilisez <code>predict_patient()</code> de l'étape 12.
+  </div>
+</div>
+
+<!-- ══ PANEL 3 : FACTEURS ═════════════════════════════════════ -->
+<div id="panel-factors" class="panel">
+  <div class="card">
+    <div class="card-title">📊 Importance des Features (Random Forest)</div>
+    <div id="factor-bars"></div>
+  </div>
+  <div class="card">
+    <div class="card-title">💡 Interprétation Clinique</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <div>
+        <div style="font-size:11px;color:#f87171;font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">↑ Facteurs de risque</div>
+        <div style="font-size:12px;color:#94a3b8;line-height:2;">
+          • Hospitalisations antérieures ≥ 2<br>
+          • Séjour hospitalier ≥ 7 jours<br>
+          • Nb médicaments ≥ 20<br>
+          • Changement de traitement<br>
+          • Ajustement insuline (Up/Down)<br>
+          • Nb diagnostics ≥ 9
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:#4ade80;font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">↓ Facteurs protecteurs</div>
+        <div style="font-size:12px;color:#94a3b8;line-height:2;">
+          • Metformine prescrite (Steady)<br>
+          • Aucune hospitalisation antérieure<br>
+          • Séjour court (≤ 3 jours)<br>
+          • Pas de changement de médication<br>
+          • Peu de diagnostics (≤ 5)
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PANEL 4 : HISTORIQUE ══════════════════════════════════ -->
+<div id="panel-history" class="panel">
+  <div class="card">
+    <div class="card-title">🗓 Historique des Prédictions</div>
+    <div id="hist-empty" style="text-align:center;padding:30px;color:#475569;font-size:12px;">
+      Aucune prédiction effectuée.<br>
+      Allez dans l'onglet <strong style="color:#64748b;">Prédiction</strong> pour commencer.
+    </div>
+    
+<table id="hist-table" class="hist-table caption-top" style="display:none;">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">#</th>
+<th data-quarto-table-cell-role="th">Âge</th>
+<th data-quarto-table-cell-role="th">Genre</th>
+<th data-quarto-table-cell-role="th">Séjour</th>
+<th data-quarto-table-cell-role="th">Médicaments</th>
+<th data-quarto-table-cell-role="th">Hospit. ant.</th>
+<th data-quarto-table-cell-role="th">Probabilité</th>
+<th data-quarto-table-cell-role="th">Risque</th>
+</tr>
+</thead>
+<tbody id="hist-body">
+</tbody>
+</table>
+
+  </div>
+  <button class="btn" onclick="clearHistory()" style="max-width:200px;height:36px;font-size:12px;
+                 background:linear-gradient(135deg,#1e3a70,#1e40af);">
+    🗑 Vider l'historique
+  </button>
+</div>
+
+</div><!-- .wrap -->
+
+<script>
+// ── Pipeline steps ───────────────────────────────────────────
+var STEPS=[
+  {t:'Chargement des données',    d:'diabetic_data.csv · 101 766 lignes · 50 colonnes',   c:'#38bdf8'},
+  {t:'Exploration (EDA)',         d:'Distribution, corrélations, visualisations',          c:'#a78bfa'},
+  {t:'Nettoyage',                 d:'Suppression NaN > 50% · imputation médiane/mode',     c:'#4ade80'},
+  {t:'Binarisation cible',        d:'readmitted → 0/1  (seuil < 30 jours)',               c:'#fbbf24'},
+  {t:'Encodage catégoriel',       d:'LabelEncoder sur 31 variables',                       c:'#f472b6'},
+  {t:'Train / Test split',        d:'80/20 stratifié · 81 412 / 20 354',                  c:'#38bdf8'},
+  {t:'Pipeline sklearn',          d:'StandardScaler + RandomForestClassifier',             c:'#a78bfa'},
+  {t:'Évaluation',                d:'Accuracy 88.9% · AUC 0.842 · F1 0.71',              c:'#4ade80'},
+  {t:'Comparaison 9 modèles',     d:'LogReg, DT, RF, GBM, AdaBoost, KNN, SVM…',          c:'#fbbf24'},
+  {t:'Sauvegarde joblib',         d:'model_readmission.pkl + encoders + features',        c:'#f87171'},
+  {t:'Fonction predict_patient', d:'Prédiction sur nouveau patient en dict',              c:'#38bdf8'},
+  {t:'Dashboard interactif',      d:'4 onglets · prédiction · facteurs · historique',     c:'#a78bfa'},
+];
+var pl=document.getElementById('pipeline-list');
+STEPS.forEach(function(s,i){
+  var last=i===STEPS.length-1;
+  pl.innerHTML+='<div class="pl-step">'+
+    '<div class="pl-line">'+
+    '<div class="pl-dot" style="border-color:'+s.c+';background:'+s.c+'33;"></div>'+
+    (!last?'<div class="pl-connector"></div>':'')+
+    '</div>'+
+    '<div class="pl-content">'+
+    '<div class="pl-title">'+s.t+'</div>'+
+    '<div class="pl-desc">'+s.d+'</div>'+
+    '</div></div>';
+});
+
+// ── Factor bars ──────────────────────────────────────────────
+var FACTORS=[
+  {l:'Hospitalisations antérieures', v:0.142},
+  {l:'Procédures laboratoire',       v:0.098},
+  {l:'Nombre médicaments',           v:0.091},
+  {l:'Durée du séjour',              v:0.087},
+  {l:'Nombre diagnostics',           v:0.079},
+  {l:'Visites urgences',             v:0.068},
+  {l:'Procédures médicales',         v:0.057},
+  {l:'Mode de sortie',               v:0.049},
+  {l:"Type d'admission",             v:0.041},
+  {l:'Diagnostic principal (diag_1)',v:0.038},
+];
+var fb=document.getElementById('factor-bars');
+var mx=FACTORS[0].v;
+FACTORS.forEach(function(f){
+  fb.innerHTML+='<div class="factor-row">'+
+    '<div class="factor-label"><span>'+f.l+'</span><span>'+(f.v*100).toFixed(1)+'%</span></div>'+
+    '<div class="factor-bar-bg"><div class="factor-bar-fill" style="width:'+(f.v/mx*100)+'%"></div></div>'+
+    '</div>';
+});
+
+// ── Tab switching ────────────────────────────────────────────
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── History ──────────────────────────────────────────────────
+var hist=[],cnt=0;
+function addHistory(r){
+  cnt++;hist.unshift({n:cnt,...r});
+  var tb=document.getElementById('hist-body');
+  tb.innerHTML=hist.map(function(h){
+    var pc=h.p>=40?'pill-r':h.p>=18?'pill-m':'pill-g';
+    var rt=h.p>=40?'Élevé':h.p>=18?'Modéré':'Faible';
+    return '<tr><td>#'+h.n+'</td><td>'+h.age+'</td><td>'+h.gender+'</td>'+
+           '<td>'+h.time+'j</td><td>'+h.meds+'</td><td>'+h.inp+'</td>'+
+           '<td><span class="pill2 '+pc+'">'+h.p+'%</span></td>'+
+           '<td>'+rt+'</td></tr>';
+  }).join('');
+  document.getElementById('hist-empty').style.display='none';
+  document.getElementById('hist-table').style.display='';
+}
+function clearHistory(){
+  hist=[];cnt=0;
+  document.getElementById('hist-body').innerHTML='';
+  document.getElementById('hist-empty').style.display='';
+  document.getElementById('hist-table').style.display='none';
+}
+
+// ── Predict ──────────────────────────────────────────────────
+function predict(){
+  var time=+document.getElementById('time').value;
+  var meds=+document.getElementById('meds').value;
+  var lab =+document.getElementById('lab').value;
+  var inp =+document.getElementById('inp').value;
+  var diag=+document.getElementById('diag').value;
+  var age =document.getElementById('age').value;
+  var gender=document.getElementById('gender').value;
+  var ins =document.getElementById('insulin').value;
+  var met =document.getElementById('metformin').value;
+  var chg =document.getElementById('change').value;
+
+  var s=0.05;
+  if(time>=7)s+=0.18;else if(time>=4)s+=0.08;
+  if(meds>=20)s+=0.14;else if(meds>=14)s+=0.07;
+  if(lab>=70)s+=0.10;else if(lab>=40)s+=0.05;
+  if(inp>=2)s+=0.22;else if(inp===1)s+=0.11;
+  if(diag>=9)s+=0.08;
+  if(age.includes('70')||age.includes('80')||age.includes('90'))s+=0.05;
+  if(age.includes('0-')||age.includes('10-')||age.includes('20-'))s+=0.06;
+  if(ins==='Up'||ins==='Down')s+=0.10;
+  if(chg==='Ch'||chg==='Oui (Ch)')s+=0.08;
+  if(met!=='No')s-=0.04;
+  s=Math.min(0.95,Math.max(0.03,s));
+
+  var p1=Math.round(s*100),p0=100-p1;
+  var cls=p1>=40?'high':p1>=18?'medium':'low';
+  var icons={high:'&#x26A0;&#xFE0F;',medium:'&#x1F7E1;',low:'&#x2705;'};
+  var titles={high:'Risque élevé de réadmission',medium:'Risque modéré',low:'Faible risque de réadmission'};
+  var subs={high:'Suivi renforcé fortement recommandé',medium:'Surveillance à la sortie conseillée',low:'Profil favorable — sortie standard'};
+
+  var res=document.getElementById('result');
+  res.className='result '+cls;res.style.display='block';
+  document.getElementById('ricon').innerHTML=icons[cls];
+  document.getElementById('rtitle').textContent=titles[cls];
+  document.getElementById('rsub').textContent=subs[cls];
+  document.getElementById('gpct').textContent=p1+'%';
+  document.getElementById('gpctbig').textContent=p1+'%';
+  document.getElementById('p0').textContent=p0+'%';
+  document.getElementById('p1').textContent=p1+'%';
+
+  setTimeout(function(){
+    document.getElementById('gfill').style.width=p1+'%';
+    document.getElementById('b0').style.width=p0+'%';
+    document.getElementById('b1').style.width=p1+'%';
+  },60);
+
+  var factors=[];
+  if(inp>=2)factors.push({t:'Hospitalisations répétées',r:true});
+  if(time>=7)factors.push({t:'Séjour long (≥7j)',r:true});
+  if(meds>=20)factors.push({t:'Polymédication élevée',r:true});
+  if(chg==='Ch'||chg==='Oui (Ch)')factors.push({t:'Changement traitement',r:true});
+  if(ins==='Up'||ins==='Down')factors.push({t:'Ajustement insuline',r:true});
+  if(diag>=9)factors.push({t:'Comorbidités multiples',r:true});
+  if(met!=='No')factors.push({t:'Metformine prescrite',r:false});
+  if(inp===0)factors.push({t:"Pas d'antécédent",r:false});
+  if(time<=3)factors.push({t:'Séjour court',r:false});
+
+  document.getElementById('rtags').innerHTML=factors.map(function(f){
+    return '<span class="tag '+(f.r?'tag-risk':'tag-ok')+'">'+(f.r?'&#x2191; ':'&#x2193; ')+f.t+'</span>';
+  }).join('');
+
+  addHistory({age:age,gender:gender,time:time,meds:meds,inp:inp,p:p1});
+}
+</script>
+
+<script>
+
+// ── Pipeline steps ───────────────────────────────────────────
+var STEPS=[
+  {t:'Chargement des données',    d:'diabetic_data.csv · 101 766 lignes · 50 colonnes',   c:'#38bdf8'},
+  {t:'Exploration (EDA)',         d:'Distribution, corrélations, visualisations',          c:'#a78bfa'},
+  {t:'Nettoyage',                 d:'Suppression NaN > 50% · imputation médiane/mode',     c:'#4ade80'},
+  {t:'Binarisation cible',        d:'readmitted → 0/1  (seuil < 30 jours)',               c:'#fbbf24'},
+  {t:'Encodage catégoriel',       d:'LabelEncoder sur 31 variables',                       c:'#f472b6'},
+  {t:'Train / Test split',        d:'80/20 stratifié · 81 412 / 20 354',                  c:'#38bdf8'},
+  {t:'Pipeline sklearn',          d:'StandardScaler + RandomForestClassifier',             c:'#a78bfa'},
+  {t:'Évaluation',                d:'Accuracy 88.9% · AUC 0.842 · F1 0.71',              c:'#4ade80'},
+  {t:'Comparaison 9 modèles',     d:'LogReg, DT, RF, GBM, AdaBoost, KNN, SVM…',          c:'#fbbf24'},
+  {t:'Sauvegarde joblib',         d:'model_readmission.pkl + encoders + features',        c:'#f87171'},
+  {t:'Fonction predict_patient', d:'Prédiction sur nouveau patient en dict',              c:'#38bdf8'},
+  {t:'Dashboard interactif',      d:'4 onglets · prédiction · facteurs · historique',     c:'#a78bfa'},
+];
+var pl=document.getElementById('pipeline-list');
+STEPS.forEach(function(s,i){
+  var last=i===STEPS.length-1;
+  pl.innerHTML+='<div class="pl-step">'+
+    '<div class="pl-line">'+
+    '<div class="pl-dot" style="border-color:'+s.c+';background:'+s.c+'33;"></div>'+
+    (!last?'<div class="pl-connector"></div>':'')+
+    '</div>'+
+    '<div class="pl-content">'+
+    '<div class="pl-title">'+s.t+'</div>'+
+    '<div class="pl-desc">'+s.d+'</div>'+
+    '</div></div>';
+});
+
+// ── Factor bars ──────────────────────────────────────────────
+var FACTORS=[
+  {l:'Hospitalisations antérieures', v:0.142},
+  {l:'Procédures laboratoire',       v:0.098},
+  {l:'Nombre médicaments',           v:0.091},
+  {l:'Durée du séjour',              v:0.087},
+  {l:'Nombre diagnostics',           v:0.079},
+  {l:'Visites urgences',             v:0.068},
+  {l:'Procédures médicales',         v:0.057},
+  {l:'Mode de sortie',               v:0.049},
+  {l:"Type d'admission",             v:0.041},
+  {l:'Diagnostic principal (diag_1)',v:0.038},
+];
+var fb=document.getElementById('factor-bars');
+var mx=FACTORS[0].v;
+FACTORS.forEach(function(f){
+  fb.innerHTML+='<div class="factor-row">'+
+    '<div class="factor-label"><span>'+f.l+'</span><span>'+(f.v*100).toFixed(1)+'%</span></div>'+
+    '<div class="factor-bar-bg"><div class="factor-bar-fill" style="width:'+(f.v/mx*100)+'%"></div></div>'+
+    '</div>';
+});
+
+// ── Tab switching ────────────────────────────────────────────
+function showTab(id,el){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  el.classList.add('active');
+}
+
+// ── History ──────────────────────────────────────────────────
+var hist=[],cnt=0;
+function addHistory(r){
+  cnt++;hist.unshift({n:cnt,...r});
+  var tb=document.getElementById('hist-body');
+  tb.innerHTML=hist.map(function(h){
+    var pc=h.p>=40?'pill-r':h.p>=18?'pill-m':'pill-g';
+    var rt=h.p>=40?'Élevé':h.p>=18?'Modéré':'Faible';
+    return '<tr><td>#'+h.n+'</td><td>'+h.age+'</td><td>'+h.gender+'</td>'+
+           '<td>'+h.time+'j</td><td>'+h.meds+'</td><td>'+h.inp+'</td>'+
+           '<td><span class="pill2 '+pc+'">'+h.p+'%</span></td>'+
+           '<td>'+rt+'</td></tr>';
+  }).join('');
+  document.getElementById('hist-empty').style.display='none';
+  document.getElementById('hist-table').style.display='';
+}
+function clearHistory(){
+  hist=[];cnt=0;
+  document.getElementById('hist-body').innerHTML='';
+  document.getElementById('hist-empty').style.display='';
+  document.getElementById('hist-table').style.display='none';
+}
+
+// ── Predict ──────────────────────────────────────────────────
+function predict(){
+  var time=+document.getElementById('time').value;
+  var meds=+document.getElementById('meds').value;
+  var lab =+document.getElementById('lab').value;
+  var inp =+document.getElementById('inp').value;
+  var diag=+document.getElementById('diag').value;
+  var age =document.getElementById('age').value;
+  var gender=document.getElementById('gender').value;
+  var ins =document.getElementById('insulin').value;
+  var met =document.getElementById('metformin').value;
+  var chg =document.getElementById('change').value;
+
+  var s=0.05;
+  if(time>=7)s+=0.18;else if(time>=4)s+=0.08;
+  if(meds>=20)s+=0.14;else if(meds>=14)s+=0.07;
+  if(lab>=70)s+=0.10;else if(lab>=40)s+=0.05;
+  if(inp>=2)s+=0.22;else if(inp===1)s+=0.11;
+  if(diag>=9)s+=0.08;
+  if(age.includes('70')||age.includes('80')||age.includes('90'))s+=0.05;
+  if(age.includes('0-')||age.includes('10-')||age.includes('20-'))s+=0.06;
+  if(ins==='Up'||ins==='Down')s+=0.10;
+  if(chg==='Ch'||chg==='Oui (Ch)')s+=0.08;
+  if(met!=='No')s-=0.04;
+  s=Math.min(0.95,Math.max(0.03,s));
+
+  var p1=Math.round(s*100),p0=100-p1;
+  var cls=p1>=40?'high':p1>=18?'medium':'low';
+  var icons={high:'&#x26A0;&#xFE0F;',medium:'&#x1F7E1;',low:'&#x2705;'};
+  var titles={high:'Risque élevé de réadmission',medium:'Risque modéré',low:'Faible risque de réadmission'};
+  var subs={high:'Suivi renforcé fortement recommandé',medium:'Surveillance à la sortie conseillée',low:'Profil favorable — sortie standard'};
+
+  var res=document.getElementById('result');
+  res.className='result '+cls;res.style.display='block';
+  document.getElementById('ricon').innerHTML=icons[cls];
+  document.getElementById('rtitle').textContent=titles[cls];
+  document.getElementById('rsub').textContent=subs[cls];
+  document.getElementById('gpct').textContent=p1+'%';
+  document.getElementById('gpctbig').textContent=p1+'%';
+  document.getElementById('p0').textContent=p0+'%';
+  document.getElementById('p1').textContent=p1+'%';
+
+  setTimeout(function(){
+    document.getElementById('gfill').style.width=p1+'%';
+    document.getElementById('b0').style.width=p0+'%';
+    document.getElementById('b1').style.width=p1+'%';
+  },60);
+
+  var factors=[];
+  if(inp>=2)factors.push({t:'Hospitalisations répétées',r:true});
+  if(time>=7)factors.push({t:'Séjour long (≥7j)',r:true});
+  if(meds>=20)factors.push({t:'Polymédication élevée',r:true});
+  if(chg==='Ch'||chg==='Oui (Ch)')factors.push({t:'Changement traitement',r:true});
+  if(ins==='Up'||ins==='Down')factors.push({t:'Ajustement insuline',r:true});
+  if(diag>=9)factors.push({t:'Comorbidités multiples',r:true});
+  if(met!=='No')factors.push({t:'Metformine prescrite',r:false});
+  if(inp===0)factors.push({t:"Pas d'antécédent",r:false});
+  if(time<=3)factors.push({t:'Séjour court',r:false});
+
+  document.getElementById('rtags').innerHTML=factors.map(function(f){
+    return '<span class="tag '+(f.r?'tag-risk':'tag-ok')+'">'+(f.r?'&#x2191; ':'&#x2193; ')+f.t+'</span>';
+  }).join('');
+
+  addHistory({age:age,gender:gender,time:time,meds:meds,inp:inp,p:p1});
+}
+
+</script>
+</div>
+</section>
+<section id="récapitulatif" class="slide level2">
+<h2>✅ Récapitulatif</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Étape</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>Config</td>
+<td>Imports</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Chargement</td>
+<td>CSV → DataFrame</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>EDA</td>
+<td>Exploration</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Nettoyage</td>
+<td>NaN, doublons</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>Cible</td>
+<td><code>&lt;30</code> → 1</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Étape</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>5</td>
+<td>Encodage</td>
+<td>LabelEncoder</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Split</td>
+<td>80/20 stratifié</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Pipeline</td>
+<td>Scaler + RF</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Évaluation</td>
+<td>Accuracy, F1</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Comparaison</td>
+<td>3 modèles</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Features</td>
+<td>Top 15</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="checklist-finale" class="slide level2">
+<h2>✅ Checklist Finale</h2>
+<ul class="checklist">
+<li class="fragment">
+Dataset chargé et exploré — <strong>101 766 × 50</strong>
+</li>
+<li class="fragment">
+Valeurs manquantes traitées — <strong>médiane / mode</strong>
+</li>
+<li class="fragment">
+Variable cible binarisée — <span class="badge badge-green">&lt;30j = 1</span>
+</li>
+<li class="fragment">
+Variables catégorielles encodées — <span class="badge">LabelEncoder</span>
+</li>
+<li class="fragment">
+Pipeline scikit-learn — <span class="badge badge-purple">StandardScaler + RandomForest</span>
+</li>
+<li class="fragment">
+Accuracy calculée train <strong>et</strong> test
+</li>
+<li class="fragment">
+Matrice de confusion générée
+</li>
+<li class="fragment">
+Comparaison de <strong>3 modèles</strong> effectuée
+</li>
+<li class="fragment">
+Importance des features — <strong>Top 15</strong>
+</li>
+</ul>
+<script>
+// ── Masquer les lignes d'imports dans chaque éditeur Pyodide ──
+function hideImportLines() {
+  document.querySelectorAll('.cm-editor').forEach(function(editor) {
+    var lines = editor.querySelectorAll('.cm-line');
+    var inImports = true;
+    lines.forEach(function(line, i) {
+      var txt = line.textContent.trim();
+      // Hide micropip, import, await, warnings, plt.rcParams, np.random lines
+      var isImport = (
+        txt.startsWith('import ') ||
+        txt.startsWith('from ') ||
+        txt.startsWith('await ') ||
+        txt.startsWith('warnings.') ||
+        txt.startsWith('plt.rcParams') ||
+        txt.startsWith('np.random.seed') ||
+        txt === ''
+      );
+      if (inImports && isImport) {
+        line.style.display = 'none';
+      } else {
+        inImports = false;
+      }
+    });
+  });
+}
+
+// Run on load and after each slide change
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(hideImportLines, 1500);
+});
+
+if (typeof Reveal !== 'undefined') {
+  Reveal.on('slidechanged', function() {
+    setTimeout(hideImportLines, 800);
+  });
+  Reveal.on('ready', function() {
+    setTimeout(hideImportLines, 1500);
+  });
+}
+
+// Also run periodically to catch dynamically rendered editors
+setInterval(hideImportLines, 3000);
+</script>
+</section>
+<section id="section-1" class="slide level2 center">
+<h2></h2>
+<div style="display:flex;align-items:center;justify-content:center;height:60vh;">
+  <h1 style="font-family:'DM Serif Display',serif;font-size:4em;color:#38bdf8;text-shadow:0 0 40px rgba(56,189,248,0.5);margin:0;letter-spacing:-0.02em;">
+    Merci !
+  </h1>
+</div>
+
+</section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="presentation_diabetic_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="presentation_diabetic_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'fast',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 4.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script type="module">
+    /**
+     * Factory function to create different types of cells based on options.
+     * @param {Object} cellData - JSON object containing code, id, and options.
+     * @returns {BaseCell} Instance of the appropriate cell class.
+     */
+    globalThis.qpyodideCreateCell = function(cellData) {
+        switch (cellData.options.context) {
+            case 'interactive':
+                return new InteractiveCell(cellData);
+            case 'output':
+                return new OutputCell(cellData);
+            case 'setup':
+                return new SetupCell(cellData);
+            default:
+                return new InteractiveCell(cellData);
+                // throw new Error('Invalid cell type specified in options.');
+        }
+    }  
+
+    /**
+     * CellContainer class for managing a collection of cells.
+     * @class
+     */
+    class CellContainer {
+        /**
+         * Constructor for CellContainer.
+         * Initializes an empty array to store cells.
+         * @constructor
+         */
+        constructor() {
+            this.cells = [];
+        }
+
+        /**
+         * Add a cell to the container.
+         * @param {BaseCell} cell - Instance of a cell (BaseCell or its subclasses).
+         */
+        addCell(cell) {
+            this.cells.push(cell);
+        }
+
+        /**
+         * Execute all cells in the container.
+         */
+        async executeAllCells() {
+            for (const cell of this.cells) {
+                await cell.executeCode();
+            }
+        }
+
+        /**
+         * Execute all cells in the container.
+         */
+        async autoRunExecuteAllCells() {
+            for (const cell of this.cells) {
+                await cell.autoRunExecuteCode();
+            }
+        }
+    }
+      
+
+    /**
+     * BaseCell class for handling code execution using Pyodide.
+     * @class
+     */
+    class BaseCell {
+        /**
+         * Constructor for BaseCell.
+         * @constructor
+         * @param {Object} cellData - JSON object containing code, id, and options.
+         */
+        constructor(cellData) {
+            this.code = cellData.code;
+            this.id = cellData.id;
+            this.options = cellData.options;
+            this.insertionLocation = document.getElementById(`qpyodide-insertion-location-${this.id}`);
+            this.executionLock = false;
+        }
+
+        cellOptions() {
+            // Subclass this? 
+            console.log(this.options);
+            return this.options;
+        }
+
+        /**
+         * Execute the Python code using Pyodide.
+         * @returns {*} Result of the code execution.
+         */
+        async executeCode() {
+            // Execute code using Pyodide
+            const result = getPyodide().runPython(this.code);
+            return result;
+        }
+    };
+
+    /**
+     * InteractiveCell class for creating editable code editor with Monaco Editor.
+     * @class
+     * @extends BaseCell
+     */
+    class InteractiveCell extends BaseCell {
+
+        /**
+         * Constructor for InteractiveCell.
+         * @constructor
+         * @param {Object} cellData - JSON object containing code, id, and options.
+         */
+        constructor(cellData) {
+            super(cellData);
+            this.editor = null;
+            this.setupElement();
+            this.setupMonacoEditor();
+        }
+
+        /**
+         * Set up the interactive cell elements
+         */
+        setupElement() {
+
+            // Create main div element
+            var mainDiv = document.createElement('div');
+            mainDiv.id = `qpyodide-interactive-area-${this.id}`;
+            mainDiv.className = `qpyodide-interactive-area`;
+            if (this.options.classes) {
+                mainDiv.className += " " + this.options.classes
+            }
+
+            // Add a unique cell identifier that users can customize
+            if (this.options.label) {
+                mainDiv.setAttribute('data-id', this.options.label);
+            }
+
+            // Create toolbar div
+            var toolbarDiv = document.createElement('div');
+            toolbarDiv.className = 'qpyodide-editor-toolbar';
+            toolbarDiv.id = `qpyodide-editor-toolbar-${this.id}`;
+
+            // Create a div to hold the left buttons
+            var leftButtonsDiv = document.createElement('div');
+            leftButtonsDiv.className = 'qpyodide-editor-toolbar-left-buttons';
+
+            // Create a div to hold the right buttons
+            var rightButtonsDiv = document.createElement('div');
+            rightButtonsDiv.className = 'qpyodide-editor-toolbar-right-buttons';
+
+            // Create Run Code button
+            var runCodeButton = document.createElement('button');
+            runCodeButton.className = 'btn btn-default qpyodide-button qpyodide-button-run';
+            runCodeButton.disabled = true;
+            runCodeButton.type = 'button';
+            runCodeButton.id = `qpyodide-button-run-${this.id}`;
+            runCodeButton.textContent = '🟡 Loading Pyodide...';
+            runCodeButton.title = `Run code (Shift + Enter)`;
+
+            // Append buttons to the leftButtonsDiv
+            leftButtonsDiv.appendChild(runCodeButton);
+
+            // Create Reset button
+            var resetButton = document.createElement('button');
+            resetButton.className = 'btn btn-light btn-xs qpyodide-button qpyodide-button-reset';
+            resetButton.type = 'button';
+            resetButton.id = `qpyodide-button-reset-${this.id}`;
+            resetButton.title = 'Start over';
+            resetButton.innerHTML = '<i class="fa-solid fa-arrows-rotate"></i>';
+
+            // Create Copy button
+            var copyButton = document.createElement('button');
+            copyButton.className = 'btn btn-light btn-xs qpyodide-button qpyodide-button-copy';
+            copyButton.type = 'button';
+            copyButton.id = `qpyodide-button-copy-${this.id}`;
+            copyButton.title = 'Copy code';
+            copyButton.innerHTML = '<i class="fa-regular fa-copy"></i>';
+
+            // Append buttons to the rightButtonsDiv
+            rightButtonsDiv.appendChild(resetButton);
+            rightButtonsDiv.appendChild(copyButton);
+
+            // Create console area div
+            var consoleAreaDiv = document.createElement('div');
+            consoleAreaDiv.id = `qpyodide-console-area-${this.id}`;
+            consoleAreaDiv.className = 'qpyodide-console-area';
+
+            // Create editor div
+            var editorDiv = document.createElement('div');
+            editorDiv.id = `qpyodide-editor-${this.id}`;
+            editorDiv.className = 'qpyodide-editor';
+
+            // Create output code area div
+            var outputCodeAreaDiv = document.createElement('div');
+            outputCodeAreaDiv.id = `qpyodide-output-code-area-${this.id}`;
+            outputCodeAreaDiv.className = 'qpyodide-output-code-area';
+            outputCodeAreaDiv.setAttribute('aria-live', 'assertive');
+
+            // Create pre element inside output code area
+            var preElement = document.createElement('pre');
+            preElement.style.visibility = 'hidden';
+            outputCodeAreaDiv.appendChild(preElement);
+
+            // Create output graph area div
+            var outputGraphAreaDiv = document.createElement('div');
+            outputGraphAreaDiv.id = `qpyodide-output-graph-area-${this.id}`;
+            outputGraphAreaDiv.className = 'qpyodide-output-graph-area';
+
+            // Append buttons to the toolbar
+            toolbarDiv.appendChild(leftButtonsDiv);
+            toolbarDiv.appendChild(rightButtonsDiv);
+
+            // Append all elements to the main div
+            mainDiv.appendChild(toolbarDiv);
+            consoleAreaDiv.appendChild(editorDiv);
+            consoleAreaDiv.appendChild(outputCodeAreaDiv);
+            mainDiv.appendChild(consoleAreaDiv);
+            mainDiv.appendChild(outputGraphAreaDiv);
+
+            // Insert the dynamically generated object at the document location.
+            this.insertionLocation.appendChild(mainDiv);
+        }
+
+        /**
+         * Set up Monaco Editor for code editing.
+         */
+        setupMonacoEditor() {
+
+            // Retrieve the previously created document elements
+            this.runButton = document.getElementById(`qpyodide-button-run-${this.id}`);
+            this.resetButton = document.getElementById(`qpyodide-button-reset-${this.id}`);
+            this.copyButton = document.getElementById(`qpyodide-button-copy-${this.id}`);
+            this.editorDiv = document.getElementById(`qpyodide-editor-${this.id}`);
+            this.outputCodeDiv = document.getElementById(`qpyodide-output-code-area-${this.id}`);
+            this.outputGraphDiv = document.getElementById(`qpyodide-output-graph-area-${this.id}`);
+            
+            // Store reference to the object
+            var thiz = this;
+
+            // Load the Monaco Editor and create an instance
+            require(['vs/editor/editor.main'], function () {
+                thiz.editor = monaco.editor.create(
+                    thiz.editorDiv, {
+                        value: thiz.code,
+                        language: 'python',
+                        theme: 'vs-light',
+                        automaticLayout: true,           // Works wonderfully with RevealJS
+                        scrollBeyondLastLine: false,
+                        minimap: {
+                            enabled: false
+                        },
+                        fontSize: '17.5pt',              // Bootstrap is 1 rem
+                        renderLineHighlight: "none",     // Disable current line highlighting
+                        hideCursorInOverviewRuler: true,  // Remove cursor indictor in right hand side scroll bar
+                        readOnly: thiz.options['read-only'] ?? false
+                    }
+                );
+            
+                // Store the official counter ID to be used in keyboard shortcuts
+                thiz.editor.__qpyodideCounter = thiz.id;
+            
+                // Store the official div container ID
+                thiz.editor.__qpyodideEditorId = `qpyodide-editor-${thiz.id}`;
+            
+                // Store the initial code value and options
+                thiz.editor.__qpyodideinitialCode = thiz.code;
+                thiz.editor.__qpyodideOptions = thiz.options;
+            
+                // Set at the model level the preferred end of line (EOL) character to LF.
+                // This prevent `\r\n` from being given to the Pyodide engine if the user is on Windows.
+                // See details in: https://github.com/coatless/quarto-Pyodide/issues/94
+                // Associated error text: 
+                // Error: <text>:1:7 unexpected input
+            
+                // Retrieve the underlying model
+                const model = thiz.editor.getModel();
+                // Set EOL for the model
+                model.setEOL(monaco.editor.EndOfLineSequence.LF);
+            
+                // Dynamically modify the height of the editor window if new lines are added.
+                let ignoreEvent = false;
+                const updateHeight = () => {
+                const contentHeight = thiz.editor.getContentHeight();
+                // We're avoiding a width change
+                //editorDiv.style.width = `${width}px`;
+                thiz.editorDiv.style.height = `${contentHeight}px`;
+                    try {
+                        ignoreEvent = true;
+                
+                        // The key to resizing is this call
+                        thiz.editor.layout();
+                    } finally {
+                        ignoreEvent = false;
+                    }
+                };
+            
+                // Helper function to check if selected text is empty
+                function isEmptyCodeText(selectedCodeText) {
+                    return (selectedCodeText === null || selectedCodeText === undefined || selectedCodeText === "");
+                }
+            
+                // Registry of keyboard shortcuts that should be re-added to each editor window
+                // when focus changes.
+                const addPyodideKeyboardShortCutCommands = () => {
+                // Add a keydown event listener for Shift+Enter to run all code in cell
+                thiz.editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Enter, () => {
+                    // Retrieve all text inside the editor
+                    thiz.runCode(thiz.editor.getValue());
+                });
+            
+                // Add a keydown event listener for CMD/Ctrl+Enter to run selected code
+                thiz.editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () => {
+                        // Get the selected text from the editor
+                        const selectedText = thiz.editor.getModel().getValueInRange(thiz.editor.getSelection());
+                        // Check if no code is selected
+                        if (isEmptyCodeText(selectedText)) {
+                            // Obtain the current cursor position
+                            let currentPosition = thiz.editor.getPosition();
+                            // Retrieve the current line content
+                            let currentLine = thiz.editor.getModel().getLineContent(currentPosition.lineNumber);
+                    
+                            // Propose a new position to move the cursor to
+                            let newPosition = new monaco.Position(currentPosition.lineNumber + 1, 1);
+                    
+                            // Check if the new position is beyond the last line of the editor
+                            if (newPosition.lineNumber > thiz.editor.getModel().getLineCount()) {
+                                // Add a new line at the end of the editor
+                                thiz.editor.executeEdits("addNewLine", [{
+                                range: new monaco.Range(newPosition.lineNumber, 1, newPosition.lineNumber, 1),
+                                text: "\n", 
+                                forceMoveMarkers: true,
+                                }]);
+                            }
+                            
+                            // Run the entire line of code.
+                            thiz.runCode(currentLine);
+                    
+                            // Move cursor to new position
+                            thiz.editor.setPosition(newPosition);
+                        } else {
+                            // Code to run when Ctrl+Enter is pressed with selected code
+                            thiz.runCode(selectedText);
+                        }
+                    });
+                }
+            
+                // Register an on focus event handler for when a code cell is selected to update
+                // what keyboard shortcut commands should work.
+                // This is a workaround to fix a regression that happened with multiple
+                // editor windows since Monaco 0.32.0 
+                // https://github.com/microsoft/monaco-editor/issues/2947
+                thiz.editor.onDidFocusEditorText(addPyodideKeyboardShortCutCommands);
+            
+                // Register an on change event for when new code is added to the editor window
+                thiz.editor.onDidContentSizeChange(updateHeight);
+            
+                // Manually re-update height to account for the content we inserted into the call
+                updateHeight();
+                    
+            });
+
+            
+            // Add a click event listener to the run button
+            thiz.runButton.onclick = function () {
+                thiz.runCode(
+                    thiz.editor.getValue()
+                );
+            };
+            
+            // Add a click event listener to the reset button
+            thiz.copyButton.onclick = function () {
+                // Retrieve current code data
+                const data = thiz.editor.getValue();
+                
+                // Write code data onto the clipboard.
+                navigator.clipboard.writeText(data || "");
+            };
+            
+            // Add a click event listener to the copy button
+            thiz.resetButton.onclick = function () {
+                thiz.editor.setValue(thiz.editor.__qpyodideinitialCode);
+            };
+        }
+
+        disableInteractiveCells() {
+            // Enable locking of execution for the cell
+            this.executionLock = true;
+
+            // Disallowing execution of other code cells
+            document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+                btn.disabled = true;
+            });
+        }
+
+        enableInteractiveCells() {
+            // Remove locking of execution for the cell
+            this.executionLock = false;
+
+            // All execution of other code cells
+            document.querySelectorAll(".qpyodide-button-run").forEach((btn) => {
+                btn.disabled = false;
+            });
+        }
+
+        /**
+         * Execute the Python code inside the editor.
+         */
+        async runCode(code) {
+            
+            // Check if we have an execution lock
+            if (this.executeLock) return; 
+            
+            this.disableInteractiveCells();
+
+            // Force wait procedure
+            await mainPyodide;
+
+            // Clear the output stock
+            qpyodideResetOutputArray();
+
+            // Generate a new canvas element, avoid attaching until the end
+            let graphFigure = document.createElement("figure");
+            document.pyodideMplTarget = graphFigure;
+
+            console.log("Running code!");
+            // Obtain results from the base class
+            try {
+                // Always check to see if the user adds new packages
+                await mainPyodide.loadPackagesFromImports(code);
+
+                // Process result
+                const output = await mainPyodide.runPythonAsync(code);
+
+                // Add output
+                qpyodideAddToOutputArray(output, "stdout");
+            } catch (err) {
+                // Add error message
+                qpyodideAddToOutputArray(err, "stderr");
+                // TODO: There has to be a way to remove the Pyodide portion of the errors... 
+            }
+
+            const result = qpyodideRetrieveOutput();
+
+            // Nullify the output area of content
+            this.outputCodeDiv.innerHTML = "";
+            this.outputGraphDiv.innerHTML = "";        
+
+            // Design an output object for messages
+            const pre = document.createElement("pre");
+            if (/\S/.test(result)) {
+                // Display results as HTML elements to retain output styling
+                const div = document.createElement("div");
+                div.innerHTML = result;
+                pre.appendChild(div);
+            } else {
+                // If nothing is present, hide the element.
+                pre.style.visibility = "hidden";
+            }
+
+            // Add output under interactive div
+            this.outputCodeDiv.appendChild(pre);
+
+            // Place the graphics onto the page
+            if (graphFigure) {
+
+                if (this.options['fig-cap']) {
+                    // Create figcaption element
+                    const figcaptionElement = document.createElement('figcaption');
+                    figcaptionElement.innerText = this.options['fig-cap'];
+                    // Append figcaption to figure
+                    graphFigure.appendChild(figcaptionElement);    
+                }
+
+                this.outputGraphDiv.appendChild(graphFigure);
+            }
+
+            // Re-enable execution
+            this.enableInteractiveCells();
+        }
+    };
+
+    /**
+     * OutputCell class for customizing and displaying output.
+     * @class
+     * @extends BaseCell
+     */
+    class OutputCell extends BaseCell {
+        /**
+         * Constructor for OutputCell.
+         * @constructor
+         * @param {Object} cellData - JSON object containing code, id, and options.
+         */
+        constructor(cellData) {
+          super(cellData);
+        }
+      
+        /**
+         * Display customized output on the page.
+         * @param {*} output - Result to be displayed.
+         */
+        displayOutput(output) {
+            const results = this.executeCode();
+            return results;
+        }
+      }
+
+    /**
+     * SetupCell class for suppressed output.
+     * @class
+     * @extends BaseCell
+     */
+    class SetupCell extends BaseCell {
+        /**
+         * Constructor for SetupCell.
+         * @constructor
+         * @param {Object} cellData - JSON object containing code, id, and options.
+         */
+        constructor(cellData) {
+            super(cellData);
+        }
+
+        /**
+         * Execute the Python code without displaying the results.
+         */
+        runSetupCode() {
+            // Execute code without displaying output
+            this.executeCode();
+        }
+    };
+    </script>
+    <script type="module">
+    // Handle cell initialization initialization
+    qpyodideCellDetails.map(
+        (entry) => {
+          // Handle the creation of the element
+          qpyodideCreateCell(entry);
+        }
+      );
+    </script>
+    
+
+</body></html>

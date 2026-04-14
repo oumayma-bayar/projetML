@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiabetAI — Prédiction Réadmission Hospitalière</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #060d1f;
+  --bg2:      #0c1629;
+  --bg3:      #0f1e38;
+  --border:   #1e3a70;
+  --border2:  #2a4a80;
+  --blue:     #38bdf8;
+  --green:    #4ade80;
+  --amber:    #fbbf24;
+  --red:      #f87171;
+  --purple:   #a78bfa;
+  --text:     #e2e8f0;
+  --muted:    #64748b;
+  --muted2:   #94a3b8;
+  --radius:   14px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── NAV ─────────────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(6,13,31,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 58px;
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 16px; font-weight: 600; color: var(--text);
+  text-decoration: none;
+}
+.nav-brand .dot {
+  width: 28px; height: 28px; border-radius: 8px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+.nav-links { display: flex; gap: 6px; }
+.nav-links a {
+  color: var(--muted2); text-decoration: none;
+  font-size: 13px; padding: 6px 14px; border-radius: 8px;
+  transition: all .2s;
+}
+.nav-links a:hover { color: var(--text); background: var(--bg3); }
+.nav-links a.active { color: var(--blue); background: rgba(56,189,248,.08); }
+
+/* ── HERO ─────────────────────────────────────────────────── */
+.hero {
+  max-width: 960px; margin: 0 auto;
+  padding: 4rem 2rem 2rem;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+  align-items: center;
+}
+.hero-text h1 {
+  font-size: 36px; font-weight: 600; line-height: 1.2;
+  letter-spacing: -.02em; margin-bottom: 16px;
+}
+.hero-text h1 span { color: var(--blue); }
+.hero-text p { color: var(--muted2); font-size: 15px; margin-bottom: 24px; }
+.hero-actions { display: flex; gap: 10px; }
+.btn-primary {
+  padding: 10px 22px; border-radius: 10px;
+  background: var(--blue); color: #060d1f;
+  font-size: 14px; font-weight: 600; border: none;
+  cursor: pointer; transition: opacity .2s;
+  text-decoration: none; display: inline-block;
+}
+.btn-primary:hover { opacity: .85; }
+.btn-ghost {
+  padding: 10px 22px; border-radius: 10px;
+  background: transparent; color: var(--muted2);
+  font-size: 14px; font-weight: 500;
+  border: 1px solid var(--border);
+  cursor: pointer; transition: all .2s;
+  text-decoration: none; display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--border2); color: var(--text); }
+.hero-stats {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 10px;
+}
+.stat-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 16px;
+  position: relative; overflow: hidden;
+}
+.stat-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 2px; background: var(--c, #38bdf8); opacity: .5;
+}
+.stat-val {
+  font-size: 26px; font-weight: 600;
+  color: var(--c, #38bdf8);
+  font-family: 'DM Mono', monospace;
+}
+.stat-lbl { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
+
+/* ── SECTION ─────────────────────────────────────────────── */
+.section { max-width: 960px; margin: 0 auto; padding: 2rem; }
+.section-title {
+  font-size: 11px; font-weight: 600; color: var(--blue);
+  text-transform: uppercase; letter-spacing: .1em;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+}
+.section-title::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.divider { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+
+/* ── CARDS ───────────────────────────────────────────────── */
+.card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 22px 24px;
+  margin-bottom: 14px;
+}
+.card-title {
+  font-size: 13px; font-weight: 600; color: var(--muted2);
+  text-transform: uppercase; letter-spacing: .06em;
+  margin-bottom: 16px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── METRICS ROW ─────────────────────────────────────────── */
+.metrics-row {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 10px;
+  margin-bottom: 14px;
+}
+.metric {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px; text-align: center;
+}
+.metric-val {
+  font-size: 24px; font-weight: 600;
+  font-family: 'DM Mono', monospace;
+  color: var(--c, var(--blue));
+}
+.metric-lbl { font-size: 10px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: .05em; }
+
+/* ── PREDICTOR ───────────────────────────────────────────── */
+.predictor { display: grid; grid-template-columns: 1fr 380px; gap: 16px; }
+.form-grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 12px; }
+.form-grid2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 12px; }
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field label { font-size: 11px; color: var(--muted); letter-spacing: .03em; }
+.field select, .field input[type=number] {
+  height: 36px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 0 10px; font-size: 13px; color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  outline: none; transition: border .15s; width: 100%;
+}
+.field select:focus, .field input:focus { border-color: var(--blue); }
+.slider-row { display: flex; align-items: center; gap: 8px; }
+.slider-row input[type=range] {
+  flex: 1; accent-color: var(--blue);
+  height: 4px; border-radius: 2px;
+}
+.slider-val { font-size: 13px; font-weight: 500; color: var(--text); min-width: 30px; text-align: right; font-family: 'DM Mono', monospace; }
+.form-label {
+  font-size: 10px; font-weight: 600; color: var(--blue);
+  text-transform: uppercase; letter-spacing: .07em;
+  margin: 14px 0 8px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.predict-btn {
+  width: 100%; height: 44px; margin-top: 14px;
+  background: var(--blue); color: #060d1f;
+  border: none; border-radius: 10px;
+  font-size: 15px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer; transition: opacity .2s;
+}
+.predict-btn:hover { opacity: .85; }
+.predict-btn:active { opacity: .7; }
+
+/* ── RESULT PANEL ────────────────────────────────────────── */
+.result-panel {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.result-empty {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 100%; color: var(--muted);
+  font-size: 13px; text-align: center; gap: 10px;
+  padding: 2rem 1rem;
+}
+.result-icon-big { font-size: 42px; }
+.risk-badge {
+  border-radius: 30px; padding: 8px 18px;
+  font-size: 16px; font-weight: 600;
+  text-align: center; letter-spacing: -.01em;
+}
+.risk-high   { background: rgba(248,113,113,.12); color: var(--red);   border: 1px solid rgba(248,113,113,.3); }
+.risk-medium { background: rgba(251,191,36,.10);  color: var(--amber); border: 1px solid rgba(251,191,36,.3); }
+.risk-low    { background: rgba(74,222,128,.10);  color: var(--green); border: 1px solid rgba(74,222,128,.3); }
+.proba-bar-wrap { display: flex; flex-direction: column; gap: 8px; }
+.pbar-row { display: flex; align-items: center; gap: 8px; }
+.pbar-lbl { font-size: 11px; color: var(--muted); width: 120px; flex-shrink: 0; }
+.pbar-track { flex: 1; height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+.pbar-fill { height: 100%; border-radius: 4px; transition: width .8s cubic-bezier(.4,0,.2,1); }
+.pbar-pct { font-size: 11px; font-weight: 500; color: var(--text); width: 36px; text-align: right; font-family: 'DM Mono', monospace; }
+.factors-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.factor-tag {
+  font-size: 11px; padding: 3px 10px; border-radius: 20px;
+  font-weight: 500; border: 1px solid;
+}
+.ft-risk   { background: rgba(248,113,113,.08); color: var(--red);   border-color: rgba(248,113,113,.25); }
+.ft-ok     { background: rgba(74,222,128,.08);  color: var(--green); border-color: rgba(74,222,128,.25); }
+.ft-neutral{ background: var(--bg3); color: var(--muted2); border-color: var(--border); }
+.history-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.history-table th {
+  text-align: left; padding: 8px 10px;
+  color: var(--muted); font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase; letter-spacing: .04em; font-size: 10px;
+}
+.history-table td { padding: 8px 10px; border-bottom: 1px solid rgba(30,58,112,.4); color: var(--muted2); }
+.history-table tr:hover td { background: var(--bg3); }
+.badge-risk { font-size: 10px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+.br-h { background: rgba(248,113,113,.1); color: var(--red); }
+.br-m { background: rgba(251,191,36,.1);  color: var(--amber); }
+.br-l { background: rgba(74,222,128,.1);  color: var(--green); }
+
+/* ── PIPELINE ────────────────────────────────────────────── */
+.pipeline-steps { display: flex; flex-direction: column; gap: 0; }
+.pipe-step { display: flex; gap: 12px; }
+.pipe-line { display: flex; flex-direction: column; align-items: center; }
+.pipe-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid; flex-shrink: 0; margin-top: 3px; }
+.pipe-connector { width: 2px; flex: 1; min-height: 16px; background: var(--border); }
+.pipe-content { padding-bottom: 14px; flex: 1; }
+.pipe-title { font-size: 13px; font-weight: 500; color: var(--text); }
+.pipe-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.model-compare { display: flex; flex-direction: column; gap: 10px; }
+.mc-row { display: flex; align-items: center; gap: 10px; }
+.mc-name { font-size: 12px; color: var(--muted2); width: 140px; flex-shrink: 0; }
+.mc-bars { display: flex; gap: 5px; flex: 1; }
+.mc-bar { height: 20px; border-radius: 5px; display: flex; align-items: center; justify-content: flex-end; padding-right: 7px; }
+.mc-bar span { font-size: 10px; font-weight: 600; color: #060d1f; }
+.mc-badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; background: rgba(56,189,248,.1); color: var(--blue); border: 1px solid rgba(56,189,248,.2); flex-shrink: 0; }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border); margin-top: 3rem;
+  padding: 2rem; text-align: center;
+  font-size: 12px; color: var(--muted);
+}
+footer a { color: var(--blue); text-decoration: none; }
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1rem; }
+  .predictor { grid-template-columns: 1fr; }
+  .metrics-row { grid-template-columns: repeat(2,1fr); }
+  .form-grid3 { grid-template-columns: repeat(2,1fr); }
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#">
+    <div class="dot">&#x2665;</div>
+    DiabetAI
+  </a>
+  <div class="nav-links">
+    <a href="#overview" class="active">Vue d'ensemble</a>
+    <a href="#predictor">Prédiction</a>
+    <a href="#pipeline">Pipeline</a>
+    <a href="#history">Historique</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="overview">
+  <div class="hero-text">
+    <h1>Prédiction de<br><span>Réadmission</span><br>Hospitalière</h1>
+    <p>Modèle Random Forest entraîné sur 101 766 patients diabétiques — 130 hôpitaux américains (1999–2008)</p>
+    <div class="hero-actions">
+      <a href="#predictor" class="btn-primary">Tester le modèle</a>
+      <a href="https://github.com/oumayma-bayar/projetML.git" class="btn-ghost" target="_blank">GitHub</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card" style="--c:#38bdf8">
+      <div class="stat-val">101K</div>
+      <div class="stat-lbl">Patients</div>
+    </div>
+    <div class="stat-card" style="--c:#4ade80">
+      <div class="stat-val">88.9%</div>
+      <div class="stat-lbl">Accuracy</div>
+    </div>
+    <div class="stat-card" style="--c:#fbbf24">
+      <div class="stat-val">42</div>
+      <div class="stat-lbl">Features</div>
+    </div>
+    <div class="stat-card" style="--c:#a78bfa">
+      <div class="stat-val">3</div>
+      <div class="stat-lbl">Modèles testés</div>
+    </div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div class="section">
+  <div class="section-title">Métriques du modèle retenu</div>
+  <div class="metrics-row">
+    <div class="metric" style="--c:#38bdf8">
+      <div class="metric-val">88.92%</div>
+      <div class="metric-lbl">Accuracy Test</div>
+    </div>
+    <div class="metric" style="--c:#4ade80">
+      <div class="metric-val">100%</div>
+      <div class="metric-lbl">Accuracy Train</div>
+    </div>
+    <div class="metric" style="--c:#fbbf24">
+      <div class="metric-val">11.16%</div>
+      <div class="metric-lbl">Taux réadmission</div>
+    </div>
+    <div class="metric" style="--c:#a78bfa">
+      <div class="metric-val">7.8s</div>
+      <div class="metric-lbl">Temps entraînement</div>
+    </div>
+  </div>
+
+  <!-- MODEL COMPARE -->
+  <div class="card">
+    <div class="card-title">Comparaison des modèles</div>
+    <div style="display:flex;gap:14px;margin-bottom:12px;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)"><span style="width:10px;height:10px;border-radius:2px;background:#38bdf8;display:inline-block"></span>Train</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)"><span style="width:10px;height:10px;border-radius:2px;background:#4ade80;display:inline-block"></span>Test</div>
+    </div>
+    <div class="model-compare">
+      <div class="mc-row">
+        <div class="mc-name">Random Forest</div>
+        <div class="mc-bars">
+          <div class="mc-bar" style="width:82px;background:#38bdf8"><span>100%</span></div>
+          <div class="mc-bar" style="width:73px;background:#4ade80"><span>88.9%</span></div>
+        </div>
+        <span class="mc-badge">Retenu</span>
+      </div>
+      <div class="mc-row">
+        <div class="mc-name">Logistic Regression</div>
+        <div class="mc-bars">
+          <div class="mc-bar" style="width:72px;background:#38bdf8"><span>88.8%</span></div>
+          <div class="mc-bar" style="width:72px;background:#4ade80"><span>88.8%</span></div>
+        </div>
+      </div>
+      <div class="mc-row">
+        <div class="mc-name">KNN (k=5)</div>
+        <div class="mc-bars">
+          <div class="mc-bar" style="width:74px;background:#38bdf8"><span>89.4%</span></div>
+          <div class="mc-bar" style="width:71px;background:#4ade80"><span>88.2%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PREDICTOR -->
+<div class="section" id="predictor">
+  <div class="section-title">Simulateur de prédiction</div>
+  <div class="predictor">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-title">Données patient</div>
+
+      <div class="form-label">Démographie</div>
+      <div class="form-grid3">
+        <div class="field">
+          <label>Tranche d'âge</label>
+          <select id="age">
+            <option>[0-10)</option><option>[10-20)</option><option>[20-30)</option>
+            <option>[30-40)</option><option>[40-50)</option><option selected>[50-60)</option>
+            <option>[60-70)</option><option>[70-80)</option><option>[80-90)</option><option>[90-100)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Genre</label>
+          <select id="gender"><option>Male</option><option>Female</option></select>
+        </div>
+        <div class="field">
+          <label>Race</label>
+          <select id="race">
+            <option selected>Caucasian</option><option>AfricanAmerican</option>
+            <option>Hispanic</option><option>Asian</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-label">Données cliniques</div>
+      <div class="form-grid2">
+        <div class="field">
+          <label>Durée du séjour (jours)</label>
+          <div class="slider-row">
+            <input type="range" id="time" min="1" max="14" step="1" value="4" oninput="document.getElementById('tv').textContent=this.value">
+            <span class="slider-val" id="tv">4</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Nombre de médicaments</label>
+          <div class="slider-row">
+            <input type="range" id="meds" min="1" max="81" step="1" value="15" oninput="document.getElementById('mv').textContent=this.value">
+            <span class="slider-val" id="mv">15</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Procédures de laboratoire</label>
+          <div class="slider-row">
+            <input type="range" id="lab" min="1" max="132" step="1" value="43" oninput="document.getElementById('lv').textContent=this.value">
+            <span class="slider-val" id="lv">43</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Hospitalisations antérieures</label>
+          <div class="slider-row">
+            <input type="range" id="inp" min="0" max="21" step="1" value="0" oninput="document.getElementById('iv').textContent=this.value">
+            <span class="slider-val" id="iv">0</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Procédures médicales</label>
+          <div class="slider-row">
+            <input type="range" id="proc" min="0" max="6" step="1" value="1" oninput="document.getElementById('pv').textContent=this.value">
+            <span class="slider-val" id="pv">1</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Nombre de diagnostics</label>
+          <div class="slider-row">
+            <input type="range" id="diag" min="1" max="16" step="1" value="7" oninput="document.getElementById('dv').textContent=this.value">
+            <span class="slider-val" id="dv">7</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-label">Traitements antidiabétiques</div>
+      <div class="form-grid3">
+        <div class="field">
+          <label>Insuline</label>
+          <select id="insulin">
+            <option>No</option><option selected>Steady</option>
+            <option>Up</option><option>Down</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Metformine</label>
+          <select id="metformin">
+            <option selected>No</option><option>Steady</option>
+            <option>Up</option><option>Down</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Changement médication</label>
+          <select id="change"><option selected>No</option><option value="Ch">Oui (Ch)</option></select>
+        </div>
+      </div>
+
+      <button class="predict-btn" onclick="runPredict()">Analyser le profil patient</button>
+    </div>
+
+    <!-- RESULT PANEL -->
+    <div class="result-panel" id="result-panel">
+      <div class="result-empty" id="result-empty">
+        <div class="result-icon-big">&#x1F4CA;</div>
+        <div>Remplissez le formulaire<br>et lancez l'analyse</div>
+      </div>
+      <div id="result-content" style="display:none;flex-direction:column;gap:14px;">
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.05em">Résultat</div>
+          <div class="risk-badge" id="risk-badge"></div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">Probabilités</div>
+          <div class="proba-bar-wrap">
+            <div class="pbar-row">
+              <div class="pbar-lbl">Non réadmis &lt;30j</div>
+              <div class="pbar-track"><div class="pbar-fill" id="pb0" style="background:#4ade80;width:0%"></div></div>
+              <div class="pbar-pct" id="pv0">—</div>
+            </div>
+            <div class="pbar-row">
+              <div class="pbar-lbl">Réadmis &lt;30j</div>
+              <div class="pbar-track"><div class="pbar-fill" id="pb1" style="background:#f87171;width:0%"></div></div>
+              <div class="pbar-pct" id="pv1">—</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em">Facteurs identifiés</div>
+          <div class="factors-wrap" id="factors-wrap"></div>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:12px;">
+          <div style="font-size:10px;color:var(--muted);line-height:1.6">
+            &#x26A0; Ce simulateur utilise une approximation statistique. Pour un déploiement réel, utilisez la fonction <code style="background:var(--bg3);padding:1px 5px;border-radius:4px;color:var(--blue)">predict_patient()</code> du notebook Colab.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PIPELINE -->
+<div class="section" id="pipeline">
+  <div class="section-title">Pipeline du projet</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+    <div class="card">
+      <div class="card-title">Étapes ML</div>
+      <div class="pipeline-steps" id="pipe-steps"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Top 8 features importantes</div>
+      <div id="feat-bars"></div>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div class="section" id="history">
+  <div class="section-title">Historique des prédictions</div>
+  <div class="card">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div class="card-title" style="margin:0;padding:0;border:none">Session en cours</div>
+      <button onclick="clearHistory()" style="font-size:11px;color:var(--muted);background:none;border:1px solid var(--border);padding:4px 12px;border-radius:6px;cursor:pointer;">Effacer</button>
+    </div>
+    <div id="history-empty" style="font-size:13px;color:var(--muted);padding:20px 0;text-align:center">Aucune prédiction effectuée</div>
+    <table class="history-table" id="history-table" style="display:none">
+      <thead>
+        <tr>
+          <th>#</th><th>Âge</th><th>Séjour</th><th>Médicaments</th>
+          <th>Hospit. ant.</th><th>Proba</th><th>Risque</th>
+        </tr>
+      </thead>
+      <tbody id="history-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>DiabetAI — Projet Machine Learning | Polytec Sousse</p>
+  <p style="margin-top:6px">
+    Manar Lahouel &amp; Oumayma Bayar &nbsp;·&nbsp;
+    Dataset : <a href="https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008" target="_blank">UCI Diabetes 130-US Hospitals</a>
+  </p>
+</footer>
+
+<script>
+var history_data = [];
+var pred_count = 0;
+
+var pipe_steps = [
+  { title: "Chargement des données",        desc: "diabetic_data.csv · 101 766 × 50",          c: "#38bdf8" },
+  { title: "Exploration (EDA)",              desc: "Distribution, corrélations, visualisations", c: "#818cf8" },
+  { title: "Nettoyage",                      desc: "Suppression NaN > 50% · imputation",         c: "#4ade80" },
+  { title: "Binarisation cible",             desc: "readmitted → 0 / 1 (seuil < 30j)",           c: "#fbbf24" },
+  { title: "Encodage LabelEncoder",          desc: "31 variables catégorielles",                  c: "#f87171" },
+  { title: "Train / Test split 80/20",       desc: "81 412 train · 20 354 test · stratifié",      c: "#38bdf8" },
+  { title: "Pipeline StandardScaler + RF",   desc: "100 arbres · max_depth=15 · balanced",        c: "#4ade80" },
+  { title: "Évaluation & sauvegarde",        desc: "Accuracy 88.9% · joblib .pkl",                c: "#818cf8" },
+];
+
+var feat_data = [
+  { name: "num_lab_procedures", val: 9.17, c: "#38bdf8" },
+  { name: "diag_1",             val: 8.97, c: "#818cf8" },
+  { name: "diag_2",             val: 8.91, c: "#4ade80" },
+  { name: "diag_3",             val: 8.85, c: "#4ade80" },
+  { name: "num_medications",    val: 7.81, c: "#fbbf24" },
+  { name: "time_in_hospital",   val: 5.50, c: "#fbbf24" },
+  { name: "age",                val: 4.65, c: "#f87171" },
+  { name: "number_inpatient",   val: 4.32, c: "#f87171" },
+];
+
+(function buildUI() {
+  var ps = document.getElementById('pipe-steps');
+  pipe_steps.forEach(function(s, i) {
+    var last = i === pipe_steps.length - 1;
+    ps.innerHTML += '<div class="pipe-step">' +
+      '<div class="pipe-line">' +
+      '<div class="pipe-dot" style="border-color:' + s.c + ';background:' + s.c + '22"></div>' +
+      (!last ? '<div class="pipe-connector"></div>' : '') +
+      '</div>' +
+      '<div class="pipe-content">' +
+      '<div class="pipe-title">' + s.title + '</div>' +
+      '<div class="pipe-desc">' + s.desc + '</div>' +
+      '</div></div>';
+  });
+
+  var fb = document.getElementById('feat-bars');
+  feat_data.forEach(function(f) {
+    var pct = (f.val / 9.17 * 100).toFixed(0);
+    fb.innerHTML += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">' +
+      '<div style="font-size:11px;color:var(--muted2);width:140px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="' + f.name + '">' + f.name + '</div>' +
+      '<div style="flex:1;height:7px;background:var(--bg3);border-radius:4px;overflow:hidden">' +
+      '<div style="width:' + pct + '%;height:100%;background:' + f.c + ';border-radius:4px;transition:width .8s ease"></div></div>' +
+      '<div style="font-size:11px;color:var(--muted);width:36px;text-align:right;font-family:DM Mono,monospace">' + f.val + '%</div>' +
+      '</div>';
+  });
+})();
+
+function runPredict() {
+  var time = +document.getElementById('time').value;
+  var meds = +document.getElementById('meds').value;
+  var lab  = +document.getElementById('lab').value;
+  var inp  = +document.getElementById('inp').value;
+  var diag = +document.getElementById('diag').value;
+  var age  = document.getElementById('age').value;
+  var ins  = document.getElementById('insulin').value;
+  var met  = document.getElementById('metformin').value;
+  var chg  = document.getElementById('change').value;
+
+  var score = 0.05;
+  if (time >= 7)  score += 0.18; else if (time >= 4) score += 0.08;
+  if (meds >= 20) score += 0.14; else if (meds >= 14) score += 0.07;
+  if (lab  >= 70) score += 0.10; else if (lab  >= 40) score += 0.05;
+  if (inp  >= 2)  score += 0.22; else if (inp  === 1) score += 0.11;
+  if (diag >= 9)  score += 0.08;
+  if (age.includes('70') || age.includes('80') || age.includes('90')) score += 0.05;
+  if (age.includes('0-10') || age.includes('10-') || age.includes('20-')) score += 0.06;
+  if (ins === 'Up' || ins === 'Down') score += 0.10;
+  if (chg === 'Ch' || chg === 'Oui (Ch)') score += 0.08;
+  if (met !== 'No') score -= 0.04;
+  score = Math.min(0.95, Math.max(0.03, score));
+
+  var p1 = Math.round(score * 100);
+  var p0 = 100 - p1;
+
+  var factors = [];
+  if (inp  >= 2)  factors.push({ t: 'Hospitalisations répétées', r: true });
+  if (time >= 7)  factors.push({ t: 'Séjour long (≥7j)', r: true });
+  if (meds >= 20) factors.push({ t: 'Polymédication élevée', r: true });
+  if (chg === 'Ch' || chg === 'Oui (Ch)') factors.push({ t: 'Changement de traitement', r: true });
+  if (ins === 'Up' || ins === 'Down') factors.push({ t: 'Ajustement insuline', r: true });
+  if (diag >= 9)  factors.push({ t: 'Comorbidités multiples', r: true });
+  if (met !== 'No') factors.push({ t: 'Metformine prescrite', r: false });
+  if (inp  === 0) factors.push({ t: "Pas d'antécédent hospit.", r: false });
+  if (time <= 3)  factors.push({ t: 'Séjour court', r: false });
+  if (factors.length === 0) factors.push({ t: 'Profil standard', r: null });
+
+  var riskLabel, riskClass;
+  if (p1 >= 40)      { riskLabel = '&#x1F534; Risque élevé de réadmission';  riskClass = 'risk-high'; }
+  else if (p1 >= 18) { riskLabel = '&#x1F7E1; Risque modéré de réadmission'; riskClass = 'risk-medium'; }
+  else               { riskLabel = '&#x1F7E2; Faible risque de réadmission'; riskClass = 'risk-low'; }
+
+  document.getElementById('result-empty').style.display = 'none';
+  var rc = document.getElementById('result-content');
+  rc.style.display = 'flex';
+
+  var rb = document.getElementById('risk-badge');
+  rb.innerHTML = riskLabel;
+  rb.className = 'risk-badge ' + riskClass;
+
+  document.getElementById('pv0').textContent = p0 + '%';
+  document.getElementById('pv1').textContent = p1 + '%';
+  setTimeout(function() {
+    document.getElementById('pb0').style.width = p0 + '%';
+    document.getElementById('pb1').style.width = p1 + '%';
+  }, 80);
+
+  var tagHtml = '';
+  factors.forEach(function(f) {
+    var cls = f.r === true ? 'ft-risk' : f.r === false ? 'ft-ok' : 'ft-neutral';
+    var pfx = f.r === true ? '&#x2191; ' : f.r === false ? '&#x2193; ' : '';
+    tagHtml += '<span class="factor-tag ' + cls + '">' + pfx + f.t + '</span>';
+  });
+  document.getElementById('factors-wrap').innerHTML = tagHtml;
+
+  // History
+  pred_count++;
+  var badgeCls = p1 >= 40 ? 'br-h' : p1 >= 18 ? 'br-m' : 'br-l';
+  var badgeTxt = p1 >= 40 ? 'Élevé' : p1 >= 18 ? 'Modéré' : 'Faible';
+  history_data.push({ n: pred_count, age: age, time: time, meds: meds, inp: inp, p1: p1, bc: badgeCls, bt: badgeTxt });
+
+  document.getElementById('history-empty').style.display = 'none';
+  var ht = document.getElementById('history-table');
+  ht.style.display = 'table';
+  var tbody = document.getElementById('history-tbody');
+  var last = history_data[history_data.length - 1];
+  var tr = document.createElement('tr');
+  tr.innerHTML = '<td style="color:var(--muted)">' + last.n + '</td>' +
+    '<td>' + last.age + '</td>' +
+    '<td>' + last.time + 'j</td>' +
+    '<td>' + last.meds + '</td>' +
+    '<td>' + last.inp + '</td>' +
+    '<td style="font-family:DM Mono,monospace">' + last.p1 + '%</td>' +
+    '<td><span class="badge-risk ' + last.bc + '">' + last.bt + '</span></td>';
+  tbody.insertBefore(tr, tbody.firstChild);
+
+  document.getElementById('history').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function clearHistory() {
+  history_data = [];
+  pred_count = 0;
+  document.getElementById('history-tbody').innerHTML = '';
+  document.getElementById('history-table').style.display = 'none';
+  document.getElementById('history-empty').style.display = 'block';
+}
+
+document.querySelectorAll('.nav-links a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.querySelectorAll('.nav-links a').forEach(function(x){ x.classList.remove('active'); });
+    a.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
