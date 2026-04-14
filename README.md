@@ -58,19 +58,19 @@ La réadmission précoce est un indicateur critique de qualité des soins et gé
 ## 🗂️ Structure du projet
 
 ```
-diabetai/
+ProjetML/
 │
 ├── Version_final.ipynb        # Notebook principal Google Colab (14 étapes)
-├── web/
-│   └── index.html             # Application web de déploiement
+│   DashBoard.html             # Application web de déploiement
 │
 ├── diabetic_data.csv          # Dataset principal (à télécharger depuis UCI)
 ├── IDS_mapping.csv            # Mapping des identifiants
 │
-├── model_readmission.pkl      # Modèle sauvegardé (généré après exécution)
-├── encoders_readmission.pkl   # Encodeurs LabelEncoder
-├── feature_cols.pkl           # Liste des features
-│──evaluation_dashboard.png
+├── V1_Diabetic.ipynb          # first draft
+├── V2_Diabetic.ipynb          # seconde draft
+|
+├── Presentation_diabetic.html # presentation quarto
+|
 └── README.md
 ```
 
@@ -169,7 +169,7 @@ Ouvrez directement `web/index.html` dans un navigateur, ou déployez sur GitHub 
 
 ## 🌐 Déploiement Web
 
-L'application `web/index.html` est une interface **100% HTML/CSS/JS** (sans backend) qui permet de :
+L'application `DashBoard.html` est une interface **100% HTML/CSS/JS** (sans backend) qui permet de :
 
 - Visualiser les métriques et résultats du modèle
 - Simuler une prédiction en temps réel en saisissant les données d'un patient
@@ -181,7 +181,7 @@ L'application `web/index.html` est une interface **100% HTML/CSS/JS** (sans back
 ```bash
 # Dans les paramètres GitHub du repo :
 # Settings → Pages → Source : Deploy from a branch
-# Branch : main  /  Folder : /web
+# Branch : main  /Dashboard
 ```
 
 ---
