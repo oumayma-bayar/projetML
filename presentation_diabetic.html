@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.37">
 
   <meta name="author" content="Lahouel Manar &amp; Bayar Oumayma">
-  <title>Presentation ML</title>
+  <title>presentation_diabetic</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -290,7 +290,7 @@
   }
 
   // Store cell data
-  globalThis.qpyodideCellDetails = [{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\n\nprint(\"✅ Bibliothèques importées avec succès\")\nprint(f\"  pandas    {pd.__version__}\")\nprint(f\"  numpy     {np.__version__}\")","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(f\"✅ Dataset chargé : {df.shape[0]:,} lignes × {df.shape[1]} colonnes\")\nprint(f\"Colonnes : {df.columns.tolist()[:8]} ...\")\ndf.head(3)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(\"=\" * 50)\nprint(\"INFORMATIONS GÉNÉRALES\")\nprint(\"=\" * 50)\nprint(df.dtypes.to_string())\nprint(f\"\\nShape : {df.shape}\")\nprint(f\"\\nStatistiques descriptives (numériques) :\")\ndf.describe().round(2)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(\"Distribution de 'readmitted' :\")\nprint(df['readmitted'].value_counts())\nprint(f\"\\nPourcentages :\")\nprint(df['readmitted'].value_counts(normalize=True).mul(100).round(1).astype(str) + \" %\")","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nfig, axes = plt.subplots(2, 2, figsize=(13, 9), facecolor='#0b0f1a')\nfig.suptitle('Exploration — Diabetic Dataset', color='#38bdf8', fontsize=14, fontweight='bold')\ncolors = ['#38bdf8', '#818cf8', '#34d399']\n\ncounts = df['readmitted'].value_counts()\naxes[0,0].pie(counts, labels=counts.index, autopct='%1.1f%%',\n              colors=colors, startangle=90, textprops={'color':'#e2e8f0'})\naxes[0,0].set_title('Distribution readmitted', color='#94a3b8')\n\ndf_g = df[df['gender'].isin(['Male','Female'])]\ngr = df_g.groupby(['gender','readmitted']).size().unstack(fill_value=0)\ngr.plot(kind='bar', ax=axes[0,1], color=colors)\naxes[0,1].set_title('Réadmission par Genre', color='#94a3b8')\naxes[0,1].tick_params(rotation=0)\n\ndf.boxplot(column='time_in_hospital', by='readmitted', ax=axes[1,0],\n           boxprops=dict(color='#38bdf8'), whiskerprops=dict(color='#38bdf8'),\n           medianprops=dict(color='#34d399'))\naxes[1,0].set_title('Durée séjour vs Réadmission', color='#94a3b8')\n\ndf.boxplot(column='num_medications', by='readmitted', ax=axes[1,1],\n           boxprops=dict(color='#818cf8'), whiskerprops=dict(color='#818cf8'),\n           medianprops=dict(color='#34d399'))\naxes[1,1].set_title('Nb médicaments vs Réadmission', color='#94a3b8')\n\nfor ax in axes.flat:\n    ax.set_facecolor('#111827')\n    ax.set_xlabel('')\n\nplt.tight_layout(); plt.suptitle(''); plt.show()","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\ndf.replace('?', np.nan, inplace=True)\ntotal = len(df)\nmissing = df.isnull().sum()\npct = (missing / total * 100).round(2)\nresult = pd.DataFrame({'Manquants': missing, 'Pourcentage (%)': pct})\nresult = result[result['Manquants'] > 0].sort_values('Pourcentage (%)', ascending=False)\nprint(\"Colonnes avec valeurs manquantes :\")\nprint(result.to_string())","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True)\nprint(f\"✅ Dimensions après suppression : {df.shape}\")\n\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nprint(f\"✅ Valeurs manquantes restantes : {df.isnull().sum().sum()}\")","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\n\nprint(\"Distribution cible binaire :\")\nprint(df['readmitted_bin'].value_counts())\nprint(f\"\\nTaux réadmission <30j : {df['readmitted_bin'].mean():.2%}\")\n\nfig, ax = plt.subplots(figsize=(6,4), facecolor='#0b0f1a')\nbars = ax.bar(['Non réadmis (0)', 'Réadmis <30j (1)'],\n              df['readmitted_bin'].value_counts().sort_index(),\n              color=['#38bdf8','#f87171'], width=0.5)\nax.set_facecolor('#111827')\nax.tick_params(colors='#94a3b8')\nax.spines[:].set_color('#1e293b')\nax.set_ylabel('Patients', color='#94a3b8')\nax.set_title('Distribution Cible Binaire', color='#38bdf8', fontweight='bold')\nfor bar in bars:\n    ax.text(bar.get_x()+bar.get_width()/2, bar.get_height()+200,\n            f'{int(bar.get_height()):,}', ha='center', color='#e2e8f0', fontsize=9)\nplt.tight_layout(); plt.show()","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\n\nprint(f\"✅ Colonnes catégorielles encodées : {len(cat_cols)}\")\nprint(cat_cols)\nprint(f\"\\n✅ Dimensions finales : {df.shape}\")\ndf.head(3)","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nprint(f\"X features : {X.shape}\")\nprint(f\"y cible    : {y.shape}\")\nprint(f\"\\nTrain : {X_train.shape}  |  Test : {X_test.shape}\")\nprint(f\"Taux cible train : {y_train.mean():.2%}\")\nprint(f\"Taux cible test  : {y_test.mean():.2%}\")","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nprint(\"✅ Modèle entraîné avec succès\")\nprint(pipeline)","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nacc_tr = accuracy_score(y_train, pipeline.predict(X_train))\nacc_te = accuracy_score(y_test, y_pred)\nprint(f\"Accuracy Train : {acc_tr:.4f}\")\nprint(f\"Accuracy Test  : {acc_te:.4f}\")\nprint(f\"Écart          : {acc_tr - acc_te:.4f}  {'⚠️ Surapprentissage?' if acc_tr-acc_te > 0.05 else '✅ OK'}\")\nprint(\"\\n── Rapport de Classification ──\")\nprint(classification_report(y_test, y_pred, target_names=['Non réadmis <30j','Réadmis <30j']))","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\ncm = confusion_matrix(y_test, y_pred)\nfig, ax = plt.subplots(figsize=(7,5), facecolor='#0b0f1a')\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues',\n            xticklabels=['Non réadmis','Réadmis <30j'],\n            yticklabels=['Non réadmis','Réadmis <30j'],\n            ax=ax, linewidths=0.5, linecolor='#1e293b',\n            annot_kws={\"size\":14, \"color\":\"white\"})\nax.set_title('Matrice de Confusion — Random Forest', color='#38bdf8', fontweight='bold', pad=15)\nax.set_ylabel('Réel', color='#94a3b8')\nax.set_xlabel('Prédit', color='#94a3b8')\nax.tick_params(colors='#94a3b8')\nax.set_facecolor('#111827')\nplt.tight_layout(); plt.show()","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nmodels_cmp = {\n    'Logistic Regression': LogisticRegression(max_iter=1000, random_state=42),\n    'Decision Tree':       DecisionTreeClassifier(random_state=42),\n    'Random Forest':       RandomForestClassifier(n_estimators=100, random_state=42),\n}\nresults = []\nfor name, model in models_cmp.items():\n    pipe = Pipeline([('scaler', StandardScaler()), ('model', model)])\n    pipe.fit(X_train, y_train)\n    tr = accuracy_score(y_train, pipe.predict(X_train))\n    te = accuracy_score(y_test,  pipe.predict(X_test))\n    results.append({'Modèle': name, 'Train': round(tr,4), 'Test': round(te,4)})\n    print(f\"{name:25s} → Train: {tr:.4f} | Test: {te:.4f}\")\n\nresults_df = pd.DataFrame(results)\nfig, ax = plt.subplots(figsize=(9,5), facecolor='#0b0f1a')\nx = np.arange(len(results_df)); w = 0.35\nax.bar(x-w/2, results_df['Train'], w, label='Train', color='#38bdf8', alpha=0.9)\nax.bar(x+w/2, results_df['Test'],  w, label='Test',  color='#34d399', alpha=0.9)\nax.set_xticks(x); ax.set_xticklabels(results_df['Modèle'], color='#94a3b8')\nax.set_ylim(0.8, 1.0); ax.set_ylabel('Accuracy', color='#94a3b8')\nax.set_title('Comparaison des Modèles', color='#38bdf8', fontweight='bold')\nax.legend(framealpha=0.2, labelcolor='#e2e8f0')\nax.set_facecolor('#111827'); ax.spines[:].set_color('#1e293b')\nplt.tight_layout(); plt.show()","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nrf_model = pipeline.named_steps['model']\nimportances = pd.Series(rf_model.feature_importances_, index=X.columns)\nimportances = importances.sort_values(ascending=False).head(15)\n\nfig, ax = plt.subplots(figsize=(10,6), facecolor='#0b0f1a')\ncolors_bar = ['#38bdf8' if i < 5 else '#818cf8' if i < 10 else '#34d399' for i in range(15)]\nimportances.plot(kind='barh', color=colors_bar, ax=ax, edgecolor='none')\nax.invert_yaxis()\nax.set_title('Top 15 Features les Plus Importantes', color='#38bdf8', fontweight='bold')\nax.set_xlabel('Importance', color='#94a3b8')\nax.set_facecolor('#111827'); ax.spines[:].set_color('#1e293b')\nplt.tight_layout(); plt.show()\n\nprint(\"\\nTop 5 :\")\nprint(importances.head(5).to_string())","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
+  globalThis.qpyodideCellDetails = [{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\n\nprint(\"✅ Bibliothèques importées avec succès\")\nprint(f\"  pandas    {pd.__version__}\")\nprint(f\"  numpy     {np.__version__}\")","id":1,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(f\"✅ Dataset chargé : {df.shape[0]:,} lignes × {df.shape[1]} colonnes\")\nprint(f\"Colonnes : {df.columns.tolist()[:8]} ...\")\ndf.head(3)","id":2,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(\"=\" * 50)\nprint(\"INFORMATIONS GÉNÉRALES\")\nprint(\"=\" * 50)\nprint(df.dtypes.to_string())\nprint(f\"\\nShape : {df.shape}\")\nprint(f\"\\nStatistiques descriptives (numériques) :\")\ndf.describe().round(2)","id":3,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nprint(\"Distribution de 'readmitted' :\")\nprint(df['readmitted'].value_counts())\nprint(f\"\\nPourcentages :\")\nprint(df['readmitted'].value_counts(normalize=True).mul(100).round(1).astype(str) + \" %\")","id":4,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\nfig, axes = plt.subplots(2, 2, figsize=(13, 9), facecolor='#0b0f1a')\nfig.suptitle('Exploration — Diabetic Dataset', color='#38bdf8', fontsize=14, fontweight='bold')\ncolors = ['#38bdf8', '#818cf8', '#34d399']\n\ncounts = df['readmitted'].value_counts()\naxes[0,0].pie(counts, labels=counts.index, autopct='%1.1f%%',\n              colors=colors, startangle=90, textprops={'color':'#e2e8f0'})\naxes[0,0].set_title('Distribution readmitted', color='#94a3b8')\n\ndf_g = df[df['gender'].isin(['Male','Female'])]\ngr = df_g.groupby(['gender','readmitted']).size().unstack(fill_value=0)\ngr.plot(kind='bar', ax=axes[0,1], color=colors)\naxes[0,1].set_title('Réadmission par Genre', color='#94a3b8')\naxes[0,1].tick_params(rotation=0)\n\ndf.boxplot(column='time_in_hospital', by='readmitted', ax=axes[1,0],\n           boxprops=dict(color='#38bdf8'), whiskerprops=dict(color='#38bdf8'),\n           medianprops=dict(color='#34d399'))\naxes[1,0].set_title('Durée séjour vs Réadmission', color='#94a3b8')\n\ndf.boxplot(column='num_medications', by='readmitted', ax=axes[1,1],\n           boxprops=dict(color='#818cf8'), whiskerprops=dict(color='#818cf8'),\n           medianprops=dict(color='#34d399'))\naxes[1,1].set_title('Nb médicaments vs Réadmission', color='#94a3b8')\n\nfor ax in axes.flat:\n    ax.set_facecolor('#111827')\n    ax.set_xlabel('')\n\nplt.tight_layout(); plt.suptitle(''); plt.show()","id":5,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\ndf.replace('?', np.nan, inplace=True)\ntotal = len(df)\nmissing = df.isnull().sum()\npct = (missing / total * 100).round(2)\nresult = pd.DataFrame({'Manquants': missing, 'Pourcentage (%)': pct})\nresult = result[result['Manquants'] > 0].sort_values('Pourcentage (%)', ascending=False)\nprint(\"Colonnes avec valeurs manquantes :\")\nprint(result.to_string())","id":6,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True)\nprint(f\"✅ Dimensions après suppression : {df.shape}\")\n\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nprint(f\"✅ Valeurs manquantes restantes : {df.isnull().sum().sum()}\")","id":7,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object','str']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\n\nprint(\"Distribution cible binaire :\")\nprint(df['readmitted_bin'].value_counts())\nprint(f\"\\nTaux réadmission <30j : {df['readmitted_bin'].mean():.2%}\")\n\nfig, ax = plt.subplots(figsize=(6,4), facecolor='#0b0f1a')\nbars = ax.bar(['Non réadmis (0)', 'Réadmis <30j (1)'],\n              df['readmitted_bin'].value_counts().sort_index(),\n              color=['#38bdf8','#f87171'], width=0.5)\nax.set_facecolor('#111827')\nax.tick_params(colors='#94a3b8')\nax.spines[:].set_color('#1e293b')\nax.set_ylabel('Patients', color='#94a3b8')\nax.set_title('Distribution Cible Binaire', color='#38bdf8', fontweight='bold')\nfor bar in bars:\n    ax.text(bar.get_x()+bar.get_width()/2, bar.get_height()+200,\n            f'{int(bar.get_height()):,}', ha='center', color='#e2e8f0', fontsize=9)\nplt.tight_layout(); plt.show()","id":8,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object','str']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\n\nprint(f\"✅ Colonnes catégorielles encodées : {len(cat_cols)}\")\nprint(cat_cols)\nprint(f\"\\n✅ Dimensions finales : {df.shape}\")\ndf.head(3)","id":9,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object','str']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nprint(f\"X features : {X.shape}\")\nprint(f\"y cible    : {y.shape}\")\nprint(f\"\\nTrain : {X_train.shape}  |  Test : {X_test.shape}\")\nprint(f\"Taux cible train : {y_train.mean():.2%}\")\nprint(f\"Taux cible test  : {y_test.mean():.2%}\")","id":10,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object','str']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nprint(\"✅ Modèle entraîné avec succès\")\nprint(pipeline)","id":11,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object','str']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nacc_tr = accuracy_score(y_train, pipeline.predict(X_train))\nacc_te = accuracy_score(y_test, y_pred)\nprint(f\"Accuracy Train : {acc_tr:.4f}\")\nprint(f\"Accuracy Test  : {acc_te:.4f}\")\nprint(f\"Écart          : {acc_tr - acc_te:.4f}  {'⚠️ Surapprentissage?' if acc_tr-acc_te > 0.05 else '✅ OK'}\")\nprint(\"\\n── Rapport de Classification ──\")\nprint(classification_report(y_test, y_pred, target_names=['Non réadmis <30j','Réadmis <30j']))","id":12,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object','str']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\ncm = confusion_matrix(y_test, y_pred)\nfig, ax = plt.subplots(figsize=(7,5), facecolor='#0b0f1a')\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues',\n            xticklabels=['Non réadmis','Réadmis <30j'],\n            yticklabels=['Non réadmis','Réadmis <30j'],\n            ax=ax, linewidths=0.5, linecolor='#1e293b',\n            annot_kws={\"size\":14, \"color\":\"white\"})\nax.set_title('Matrice de Confusion — Random Forest', color='#38bdf8', fontweight='bold', pad=15)\nax.set_ylabel('Réel', color='#94a3b8')\nax.set_xlabel('Prédit', color='#94a3b8')\nax.tick_params(colors='#94a3b8')\nax.set_facecolor('#111827')\nplt.tight_layout(); plt.show()","id":13,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object','str']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nmodels_cmp = {\n    'Logistic Regression': LogisticRegression(max_iter=1000, random_state=42),\n    'Decision Tree':       DecisionTreeClassifier(random_state=42),\n    'Random Forest':       RandomForestClassifier(n_estimators=100, random_state=42),\n}\nresults = []\nfor name, model in models_cmp.items():\n    pipe = Pipeline([('scaler', StandardScaler()), ('model', model)])\n    pipe.fit(X_train, y_train)\n    tr = accuracy_score(y_train, pipe.predict(X_train))\n    te = accuracy_score(y_test,  pipe.predict(X_test))\n    results.append({'Modèle': name, 'Train': round(tr,4), 'Test': round(te,4)})\n    print(f\"{name:25s} → Train: {tr:.4f} | Test: {te:.4f}\")\n\nresults_df = pd.DataFrame(results)\nfig, ax = plt.subplots(figsize=(9,5), facecolor='#0b0f1a')\nx = np.arange(len(results_df)); w = 0.35\nax.bar(x-w/2, results_df['Train'], w, label='Train', color='#38bdf8', alpha=0.9)\nax.bar(x+w/2, results_df['Test'],  w, label='Test',  color='#34d399', alpha=0.9)\nax.set_xticks(x); ax.set_xticklabels(results_df['Modèle'], color='#94a3b8')\nax.set_ylim(0.8, 1.0); ax.set_ylabel('Accuracy', color='#94a3b8')\nax.set_title('Comparaison des Modèles', color='#38bdf8', fontweight='bold')\nax.legend(framealpha=0.2, labelcolor='#e2e8f0')\nax.set_facecolor('#111827'); ax.spines[:].set_color('#1e293b')\nplt.tight_layout(); plt.show()","id":14,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}},{"code":"import micropip\nawait micropip.install(['seaborn', 'scikit-learn'])\nimport pandas as pd\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport seaborn as sns\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, LabelEncoder\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier\nfrom sklearn.metrics import (accuracy_score, classification_report,\n    confusion_matrix, roc_auc_score, roc_curve, f1_score)\nfrom sklearn.pipeline import Pipeline\nimport warnings, joblib\nwarnings.filterwarnings('ignore')\nplt.rcParams.update({'figure.facecolor':'#0b0f1a','axes.facecolor':'#111827',\n    'axes.edgecolor':'#1e293b','text.color':'#e2e8f0',\n    'axes.labelcolor':'#94a3b8','xtick.color':'#64748b','ytick.color':'#64748b',\n    'grid.color':'#1e293b','font.family':'DejaVu Sans'})\nnp.random.seed(42)\ndf = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/diabetic_data.csv')\nids_mapping = pd.read_csv('https://raw.githubusercontent.com/LhManar/dataBaseML/refs/heads/main/IDS_mapping.csv')\n# ── Preprocessing ──────────────────────────────────────────\ndf.replace('?', np.nan, inplace=True)\ndf.drop(columns=['weight','max_glu_serum','A1Cresult','encounter_id','patient_nbr'], inplace=True, errors='ignore')\ncols_one = [c for c in df.columns if df[c].nunique() <= 1]\ndf.drop(columns=cols_one, inplace=True, errors='ignore')\nfor col in df.columns[df.isnull().sum() > 0]:\n    if df[col].dtype in ['int64','float64']:\n        df[col] = df[col].fillna(df[col].median())\n    else:\n        df[col] = df[col].fillna(df[col].mode()[0])\nif 'readmitted' in df.columns:\n    df['readmitted_bin'] = (df['readmitted'] == '<30').astype(int)\n    df.drop(columns=['readmitted'], inplace=True)\nencoders = {}\ncat_cols = df.select_dtypes(include=['object','str']).columns.tolist()\nfor col in cat_cols:\n    le = LabelEncoder()\n    df[col] = le.fit_transform(df[col].astype(str))\n    encoders[col] = le\nfeature_cols = [c for c in df.columns if c != 'readmitted_bin']\nX = df[feature_cols]\ny = df['readmitted_bin']\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)\npipeline = Pipeline([('scaler', StandardScaler()), ('model', RandomForestClassifier(n_estimators=100, max_depth=15, class_weight='balanced', random_state=42, n_jobs=-1))])\npipeline.fit(X_train, y_train)\ny_pred  = pipeline.predict(X_test)\ny_proba = pipeline.predict_proba(X_test)[:,1]\n\nrf_model = pipeline.named_steps['model']\nimportances = pd.Series(rf_model.feature_importances_, index=X.columns)\nimportances = importances.sort_values(ascending=False).head(15)\n\nfig, ax = plt.subplots(figsize=(10,6), facecolor='#0b0f1a')\ncolors_bar = ['#38bdf8' if i < 5 else '#818cf8' if i < 10 else '#34d399' for i in range(15)]\nimportances.plot(kind='barh', color=colors_bar, ax=ax, edgecolor='none')\nax.invert_yaxis()\nax.set_title('Top 15 Features les Plus Importantes', color='#38bdf8', fontweight='bold')\nax.set_xlabel('Importance', color='#94a3b8')\nax.set_facecolor('#111827'); ax.spines[:].set_color('#1e293b')\nplt.tight_layout(); plt.show()\n\nprint(\"\\nTop 5 :\")\nprint(importances.head(5).to_string())","id":15,"options":{"autorun":"","classes":"","comment":"","context":"interactive","dpi":72,"fig-cap":"","fig-height":5,"fig-width":7,"label":"","message":"true","out-height":"","out-width":"700px","output":"true","read-only":"false","results":"markup","warning":"true"}}];
 
 
   </script>
@@ -495,67 +495,55 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Presentation ML</h1>
-  <p class="subtitle">Classification Binaire : Diabetic Hospital Readmission</p>
 
-<div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Lahouel Manar &amp; Bayar Oumayma 
-</div>
-</div>
-</div>
-
-</section>
 <section id="section" class="slide level2 center">
 <h2></h2>
 <div style="text-align:center;padding:2em 0;">
+<div style="font-family:'DM Serif Display',serif;font-size:0.9em;color:#38bdf8;letter-spacing:.15em;text-transform:uppercase;margin-bottom:0.5em;">
+Pipeline ETL
+</div>
 <h1 style="font-family:'DM Serif Display',serif;font-size:2.4em;color:#e2e8f0;line-height:1.15;margin-bottom:0.3em;">
 Classification Binaire<br> <span style="color:#38bdf8;">Diabetic Hospital Readmission</span>
 </h1>
+<p style="color:#64748b;font-size:0.85em;font-family:'DM Mono',monospace;margin:1em 0 1.5em;">
+Lahouel Manar &amp; Bayar Oumayma
+</p>
+<div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:1.5em;">
+<p><span class="badge">101 766 patients</span> <span class="badge badge-purple">Random Forest</span> <span class="badge badge-green">88.9% Accuracy</span> <span class="badge">Pyodide</span> <span class="badge badge-green">Quarto</span></p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:600px;margin:0 auto;">
+<div class="metric-card">
+<span class="value">I</span><span class="label">Ingénierie</span>
+</div>
+<div class="metric-card">
+<span class="value">T</span><span class="label">Traitement</span>
+</div>
+<div class="metric-card">
+<span class="value">L</span><span class="label">Learning</span>
+</div>
+</div>
 </div>
 </section>
-<section id="plan" class="slide level2">
-<h2>Plan</h2>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:1em;margin-top:0.3em;">
-
-<div style="display:flex;flex-direction:column;gap:0.8em;">
-
-  <div style="background:rgba(17,24,39,0.85);border:1px solid rgba(56,189,248,0.22);border-radius:12px;padding:1em 1.3em;">
-    <div style="color:#38bdf8;font-weight:700;font-size:0.95em;margin-bottom:0.5em;">📊 Dataset</div>
-    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:0.6em;">
-      <span class="badge">101 766 lignes</span>
-      <span class="badge">50 colonnes</span>
-      <span class="badge badge-purple">CSV</span>
-      <span class="badge badge-green">10 ans</span>
-    </div>
-    <div style="font-size:0.78em;color:#94a3b8;line-height:1.6;">
-      Données cliniques <strong style="color:#e2e8f0;">1999–2008</strong> · 130 hôpitaux américains<br>
-      Source : <em style="color:#818cf8;">UCI Machine Learning Repository</em>
-    </div>
-  </div>
-
-  <div style="background:rgba(17,24,39,0.85);border:1px solid rgba(56,189,248,0.22);border-radius:12px;padding:1em 1.3em;">
-    <div style="color:#38bdf8;font-weight:700;font-size:0.95em;margin-bottom:0.4em;">🎯 Objectif</div>
-    <div style="font-size:0.82em;color:#e2e8f0;line-height:1.6;">
-      Prédire la <strong style="color:#38bdf8;">réadmission hospitalière</strong> d'un patient diabétique dans
-      <span style="background:rgba(56,189,248,0.15);color:#38bdf8;font-weight:700;padding:1px 8px;border-radius:6px;font-family:monospace;">&lt; 30 jours</span>
-    </div>
-    <div style="margin-top:0.5em;font-size:0.76em;color:#64748b;">
-      Variable cible : <code style="color:#818cf8;background:rgba(129,140,248,0.12);padding:1px 6px;border-radius:4px;">readmitted</code>
-      → binaire <code style="color:#34d399;">0</code> (non) / <code style="color:#f87171;">1</code> (&lt;30j)
-    </div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5em;">
-    <div class="metric-card" style="padding:0.7em;"><span class="value" style="font-size:1.4em;">11.2%</span><span class="label">Réadmis &lt;30j</span></div>
-    <div class="metric-card" style="padding:0.7em;"><span class="value" style="font-size:1.4em;">54%</span><span class="label">Femmes</span></div>
-    <div class="metric-card" style="padding:0.7em;"><span class="value" style="font-size:1.4em;">4.4j</span><span class="label">Séjour moy.</span></div>
-  </div>
-
+<section id="vue-densemble-du-tp" class="slide level2">
+<h2>Vue d’ensemble du TP</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Dataset</strong></p>
+<p><span class="badge">101 766 lignes</span> <span class="badge">50 colonnes</span> <span class="badge badge-purple">CSV</span> <span class="badge badge-green">130 hôpitaux</span></p>
+<p><strong>Objectif</strong></p>
+<p>Prédire la réadmission d’un patient diabétique en <strong>&lt; 30 jours</strong> après sa sortie hospitalière, afin d’anticiper et réduire les coûts de santé.</p>
+<p><strong>Variable cible</strong></p>
+<p><code>readmitted</code> → binarisée <code>0</code> (non réadmis) / <code>1</code> (réadmis &lt; 30j)</p>
+<p><strong>Résultats obtenus</strong></p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:0.6em;">
+<div class="metric-card">
+<span class="value" style="font-size:1.4em;">88.9%</span><span class="label">Accuracy</span>
 </div>
-
+<div class="metric-card">
+<span class="value" style="font-size:1.4em;">0.842</span><span class="label">AUC-ROC</span>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
 <div style="background:rgba(17,24,39,0.85);border:1px solid rgba(56,189,248,0.22);border-radius:12px;padding:1em 1.3em;font-family: sans-serif;">
   <div style="color:#38bdf8;font-weight:700;font-size:0.95em;margin-bottom:0.8em;">⚙️ Plan du Pipeline ETL</div>
 
@@ -565,9 +553,9 @@ Classification Binaire<br> <span style="color:#38bdf8;">Diabetic Hospital Readmi
       <strong style="color:#38bdf8;font-size:0.88em;">Extraction &amp; Exploration</strong>
     </div>
     <div style="margin-left:38px;display:flex;flex-direction:column;gap:3px;">
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">📥 Étape 1 — Chargement CSV (101k lignes)</div>
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">🔍 Étape 2 — EDA : types, stats, distribution cible</div>
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">🧹 Étape 3 — Nettoyage : NaN, doublons, valeurs aberrantes</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">📥 Étape 1 — Chargement des données (101k lignes)</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">🔍 Étape 2 — EDA : Statistiques et distribution cible</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(56,189,248,0.06);border-left:2px solid #38bdf8;padding:3px 8px;border-radius:0 4px 4px 0;">🧹 Étape 3 — Nettoyage : Gestion des NaN et doublons</div>
     </div>
   </div>
 
@@ -579,9 +567,8 @@ Classification Binaire<br> <span style="color:#38bdf8;">Diabetic Hospital Readmi
       <strong style="color:#818cf8;font-size:0.88em;">Transformation &amp; Préparation</strong>
     </div>
     <div style="margin-left:38px;display:flex;flex-direction:column;gap:3px;">
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(129,140,248,0.06);border-left:2px solid #818cf8;padding:3px 8px;border-radius:0 4px 4px 0;">🏷️ Étape 4 — Binarisation de readmitted → 0 / 1</div>
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(129,140,248,0.06);border-left:2px solid #818cf8;padding:3px 8px;border-radius:0 4px 4px 0;">🔤 Étape 5 — Encodage : LabelEncoder (catégorielles)</div>
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(129,140,248,0.06);border-left:2px solid #818cf8;padding:3px 8px;border-radius:0 4px 4px 0;">✂️ Étape 6 — Split 80/20 stratifié + StandardScaler</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(129,140,248,0.06);border-left:2px solid #818cf8;padding:3px 8px;border-radius:0 4px 4px 0;">🏷️ Étape 4 — Binarisation et Label Encoding</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(129,140,248,0.06);border-left:2px solid #818cf8;padding:3px 8px;border-radius:0 4px 4px 0;">✂️ Étape 5 — Split 80/20 et Normalisation (Scaling)</div>
     </div>
   </div>
 
@@ -593,18 +580,123 @@ Classification Binaire<br> <span style="color:#38bdf8;">Diabetic Hospital Readmi
       <strong style="color:#34d399;font-size:0.88em;">Loading &amp; Learning</strong>
     </div>
     <div style="margin-left:38px;display:flex;flex-direction:column;gap:3px;">
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">🤖 Étape 7 — Pipeline : Scaler + Random Forest</div>
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">📈 Étape 8 — Accuracy, F1, ROC-AUC, matrice confusion</div>
-      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">⚖️ Étape 9–10 — Comparaison 3 modèles · Top 15 features</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">🤖 Étape 6 — Modélisation (Random Forest)</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">📈 Étape 7 — Évaluation (F1, ROC-AUC, Confusion)</div>
+      <div style="font-size:0.74em;color:#94a3b8;background:rgba(52,211,153,0.06);border-left:2px solid #34d399;padding:3px 8px;border-radius:0 4px 4px 0;">⚖️ Étape 8 — Importance des variables (Top 15)</div>
     </div>
   </div>
 
   <div style="margin-top:0.8em;padding:0.5em 0.8em;background:linear-gradient(135deg,rgba(52,211,153,0.1),rgba(56,189,248,0.1));border:1px solid rgba(52,211,153,0.3);border-radius:8px;text-align:center;">
-    <span style="font-size:0.78em;color:#34d399;font-weight:600;">🏆 Meilleur modèle : Random Forest — Accuracy 88.9%</span>
+    <span style="font-size:0.78em;color:#34d399;font-weight:600;">🏆 Performance : Accuracy 88.9%</span>
   </div>
 </div>
-
+<p><strong>Modèles comparés</strong></p>
+<p><span class="badge">Logistic Regression</span> <span class="badge badge-purple">Random Forest ✓</span> <span class="badge badge-green">KNN (k=5)</span></p>
+</div></div>
+</section>
+<section id="problématique" class="slide level2">
+<h2>❓ Problématique</h2>
+<div style="background:rgba(56,189,248,0.06);border-left:4px solid #38bdf8;border-radius:0 12px 12px 0;padding:1em 1.4em;margin-bottom:1em;">
+<p><strong style="color:#38bdf8;font-size:1.05em;">Question centrale :</strong><br> <span style="font-size:1em;line-height:1.8;">Peut-on prédire automatiquement si un patient diabétique sera <strong>réadmis à l’hôpital en moins de 30 jours</strong> après sa sortie, à partir de son dossier clinique ?</span></p>
 </div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Contexte médical</strong></p>
+<ul>
+<li>Le diabète touche <strong>537 millions</strong> d’adultes dans le monde</li>
+<li>Les réadmissions précoces (&lt; 30 j) représentent un <strong>coût énorme</strong> pour les systèmes de santé</li>
+<li>Aux États-Unis, chaque réadmission non planifiée coûte en moyenne <strong>15 000 $</strong></li>
+<li>Les hôpitaux sont <strong>pénalisés financièrement</strong> si leur taux de réadmission est trop élevé (programme CMS)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Enjeux du projet</strong></p>
+<div class="pipeline-step">
+<div class="step-num">
+1
+</div>
+<div class="step-content">
+<strong>Détection précoce</strong><span>Identifier les patients à risque avant leur sortie</span>
+</div>
+</div>
+<div class="pipeline-step">
+<div class="step-num">
+2
+</div>
+<div class="step-content">
+<strong>Optimisation des soins</strong><span>Adapter le suivi post-hospitalisation</span>
+</div>
+</div>
+<div class="pipeline-step">
+<div class="step-num">
+3
+</div>
+<div class="step-content">
+<strong>Réduction des coûts</strong><span>Éviter les hospitalisations évitables</span>
+</div>
+</div>
+<div class="pipeline-step">
+<div class="step-num">
+4
+</div>
+<div class="step-content">
+<strong>Aide à la décision</strong><span>Outil ML pour les équipes médicales</span>
+</div>
+</div>
+</div></div>
+</section>
+<section id="description-du-dataset" class="slide level2">
+<h2>📂 Description du Dataset</h2>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><strong>Origine des données</strong></p>
+<p><span class="badge">UCI Machine Learning Repository</span> <span class="badge badge-purple">130 hôpitaux américains</span> <span class="badge badge-green">1999 – 2008</span></p>
+<p><strong>Caractéristiques</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Propriété</th>
+<th>Valeur</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lignes (séjours)</td>
+<td><strong>101 766</strong></td>
+</tr>
+<tr class="even">
+<td>Colonnes (variables)</td>
+<td><strong>50</strong></td>
+</tr>
+<tr class="odd">
+<td>Patients uniques</td>
+<td>~71 518</td>
+</tr>
+<tr class="even">
+<td>Variable cible</td>
+<td><code>readmitted</code></td>
+</tr>
+<tr class="odd">
+<td>Valeurs cibles</td>
+<td><code>&lt;30</code>, <code>&gt;30</code>, <code>NO</code></td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:45%;">
+<p><strong>Types de variables</strong></p>
+<div style="margin-bottom:0.6em;">
+<p><span class="badge badge-green">Numériques (13)</span> <span style="font-size:0.8em;color:#64748b;"> âge, durée séjour, nb médicaments…</span></p>
+</div>
+<div style="margin-bottom:0.6em;">
+<p><span class="badge badge-purple">Catégorielles (37)</span> <span style="font-size:0.8em;color:#64748b;"> genre, race, spécialité médicale…</span></p>
+</div>
+<p><strong>Défis identifiés</strong></p>
+<ul>
+<li>⚠️ Valeurs manquantes codées <code>?</code></li>
+<li>⚠️ Déséquilibre de classes (88/12)</li>
+<li>⚠️ Variables à faible variance (à supprimer)</li>
+<li>⚠️ Doublons patients (multi-séjours)</li>
+</ul>
+</div></div>
 </section>
 <section id="étape-0-configuration-de-lenvironnement" class="slide level2">
 <h2>⚙️ Étape 0 — Configuration de l’Environnement</h2>
@@ -703,11 +795,11 @@ Classification Binaire<br> <span style="color:#38bdf8;">Diabetic Hospital Readmi
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="metric-card">
-<span class="value">80%</span><span class="label">Train — ~81 400 lignes</span>
+<span class="value">80%</span><span class="label">Train · 81 412 lignes</span>
 </div>
 </div><div class="column" style="width:50%;">
 <div class="metric-card">
-<span class="value">20%</span><span class="label">Test — ~20 350 lignes</span>
+<span class="value">20%</span><span class="label">Test · 20 354 lignes</span>
 </div>
 </div></div>
 <div class="fragment">
@@ -723,7 +815,7 @@ Split <strong>stratifié</strong> → équilibre des classes préservé
 1
 </div>
 <div class="step-content">
-<strong>StandardScaler</strong><span>Normalise μ=0, σ=1 — évite les biais d’échelle</span>
+<strong>StandardScaler</strong><span>Centre et réduit chaque feature : μ=0, σ=1 — évite que les variables à grande échelle dominent</span>
 </div>
 </div>
 <div class="pipeline-step">
@@ -731,8 +823,11 @@ Split <strong>stratifié</strong> → équilibre des classes préservé
 2
 </div>
 <div class="step-content">
-<strong>RandomForestClassifier</strong><span>100 arbres — robuste au surapprentissage</span>
+<strong>RandomForestClassifier</strong><span>100 arbres de décision en bagging · max_depth=15 · class_weight=“balanced” pour compenser le déséquilibre 88/12</span>
 </div>
+</div>
+<div style="background:rgba(56,189,248,0.05);border:1px solid rgba(56,189,248,0.15);border-radius:10px;padding:0.7em 1em;margin-top:0.8em;font-size:0.82em;color:#94a3b8;">
+<p><strong style="color:#38bdf8;">Pourquoi un Pipeline ?</strong> Le Pipeline sklearn garantit que le scaler est <em>fitté uniquement sur le train</em> et appliqué au test — évite la fuite de données (<em>data leakage</em>). Il rend aussi le déploiement en production plus simple.</p>
 </div>
 </section>
 <section id="étape-8-accuracy-rapport-de-classification" class="slide level2">
@@ -744,6 +839,47 @@ Split <strong>stratifié</strong> → équilibre des classes préservé
 <h2>📊 Étape 8 — Matrice de Confusion</h2>
 <div id="qpyodide-insertion-location-13"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</section>
+<section id="description-des-modèles-utilisés" class="slide level2">
+<h2>🧠 Description des Modèles Utilisés</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:0.8em;">
+<div style="background:rgba(56,189,248,0.06);border:1px solid rgba(56,189,248,0.25);border-radius:12px;padding:1em 1.1em;">
+<div style="color:#38bdf8;font-weight:700;font-size:0.95em;margin-bottom:0.5em;">
+📐 Régression Logistique
+</div>
+<div style="font-size:0.75em;color:#64748b;margin-bottom:0.6em;text-transform:uppercase;letter-spacing:.05em;">
+Modèle linéaire — Baseline
+</div>
+<div style="font-size:0.82em;color:#cbd5e1;line-height:1.7;">
+<p>Modèle probabiliste qui estime <strong>P(réadmission = 1)</strong> via une combinaison linéaire des features et une fonction sigmoïde.<br><br> <span style="color:#38bdf8;">✓</span> Très rapide à entraîner<br> <span style="color:#38bdf8;">✓</span> Interprétable (coefficients)<br> <span style="color:#38bdf8;">✓</span> Stable — pas de surapprentissage<br> <span style="color:#f87171;">✗</span> Ne capture pas les relations non-linéaires<br><br> <span class="badge">C=1.0</span> <span class="badge">max_iter=1000</span></p>
+</div>
+</div>
+<div style="background:rgba(129,140,248,0.06);border:1px solid rgba(129,140,248,0.3);border-radius:12px;padding:1em 1.1em;">
+<div style="color:#818cf8;font-weight:700;font-size:0.95em;margin-bottom:0.5em;">
+🌲 Random Forest
+</div>
+<div style="font-size:0.75em;color:#64748b;margin-bottom:0.6em;text-transform:uppercase;letter-spacing:.05em;">
+Ensemble — Modèle retenu ✓
+</div>
+<div style="font-size:0.82em;color:#cbd5e1;line-height:1.7;">
+<p>Ensemble de <strong>100 arbres de décision</strong> entraînés sur des sous-échantillons aléatoires (bagging). La prédiction finale est un vote majoritaire.<br><br> <span style="color:#4ade80;">✓</span> Capture les non-linéarités complexes<br> <span style="color:#4ade80;">✓</span> Robuste au surapprentissage<br> <span style="color:#4ade80;">✓</span> Importance des features native<br> <span style="color:#f87171;">✗</span> Moins interprétable (boîte noire)<br><br> <span class="badge badge-purple">n_estimators=100</span> <span class="badge badge-purple">max_depth=15</span></p>
+</div>
+</div>
+<div style="background:rgba(52,211,153,0.05);border:1px solid rgba(52,211,153,0.2);border-radius:12px;padding:1em 1.1em;">
+<div style="color:#34d399;font-weight:700;font-size:0.95em;margin-bottom:0.5em;">
+📍 K-Nearest Neighbors
+</div>
+<div style="font-size:0.75em;color:#64748b;margin-bottom:0.6em;text-transform:uppercase;letter-spacing:.05em;">
+Instance-based — KNN k=5
+</div>
+<div style="font-size:0.82em;color:#cbd5e1;line-height:1.7;">
+<p>Classifie chaque patient selon la <strong>majorité des 5 voisins les plus proches</strong> dans l’espace des features (distance euclidienne après normalisation).<br><br> <span style="color:#4ade80;">✓</span> Simple et intuitif<br> <span style="color:#4ade80;">✓</span> Aucune hypothèse sur la distribution<br> <span style="color:#f87171;">✗</span> Lent sur grands datasets<br> <span style="color:#f87171;">✗</span> Sensible à l’échelle des variables<br><br> <span class="badge badge-green">k=5</span> <span class="badge badge-green">metric=euclidean</span></p>
+</div>
+</div>
+</div>
+<div style="background:rgba(17,24,39,0.8);border:1px solid rgba(56,189,248,0.15);border-radius:10px;padding:0.8em 1.2em;font-size:0.8em;color:#64748b;">
+<p><strong style="color:#38bdf8;">Pourquoi Random Forest a été retenu ?</strong> — Il offre le meilleur compromis entre performance (Accuracy 88.9%, AUC 0.842), robustesse et interprétabilité via l’importance des features. La Logistic Regression est stable mais limitée ; KNN souffre du surapprentissage modéré sur ce dataset volumique.</p>
+</div>
 </section>
 <section id="étape-9-comparaison-des-modèles" class="slide level2">
 <h2>⚖️ Étape 9 — Comparaison des Modèles</h2>
@@ -941,314 +1077,284 @@ body{font-family:'DM Sans',sans-serif;background:#060d1f;padding:20px;}
 .kpi-val { font-size: 18px !important; }
 .hdr h1 { font-size: 15px !important; }
 </style>
-
 <div class="wrap">
-
 <!-- Header -->
 <div class="hdr">
-  <h1>🏥&nbsp; Prédiction Réadmission Hospitalière — Diabète</h1>
-  <p>Random Forest · 101 766 patients · 130 hôpitaux américains (1999–2008) · Classification binaire &lt;30j</p>
-  <span class="badge">Accuracy 88.9%</span>
-  <span class="badge">AUC-ROC 0.842</span>
-  <span class="badge">F1 0.71</span>
-  <span class="badge">42 features</span>
+<h1>
+🏥&nbsp; Prédiction Réadmission Hospitalière — Diabète
+</h1>
+<p>
+Random Forest · 101 766 patients · 130 hôpitaux américains (1999–2008) · Classification binaire &lt;30j
+</p>
+<p><span class="badge">Accuracy 88.9%</span> <span class="badge">AUC-ROC 0.842</span> <span class="badge">F1 0.71</span> <span class="badge">42 features</span></p>
 </div>
-
 <!-- KPI -->
 <div class="kpi-row">
-  <div class="kpi" style="--kc:#38bdf8">
-    <div class="kpi-label">Accuracy Test</div>
-    <div class="kpi-val">88.9%</div>
-    <div class="kpi-sub">20 354 patients test</div>
-  </div>
-  <div class="kpi" style="--kc:#fbbf24">
-    <div class="kpi-label">AUC-ROC</div>
-    <div class="kpi-val">0.842</div>
-    <div class="kpi-sub">discrimination</div>
-  </div>
-  <div class="kpi" style="--kc:#4ade80">
-    <div class="kpi-label">F1-Score</div>
-    <div class="kpi-val">0.710</div>
-    <div class="kpi-sub">classe positive</div>
-  </div>
-  <div class="kpi" style="--kc:#f472b6">
-    <div class="kpi-label">Réadmissions &lt;30j</div>
-    <div class="kpi-val">11.16%</div>
-    <div class="kpi-sub">11 357 patients</div>
-  </div>
+<div class="kpi" style="--kc:#38bdf8">
+<pre><code>&lt;div class="kpi-label"&gt;Accuracy Test&lt;/div&gt;
+&lt;div class="kpi-val"&gt;88.9%&lt;/div&gt;
+&lt;div class="kpi-sub"&gt;20 354 patients test&lt;/div&gt;</code></pre>
 </div>
-
+<div class="kpi" style="--kc:#fbbf24">
+<pre><code>&lt;div class="kpi-label"&gt;AUC-ROC&lt;/div&gt;
+&lt;div class="kpi-val"&gt;0.842&lt;/div&gt;
+&lt;div class="kpi-sub"&gt;discrimination&lt;/div&gt;</code></pre>
+</div>
+<div class="kpi" style="--kc:#4ade80">
+<pre><code>&lt;div class="kpi-label"&gt;F1-Score&lt;/div&gt;
+&lt;div class="kpi-val"&gt;0.710&lt;/div&gt;
+&lt;div class="kpi-sub"&gt;classe positive&lt;/div&gt;</code></pre>
+</div>
+<div class="kpi" style="--kc:#f472b6">
+<pre><code>&lt;div class="kpi-label"&gt;Réadmissions &amp;lt;30j&lt;/div&gt;
+&lt;div class="kpi-val"&gt;11.16%&lt;/div&gt;
+&lt;div class="kpi-sub"&gt;11 357 patients&lt;/div&gt;</code></pre>
+</div>
+</div>
 <!-- Tabs -->
 <div class="tabs">
-  <button class="tab active" onclick="showTab('overview',this)">📊 Vue d'ensemble</button>
-  <button class="tab" onclick="showTab('predict',this)">🔍 Prédiction</button>
-  <button class="tab" onclick="showTab('factors',this)">🧬 Facteurs</button>
-  <button class="tab" onclick="showTab('history',this)">🗓 Historique</button>
+<p><button class="tab active" onclick="showTab('overview',this)">📊 Vue d’ensemble</button> <button class="tab" onclick="showTab('predict',this)">🔍 Prédiction</button> <button class="tab" onclick="showTab('factors',this)">🧬 Facteurs</button> <button class="tab" onclick="showTab('history',this)">🗓 Historique</button></p>
 </div>
-
 <!-- ══ PANEL 1 : VUE D'ENSEMBLE ═══════════════════════════════ -->
 <div id="panel-overview" class="panel active">
-
-  <div class="alert">
-    ⚠ <strong>Déséquilibre des classes :</strong> 88.84% non-réadmis vs 11.16% réadmis &lt;30j.
-    Le recall sur la classe positive est faible — envisager SMOTE ou class_weight="balanced".
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
-    <div class="card">
-      <div class="card-title">📈 Distribution Variable Cible</div>
-      <div class="donut-wrap">
-        <svg width="110" height="110" viewbox="0 0 110 110">
-          <circle cx="55" cy="55" r="40" fill="none" stroke="#1e3a70" stroke-width="18"></circle>
-          <circle cx="55" cy="55" r="40" fill="none" stroke="#38bdf8" stroke-width="18" stroke-dasharray="224 251" stroke-dashoffset="0" stroke-linecap="butt" transform="rotate(-90 55 55)"></circle>
-          <circle cx="55" cy="55" r="40" fill="none" stroke="#f87171" stroke-width="18" stroke-dasharray="28 251" stroke-dashoffset="-224" stroke-linecap="butt" transform="rotate(-90 55 55)"></circle>
-          <text x="55" y="59" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0">2 classes</text>
-        </svg>
-        <div class="donut-labels">
-          <div class="dl-item"><span class="dot" style="background:#38bdf8"></span>
-            <div><div class="dl-val">88.84%</div><div>Non réadmis (0)</div>
-            <div style="color:#334155;font-size:10px;">90 409 patients</div></div></div>
-          <div class="dl-item"><span class="dot" style="background:#f87171"></span>
-            <div><div class="dl-val">11.16%</div><div>Réadmis &lt;30j (1)</div>
-            <div style="color:#334155;font-size:10px;">11 357 patients</div></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">🏆 Comparaison des Modèles</div>
-      <div style="display:flex;gap:8px;margin-bottom:8px;">
-        <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:#475569;">
-          <span style="width:10px;height:10px;border-radius:2px;background:#4dabf7;display:inline-block;"></span>Train</span>
-        <span style="display:flex;align-items:center;gap:4px;font-size:10px;color:#475569;">
-          <span style="width:10px;height:10px;border-radius:2px;background:#4ade80;display:inline-block;"></span>Test</span>
-      </div>
-      <div class="model-row">
-        <div class="mname">Logistic Regression</div>
-        <div class="mbars">
-          <div class="mbar" style="width:70px;background:#4dabf7"><span>88.8%</span></div>
-          <div class="mbar" style="width:70px;background:#4ade80"><span>88.8%</span></div>
-        </div>
-      </div>
-      <div class="model-row">
-        <div class="mname">Decision Tree</div>
-        <div class="mbars">
-          <div class="mbar" style="width:78px;background:#4dabf7"><span>100%</span></div>
-          <div class="mbar" style="width:62px;background:#ef4444"><span>79.9%</span></div>
-        </div>
-      </div>
-      <div class="model-row">
-        <div class="mname">Gradient Boosting<span class="mbadge">✓ Top</span></div>
-        <div class="mbars">
-          <div class="mbar" style="width:78px;background:#4dabf7"><span>100%</span></div>
-          <div class="mbar" style="width:71px;background:#4ade80"><span>88.9%</span></div>
-        </div>
-      </div>
-      <div class="model-row">
-        <div class="mname">Random Forest<span class="mbadge">✓ Retenu</span></div>
-        <div class="mbars">
-          <div class="mbar" style="width:78px;background:#4dabf7"><span>100%</span></div>
-          <div class="mbar" style="width:71px;background:#4ade80"><span>88.9%</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">📋 Rapport de Classification — Random Forest (Test set)</div>
-    
-<table class="cls-table caption-top">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">Classe</th>
-<th data-quarto-table-cell-role="th">Précision</th>
-<th data-quarto-table-cell-role="th">Recall</th>
-<th data-quarto-table-cell-role="th">F1-score</th>
-<th data-quarto-table-cell-role="th">Support</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Non réadmis &lt;30j (0)</td>
-<td class="good">89%</td>
-<td class="good">100%</td>
-<td class="good">94%</td>
-<td>18 083</td>
-</tr>
-<tr class="even">
-<td>Réadmis &lt;30j (1)</td>
-<td class="good">71%</td>
-<td class="bad">1%</td>
-<td class="bad">2%</td>
-<td>2 271</td>
-</tr>
-<tr class="odd">
-<td><strong>Accuracy globale</strong></td>
-<td colspan="3" style="text-align: center; font-weight: 700; color: #38bdf8; font-family: 'DM Mono',monospace;">88.92%</td>
-<td>20 354</td>
-</tr>
-</tbody>
-</table>
-
-  </div>
-
-  <div class="card">
-    <div class="card-title">🔧 Pipeline du Projet (14 étapes)</div>
-    <div class="pipeline-list" id="pipeline-list"></div>
-  </div>
+<div class="alert">
+<pre><code>&amp;#x26A0; &lt;strong&gt;Déséquilibre des classes :&lt;/strong&gt; 88.84% non-réadmis vs 11.16% réadmis &amp;lt;30j.
+Le recall sur la classe positive est faible — envisager SMOTE ou class_weight="balanced".</code></pre>
 </div>
-
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+<pre><code>&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;&amp;#x1F4C8; Distribution Variable Cible&lt;/div&gt;
+  &lt;div class="donut-wrap"&gt;
+    &lt;svg width="110" height="110" viewBox="0 0 110 110"&gt;
+      &lt;circle cx="55" cy="55" r="40" fill="none" stroke="#1e3a70" stroke-width="18"/&gt;
+      &lt;circle cx="55" cy="55" r="40" fill="none" stroke="#38bdf8" stroke-width="18"
+        stroke-dasharray="224 251" stroke-dashoffset="0" stroke-linecap="butt"
+        transform="rotate(-90 55 55)"/&gt;
+      &lt;circle cx="55" cy="55" r="40" fill="none" stroke="#f87171" stroke-width="18"
+        stroke-dasharray="28 251" stroke-dashoffset="-224" stroke-linecap="butt"
+        transform="rotate(-90 55 55)"/&gt;
+      &lt;text x="55" y="59" text-anchor="middle" font-size="11" font-weight="700" fill="#e2e8f0"&gt;2 classes&lt;/text&gt;
+    &lt;/svg&gt;
+    &lt;div class="donut-labels"&gt;
+      &lt;div class="dl-item"&gt;&lt;span class="dot" style="background:#38bdf8"&gt;&lt;/span&gt;
+        &lt;div&gt;&lt;div class="dl-val"&gt;88.84%&lt;/div&gt;&lt;div&gt;Non réadmis (0)&lt;/div&gt;
+        &lt;div style="color:#334155;font-size:10px;"&gt;90 409 patients&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class="dl-item"&gt;&lt;span class="dot" style="background:#f87171"&gt;&lt;/span&gt;
+        &lt;div&gt;&lt;div class="dl-val"&gt;11.16%&lt;/div&gt;&lt;div&gt;Réadmis &amp;lt;30j (1)&lt;/div&gt;
+        &lt;div style="color:#334155;font-size:10px;"&gt;11 357 patients&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="card"&gt;
+  &lt;div class="card-title"&gt;&amp;#x1F3C6; Comparaison des Modèles&lt;/div&gt;
+  &lt;div style="display:flex;gap:8px;margin-bottom:8px;"&gt;
+    &lt;span style="display:flex;align-items:center;gap:4px;font-size:10px;color:#475569;"&gt;
+      &lt;span style="width:10px;height:10px;border-radius:2px;background:#4dabf7;display:inline-block;"&gt;&lt;/span&gt;Train&lt;/span&gt;
+    &lt;span style="display:flex;align-items:center;gap:4px;font-size:10px;color:#475569;"&gt;
+      &lt;span style="width:10px;height:10px;border-radius:2px;background:#4ade80;display:inline-block;"&gt;&lt;/span&gt;Test&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="model-row"&gt;
+    &lt;div class="mname"&gt;Logistic Regression&lt;/div&gt;
+    &lt;div class="mbars"&gt;
+      &lt;div class="mbar" style="width:70px;background:#4dabf7"&gt;&lt;span&gt;88.8%&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="mbar" style="width:70px;background:#4ade80"&gt;&lt;span&gt;88.8%&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="model-row"&gt;
+    &lt;div class="mname"&gt;Decision Tree&lt;/div&gt;
+    &lt;div class="mbars"&gt;
+      &lt;div class="mbar" style="width:78px;background:#4dabf7"&gt;&lt;span&gt;100%&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="mbar" style="width:62px;background:#ef4444"&gt;&lt;span&gt;79.9%&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="model-row"&gt;
+    &lt;div class="mname"&gt;Gradient Boosting&lt;span class="mbadge"&gt;&amp;#x2713; Top&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="mbars"&gt;
+      &lt;div class="mbar" style="width:78px;background:#4dabf7"&gt;&lt;span&gt;100%&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="mbar" style="width:71px;background:#4ade80"&gt;&lt;span&gt;88.9%&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="model-row"&gt;
+    &lt;div class="mname"&gt;Random Forest&lt;span class="mbadge"&gt;&amp;#x2713; Retenu&lt;/span&gt;&lt;/div&gt;
+    &lt;div class="mbars"&gt;
+      &lt;div class="mbar" style="width:78px;background:#4dabf7"&gt;&lt;span&gt;100%&lt;/span&gt;&lt;/div&gt;
+      &lt;div class="mbar" style="width:71px;background:#4ade80"&gt;&lt;span&gt;88.9%&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="card">
+<pre><code>&lt;div class="card-title"&gt;&amp;#x1F4CB; Rapport de Classification — Random Forest (Test set)&lt;/div&gt;
+&lt;table class="cls-table"&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th&gt;Classe&lt;/th&gt;&lt;th&gt;Précision&lt;/th&gt;&lt;th&gt;Recall&lt;/th&gt;&lt;th&gt;F1-score&lt;/th&gt;&lt;th&gt;Support&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Non réadmis &amp;lt;30j (0)&lt;/td&gt;
+      &lt;td class="good"&gt;89%&lt;/td&gt;&lt;td class="good"&gt;100%&lt;/td&gt;&lt;td class="good"&gt;94%&lt;/td&gt;
+      &lt;td&gt;18 083&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Réadmis &amp;lt;30j (1)&lt;/td&gt;
+      &lt;td class="good"&gt;71%&lt;/td&gt;&lt;td class="bad"&gt;1%&lt;/td&gt;&lt;td class="bad"&gt;2%&lt;/td&gt;
+      &lt;td&gt;2 271&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;Accuracy globale&lt;/strong&gt;&lt;/td&gt;
+      &lt;td colspan="3" style="text-align:center;font-weight:700;color:#38bdf8;font-family:'DM Mono',monospace;"&gt;88.92%&lt;/td&gt;
+      &lt;td&gt;20 354&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+</div>
+<div class="card">
+<pre><code>&lt;div class="card-title"&gt;&amp;#x1F527; Pipeline du Projet (14 étapes)&lt;/div&gt;
+&lt;div class="pipeline-list" id="pipeline-list"&gt;&lt;/div&gt;</code></pre>
+</div>
+</div>
 <!-- ══ PANEL 2 : PRÉDICTION ═══════════════════════════════════ -->
 <div id="panel-predict" class="panel">
-  <div class="card">
-    <div class="card-title">👤 Profil Démographique</div>
-    <div class="grid3">
-      <div class="field"><label>Tranche d'âge</label>
-        <select id="age">
-          <option>[0-10)</option><option>[10-20)</option><option>[20-30)</option>
-          <option>[30-40)</option><option>[40-50)</option><option selected="">[50-60)</option>
-          <option>[60-70)</option><option>[70-80)</option><option>[80-90)</option><option>[90-100)</option>
-        </select></div>
-      <div class="field"><label>Genre</label>
-        <select id="gender"><option>Male</option><option>Female</option></select></div>
-      <div class="field"><label>Race</label>
-        <select id="race">
-          <option selected="">Caucasian</option><option>AfricanAmerican</option>
-          <option>Hispanic</option><option>Asian</option><option>Other</option>
-        </select></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title">🩺 Données Cliniques</div>
-    <div class="grid2">
-      <div class="field"><label>Durée du séjour (jours)</label>
-        <div class="sl-row"><input type="range" id="time" min="1" max="14" value="4" oninput="tv.textContent=this.value"><span class="sl-val" id="tv">4</span></div></div>
-      <div class="field"><label>Nombre de médicaments</label>
-        <div class="sl-row"><input type="range" id="meds" min="1" max="81" value="15" oninput="mv.textContent=this.value"><span class="sl-val" id="mv">15</span></div></div>
-      <div class="field"><label>Procédures laboratoire</label>
-        <div class="sl-row"><input type="range" id="lab" min="1" max="132" value="43" oninput="lv.textContent=this.value"><span class="sl-val" id="lv">43</span></div></div>
-      <div class="field"><label>Hospitalisations antérieures</label>
-        <div class="sl-row"><input type="range" id="inp" min="0" max="21" value="0" oninput="iv.textContent=this.value"><span class="sl-val" id="iv">0</span></div></div>
-      <div class="field"><label>Procédures médicales</label>
-        <div class="sl-row"><input type="range" id="proc" min="0" max="6" value="1" oninput="pv.textContent=this.value"><span class="sl-val" id="pv">1</span></div></div>
-      <div class="field"><label>Nombre de diagnostics</label>
-        <div class="sl-row"><input type="range" id="diag" min="1" max="16" value="7" oninput="dv.textContent=this.value"><span class="sl-val" id="dv">7</span></div></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title">💊 Traitements Antidiabétiques</div>
-    <div class="grid3">
-      <div class="field"><label>Insuline</label>
-        <select id="insulin">
-          <option>No</option><option selected="">Steady</option><option>Up</option><option>Down</option>
-        </select></div>
-      <div class="field"><label>Metformine</label>
-        <select id="metformin">
-          <option selected="">No</option><option>Steady</option><option>Up</option><option>Down</option>
-        </select></div>
-      <div class="field"><label>Changement médication</label>
-        <select id="change"><option selected="">No</option><option value="Ch">Oui (Ch)</option></select></div>
-    </div>
-    <button class="btn" onclick="predict()">🔍&nbsp; Lancer la Prédiction</button>
-  </div>
-  <div id="result" class="result">
-    <div class="res-header">
-      <div class="res-icon" id="ricon"></div>
-      <div><div class="res-title" id="rtitle"></div><div class="res-sub" id="rsub"></div></div>
-    </div>
-    <div class="gauge-wrap">
-      <div class="gauge-labels">
-        <span>Probabilité de réadmission &lt;30j</span><span id="gpct"></span>
-      </div>
-      <div class="gauge-track"><div class="gauge-fill" id="gfill"></div></div>
-      <div class="gauge-pct" id="gpctbig"></div>
-    </div>
-    <div class="brow">
-      <div class="blbl">Non réadmis &lt;30j</div>
-      <div class="btrack"><div class="bfill" id="b0" style="background:#4ade80;"></div></div>
-      <div class="bpct" id="p0">—</div>
-    </div>
-    <div class="brow">
-      <div class="blbl">Réadmis &lt;30j</div>
-      <div class="btrack"><div class="bfill" id="b1" style="background:#f87171;"></div></div>
-      <div class="bpct" id="p1">—</div>
-    </div>
-    <div class="tags" id="rtags"></div>
-  </div>
-  <div class="note">
-    ⚠ Simulateur basé sur les facteurs clés du Random Forest. Pour une prédiction réelle,
-    utilisez <code>predict_patient()</code> de l'étape 12.
-  </div>
+<div class="card">
+<pre><code>&lt;div class="card-title"&gt;&amp;#x1F464; Profil Démographique&lt;/div&gt;
+&lt;div class="grid3"&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Tranche d'âge&lt;/label&gt;
+    &lt;select id="age"&gt;
+      &lt;option&gt;[0-10)&lt;/option&gt;&lt;option&gt;[10-20)&lt;/option&gt;&lt;option&gt;[20-30)&lt;/option&gt;
+      &lt;option&gt;[30-40)&lt;/option&gt;&lt;option&gt;[40-50)&lt;/option&gt;&lt;option selected&gt;[50-60)&lt;/option&gt;
+      &lt;option&gt;[60-70)&lt;/option&gt;&lt;option&gt;[70-80)&lt;/option&gt;&lt;option&gt;[80-90)&lt;/option&gt;&lt;option&gt;[90-100)&lt;/option&gt;
+    &lt;/select&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Genre&lt;/label&gt;
+    &lt;select id="gender"&gt;&lt;option&gt;Male&lt;/option&gt;&lt;option&gt;Female&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Race&lt;/label&gt;
+    &lt;select id="race"&gt;
+      &lt;option selected&gt;Caucasian&lt;/option&gt;&lt;option&gt;AfricanAmerican&lt;/option&gt;
+      &lt;option&gt;Hispanic&lt;/option&gt;&lt;option&gt;Asian&lt;/option&gt;&lt;option&gt;Other&lt;/option&gt;
+    &lt;/select&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
 </div>
-
+<div class="card">
+<pre><code>&lt;div class="card-title"&gt;&amp;#x1FA7A; Données Cliniques&lt;/div&gt;
+&lt;div class="grid2"&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Durée du séjour (jours)&lt;/label&gt;
+    &lt;div class="sl-row"&gt;&lt;input type="range" id="time" min="1" max="14" value="4"
+      oninput="tv.textContent=this.value"&gt;&lt;span class="sl-val" id="tv"&gt;4&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Nombre de médicaments&lt;/label&gt;
+    &lt;div class="sl-row"&gt;&lt;input type="range" id="meds" min="1" max="81" value="15"
+      oninput="mv.textContent=this.value"&gt;&lt;span class="sl-val" id="mv"&gt;15&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Procédures laboratoire&lt;/label&gt;
+    &lt;div class="sl-row"&gt;&lt;input type="range" id="lab" min="1" max="132" value="43"
+      oninput="lv.textContent=this.value"&gt;&lt;span class="sl-val" id="lv"&gt;43&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Hospitalisations antérieures&lt;/label&gt;
+    &lt;div class="sl-row"&gt;&lt;input type="range" id="inp" min="0" max="21" value="0"
+      oninput="iv.textContent=this.value"&gt;&lt;span class="sl-val" id="iv"&gt;0&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Procédures médicales&lt;/label&gt;
+    &lt;div class="sl-row"&gt;&lt;input type="range" id="proc" min="0" max="6" value="1"
+      oninput="pv.textContent=this.value"&gt;&lt;span class="sl-val" id="pv"&gt;1&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Nombre de diagnostics&lt;/label&gt;
+    &lt;div class="sl-row"&gt;&lt;input type="range" id="diag" min="1" max="16" value="7"
+      oninput="dv.textContent=this.value"&gt;&lt;span class="sl-val" id="dv"&gt;7&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+<div class="card">
+<pre><code>&lt;div class="card-title"&gt;&amp;#x1F48A; Traitements Antidiabétiques&lt;/div&gt;
+&lt;div class="grid3"&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Insuline&lt;/label&gt;
+    &lt;select id="insulin"&gt;
+      &lt;option&gt;No&lt;/option&gt;&lt;option selected&gt;Steady&lt;/option&gt;&lt;option&gt;Up&lt;/option&gt;&lt;option&gt;Down&lt;/option&gt;
+    &lt;/select&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Metformine&lt;/label&gt;
+    &lt;select id="metformin"&gt;
+      &lt;option selected&gt;No&lt;/option&gt;&lt;option&gt;Steady&lt;/option&gt;&lt;option&gt;Up&lt;/option&gt;&lt;option&gt;Down&lt;/option&gt;
+    &lt;/select&gt;&lt;/div&gt;
+  &lt;div class="field"&gt;&lt;label&gt;Changement médication&lt;/label&gt;
+    &lt;select id="change"&gt;&lt;option selected&gt;No&lt;/option&gt;&lt;option value="Ch"&gt;Oui (Ch)&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;button class="btn" onclick="predict()"&gt;&amp;#x1F50D;&amp;nbsp; Lancer la Prédiction&lt;/button&gt;</code></pre>
+</div>
+<div id="result" class="result">
+<pre><code>&lt;div class="res-header"&gt;
+  &lt;div class="res-icon" id="ricon"&gt;&lt;/div&gt;
+  &lt;div&gt;&lt;div class="res-title" id="rtitle"&gt;&lt;/div&gt;&lt;div class="res-sub" id="rsub"&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="gauge-wrap"&gt;
+  &lt;div class="gauge-labels"&gt;
+    &lt;span&gt;Probabilité de réadmission &amp;lt;30j&lt;/span&gt;&lt;span id="gpct"&gt;&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;div class="gauge-track"&gt;&lt;div class="gauge-fill" id="gfill"&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="gauge-pct" id="gpctbig"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="brow"&gt;
+  &lt;div class="blbl"&gt;Non réadmis &amp;lt;30j&lt;/div&gt;
+  &lt;div class="btrack"&gt;&lt;div class="bfill" id="b0" style="background:#4ade80;"&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="bpct" id="p0"&gt;—&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="brow"&gt;
+  &lt;div class="blbl"&gt;Réadmis &amp;lt;30j&lt;/div&gt;
+  &lt;div class="btrack"&gt;&lt;div class="bfill" id="b1" style="background:#f87171;"&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="bpct" id="p1"&gt;—&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="tags" id="rtags"&gt;&lt;/div&gt;</code></pre>
+</div>
+<div class="note">
+<pre><code>&amp;#x26A0; Simulateur basé sur les facteurs clés du Random Forest. Pour une prédiction réelle,
+utilisez &lt;code&gt;predict_patient()&lt;/code&gt; de l'étape 12.</code></pre>
+</div>
+</div>
 <!-- ══ PANEL 3 : FACTEURS ═════════════════════════════════════ -->
 <div id="panel-factors" class="panel">
-  <div class="card">
-    <div class="card-title">📊 Importance des Features (Random Forest)</div>
-    <div id="factor-bars"></div>
-  </div>
-  <div class="card">
-    <div class="card-title">💡 Interprétation Clinique</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <div>
-        <div style="font-size:11px;color:#f87171;font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">↑ Facteurs de risque</div>
-        <div style="font-size:12px;color:#94a3b8;line-height:2;">
-          • Hospitalisations antérieures ≥ 2<br>
-          • Séjour hospitalier ≥ 7 jours<br>
-          • Nb médicaments ≥ 20<br>
-          • Changement de traitement<br>
-          • Ajustement insuline (Up/Down)<br>
-          • Nb diagnostics ≥ 9
-        </div>
-      </div>
-      <div>
-        <div style="font-size:11px;color:#4ade80;font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;">↓ Facteurs protecteurs</div>
-        <div style="font-size:12px;color:#94a3b8;line-height:2;">
-          • Metformine prescrite (Steady)<br>
-          • Aucune hospitalisation antérieure<br>
-          • Séjour court (≤ 3 jours)<br>
-          • Pas de changement de médication<br>
-          • Peu de diagnostics (≤ 5)
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="card">
+<pre><code>&lt;div class="card-title"&gt;&amp;#x1F4CA; Importance des Features (Random Forest)&lt;/div&gt;
+&lt;div id="factor-bars"&gt;&lt;/div&gt;</code></pre>
 </div>
-
+<div class="card">
+<pre><code>&lt;div class="card-title"&gt;&amp;#x1F4A1; Interprétation Clinique&lt;/div&gt;
+&lt;div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;"&gt;
+  &lt;div&gt;
+    &lt;div style="font-size:11px;color:#f87171;font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;"&gt;&amp;#x2191; Facteurs de risque&lt;/div&gt;
+    &lt;div style="font-size:12px;color:#94a3b8;line-height:2;"&gt;
+      &amp;#x2022; Hospitalisations antérieures ≥ 2&lt;br&gt;
+      &amp;#x2022; Séjour hospitalier ≥ 7 jours&lt;br&gt;
+      &amp;#x2022; Nb médicaments ≥ 20&lt;br&gt;
+      &amp;#x2022; Changement de traitement&lt;br&gt;
+      &amp;#x2022; Ajustement insuline (Up/Down)&lt;br&gt;
+      &amp;#x2022; Nb diagnostics ≥ 9
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;div style="font-size:11px;color:#4ade80;font-weight:600;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;"&gt;&amp;#x2193; Facteurs protecteurs&lt;/div&gt;
+    &lt;div style="font-size:12px;color:#94a3b8;line-height:2;"&gt;
+      &amp;#x2022; Metformine prescrite (Steady)&lt;br&gt;
+      &amp;#x2022; Aucune hospitalisation antérieure&lt;br&gt;
+      &amp;#x2022; Séjour court (≤ 3 jours)&lt;br&gt;
+      &amp;#x2022; Pas de changement de médication&lt;br&gt;
+      &amp;#x2022; Peu de diagnostics (≤ 5)
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+</div>
+</div>
 <!-- ══ PANEL 4 : HISTORIQUE ══════════════════════════════════ -->
 <div id="panel-history" class="panel">
-  <div class="card">
-    <div class="card-title">🗓 Historique des Prédictions</div>
-    <div id="hist-empty" style="text-align:center;padding:30px;color:#475569;font-size:12px;">
-      Aucune prédiction effectuée.<br>
-      Allez dans l'onglet <strong style="color:#64748b;">Prédiction</strong> pour commencer.
-    </div>
-    
-<table id="hist-table" class="hist-table caption-top" style="display:none;">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">#</th>
-<th data-quarto-table-cell-role="th">Âge</th>
-<th data-quarto-table-cell-role="th">Genre</th>
-<th data-quarto-table-cell-role="th">Séjour</th>
-<th data-quarto-table-cell-role="th">Médicaments</th>
-<th data-quarto-table-cell-role="th">Hospit. ant.</th>
-<th data-quarto-table-cell-role="th">Probabilité</th>
-<th data-quarto-table-cell-role="th">Risque</th>
-</tr>
-</thead>
-<tbody id="hist-body">
-</tbody>
-</table>
-
-  </div>
-  <button class="btn" onclick="clearHistory()" style="max-width:200px;height:36px;font-size:12px;
-                 background:linear-gradient(135deg,#1e3a70,#1e40af);">
-    🗑 Vider l'historique
-  </button>
+<div class="card">
+<pre><code>&lt;div class="card-title"&gt;&amp;#x1F5D3; Historique des Prédictions&lt;/div&gt;
+&lt;div id="hist-empty" style="text-align:center;padding:30px;color:#475569;font-size:12px;"&gt;
+  Aucune prédiction effectuée.&lt;br&gt;
+  Allez dans l'onglet &lt;strong style="color:#64748b;"&gt;Prédiction&lt;/strong&gt; pour commencer.
+&lt;/div&gt;
+&lt;table class="hist-table" id="hist-table" style="display:none;"&gt;
+  &lt;thead&gt;&lt;tr&gt;
+    &lt;th&gt;#&lt;/th&gt;&lt;th&gt;Âge&lt;/th&gt;&lt;th&gt;Genre&lt;/th&gt;&lt;th&gt;Séjour&lt;/th&gt;
+    &lt;th&gt;Médicaments&lt;/th&gt;&lt;th&gt;Hospit. ant.&lt;/th&gt;&lt;th&gt;Probabilité&lt;/th&gt;&lt;th&gt;Risque&lt;/th&gt;
+  &lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody id="hist-body"&gt;&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
 </div>
-
-</div><!-- .wrap -->
-
+<p><button class="btn" onclick="clearHistory()" style="max-width:200px;height:36px;font-size:12px;
+                 background:linear-gradient(135deg,#1e3a70,#1e40af);"> 🗑 Vider l’historique </button></p>
+</div>
+</div>
+<!-- .wrap -->
 <script>
 // ── Pipeline steps ───────────────────────────────────────────
 var STEPS=[
@@ -1398,7 +1504,6 @@ function predict(){
   addHistory({age:age,gender:gender,time:time,meds:meds,inp:inp,p:p1});
 }
 </script>
-
 <script>
 
 // ── Pipeline steps ───────────────────────────────────────────
@@ -1552,8 +1657,8 @@ function predict(){
 </script>
 </div>
 </section>
-<section id="récapitulatif" class="slide level2">
-<h2>✅ Récapitulatif</h2>
+<section id="pipeline-etl-récapitulatif" class="slide level2">
+<h2>✅ Pipeline ETL — Récapitulatif</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <table class="caption-top">
@@ -1638,35 +1743,58 @@ function predict(){
 </section>
 <section id="checklist-finale" class="slide level2">
 <h2>✅ Checklist Finale</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Phase Ingénierie (I)</strong></p>
 <ul class="checklist">
 <li class="fragment">
 Dataset chargé et exploré — <strong>101 766 × 50</strong>
 </li>
 <li class="fragment">
-Valeurs manquantes traitées — <strong>médiane / mode</strong>
+Valeurs manquantes <code>?</code> remplacées — <strong>médiane / mode</strong>
+</li>
+<li class="fragment">
+Colonnes à faible variance supprimées
 </li>
 <li class="fragment">
 Variable cible binarisée — <span class="badge badge-green">&lt;30j = 1</span>
 </li>
+</ul>
+<p><strong>Phase Traitement (T)</strong></p>
+<ul class="checklist">
 <li class="fragment">
-Variables catégorielles encodées — <span class="badge">LabelEncoder</span>
+Variables catégorielles encodées — <span class="badge">LabelEncoder × 31 cols</span>
 </li>
+<li class="fragment">
+Train/Test split stratifié — <strong>80% / 20%</strong>
+</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Phase Learning (L)</strong></p>
+<ul class="checklist">
 <li class="fragment">
 Pipeline scikit-learn — <span class="badge badge-purple">StandardScaler + RandomForest</span>
 </li>
 <li class="fragment">
-Accuracy calculée train <strong>et</strong> test
+Accuracy calculée train <strong>et</strong> test — <strong>88.9%</strong>
 </li>
 <li class="fragment">
-Matrice de confusion générée
+AUC-ROC calculée — <strong>0.842</strong>
+</li>
+<li class="fragment">
+Matrice de confusion générée et analysée
 </li>
 <li class="fragment">
 Comparaison de <strong>3 modèles</strong> effectuée
 </li>
 <li class="fragment">
-Importance des features — <strong>Top 15</strong>
+Importance des features — <strong>Top 15</strong> identifiés
 </li>
 </ul>
+<div style="margin-top:1em;background:rgba(52,211,153,0.08);border:1px solid rgba(52,211,153,0.2);border-radius:10px;padding:0.7em 1em;font-size:0.8em;color:#34d399;">
+<p><strong>Modèle retenu :</strong> Random Forest — meilleur AUC-ROC (0.842) et robustesse au surapprentissage</p>
+</div>
+</div></div>
 <script>
 // ── Masquer les lignes d'imports dans chaque éditeur Pyodide ──
 function hideImportLines() {
@@ -1712,19 +1840,28 @@ if (typeof Reveal !== 'undefined') {
 setInterval(hideImportLines, 3000);
 </script>
 </section>
-<section id="section-1" class="slide level2 center">
-<h2></h2>
-<div style="display:flex;align-items:center;justify-content:center;height:60vh;">
-  <h1 style="font-family:'DM Serif Display',serif;font-size:4em;color:#38bdf8;text-shadow:0 0 40px rgba(56,189,248,0.5);margin:0;letter-spacing:-0.02em;">
-    Merci !
-  </h1>
+<section id="merci" class="slide level2 center">
+<h2>Merci !</h2>
+<div style="text-align:center;margin-top:1.5em;">
+<div style="font-family:'DM Serif Display',serif;font-size:2em;color:#38bdf8;text-shadow:0 0 32px rgba(56,189,248,0.4);">
+<p>Pipeline ETL</p>
+</div>
+<div style="color:#64748b;font-family:'DM Mono',monospace;font-size:0.75em;margin-top:0.8em;letter-spacing:0.1em;">
+<p>DIABETIC HOSPITAL READMISSION · CLASSIFICATION BINAIRE</p>
+</div>
+<div style="display:flex;justify-content:center;gap:10px;margin-top:1.5em;flex-wrap:wrap;">
+<p><span class="badge">pandas</span> <span class="badge badge-purple">scikit-learn</span> <span class="badge badge-green">Random Forest</span> <span class="badge">Quarto</span> <span class="badge badge-green">Pyodide</span></p>
+</div>
+<div style="margin-top:2em;color:#334155;font-size:0.7em;">
+<p>Appuyez sur <code style="color:#38bdf8;">?</code> pour les raccourcis clavier &nbsp;·&nbsp; <code style="color:#38bdf8;">F</code> pour le plein écran</p>
+</div>
 </div>
 
 </section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
-
+<p>Diabetic Hospital Readmission</p>
 </div>
 </div></div>
 
