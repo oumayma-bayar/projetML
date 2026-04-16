@@ -11,7 +11,7 @@
 **Prédiction de la réadmission hospitalière en moins de 30 jours chez les patients diabétiques**  
 *Modèle Random Forest · Accuracy 88.9% · 101 766 patients · 130 hôpitaux américains*
 
-[🔬 Ouvrir dans Colab](https://colab.research.google.com/github/votre-username/diabetai/blob/main/Version_final.ipynb) · [🌐 Démo Web](https://oumayma-bayar.github.io/projetML/DashBoard.html) . [🌐 presentation](https://oumayma-bayar.github.io/projetML/presentation_diabetic.html) · [📊 Dataset UCI](https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008)
+[🔬 Ouvrir dans Colab](https://colab.research.google.com/github/votre-username/diabetai/blob/main/Version_final.ipynb) · [🌐 Démo Web](https://oumayma-bayar.github.io/projetML/DashBoard.html) . [🌐 presentation](https://oumayma-bayar.github.io/projetML/presentation_diabetic.html). [🌐 Rapport](https://oumayma-bayar.github.io/projetML/presentation_diabetes_readmission.html) · [📊 Dataset UCI](https://archive.ics.uci.edu/ml/datasets/diabetes+130-us+hospitals+for+years+1999-2008)
 
 </div>
 
@@ -60,16 +60,18 @@ La réadmission précoce est un indicateur critique de qualité des soins et gé
 ```
 ProjetML/
 │
-├── Version_final.ipynb        # Notebook principal Google Colab (14 étapes)
-│   DashBoard.html             # Application web de déploiement
+├── Version_final.ipynb             # Notebook principal Google Colab (14 étapes)
+│   DashBoard.html                  # Application web de déploiement
 │
-├── diabetic_data.csv          # Dataset principal (à télécharger depuis UCI)
-├── IDS_mapping.csv            # Mapping des identifiants
+├── diabetic_data.csv               # Dataset principal (à télécharger depuis UCI)
+├── IDS_mapping.csv                 # Mapping des identifiants
 │
-├── V1_Diabetic.ipynb          # first draft
-├── V2_Diabetic.ipynb          # seconde draft
+├── V1_Diabetic.ipynb               # first draft
+├── V2_Diabetic.ipynb               # seconde draft
 |
-├── Presentation_diabetic.html # presentation quarto
+├── Presentation_diabetic.html      # presentation quarto
+|
+├──projet_diabetes_readmission.html # Rapport
 |
 └── README.md
 ```
