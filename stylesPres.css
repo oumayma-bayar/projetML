@@ -1,0 +1,573 @@
+/* ============================================================
+   TP1 Diabetic — Professional Reveal.js Theme
+   Design: Medical Data Science — Dark Precision
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────── */
+:root {
+  --bg:            #0b0f1a;
+  --bg-card:       #111827;
+  --bg-glass:      rgba(17, 24, 39, 0.85);
+  --accent:        #38bdf8;
+  --accent2:       #818cf8;
+  --accent3:       #34d399;
+  --danger:        #f87171;
+  --text:          #e2e8f0;
+  --text-muted:    #64748b;
+  --border:        rgba(56, 189, 248, 0.18);
+  --glow:          0 0 32px rgba(56,189,248,0.18);
+  --glow-strong:   0 0 60px rgba(56,189,248,0.35);
+  --radius:        12px;
+  --font-head:     'DM Serif Display', Georgia, serif;
+  --font-body:     'Outfit', sans-serif;
+  --font-mono:     'DM Mono', 'Fira Code', monospace;
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+.reveal-viewport,
+.reveal {
+  background: var(--bg) !important;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(56,189,248,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 90%, rgba(129,140,248,0.07) 0%, transparent 60%) !important;
+  font-family: var(--font-body) !important;
+  color: var(--text) !important;
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+/* ── Scrollable Slides ──────────────────────────────────── */
+
+/* Chaque slide = hauteur plein écran, scroll vertical si débordement */
+.reveal .slides section {
+  height: 100% !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 20px 40px 40px !important;
+  box-sizing: border-box !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(56,189,248,0.3) transparent !important;
+}
+
+.reveal .slides section::-webkit-scrollbar {
+  width: 5px;
+}
+.reveal .slides section::-webkit-scrollbar-track {
+  background: transparent;
+}
+.reveal .slides section::-webkit-scrollbar-thumb {
+  background: rgba(56,189,248,0.25);
+  border-radius: 3px;
+}
+.reveal .slides section::-webkit-scrollbar-thumb:hover {
+  background: rgba(56,189,248,0.6);
+}
+
+/* Le conteneur .slides lui-même ne doit pas clipper */
+.reveal .slides {
+  overflow: visible !important;
+}
+
+/* Empêche le reveal de clipper les slides qui scrollent */
+.reveal .slide-background {
+  overflow: hidden !important;
+}
+
+/* Bloc pyodide : hauteur max + scroll interne */
+.reveal .cell,
+.reveal .cell-output,
+[class*="pyodide"],
+.quarto-pyodide-container {
+  max-height: 340px !important;
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(56,189,248,0.3) transparent !important;
+}
+
+/* Sortie code (output terminal) */
+.reveal .cell-output pre,
+.reveal .pyodide-output,
+[class*="output"] pre {
+  max-height: 200px !important;
+  overflow-y: auto !important;
+  font-size: 0.68em !important;
+  line-height: 1.5 !important;
+  background: #0d1117 !important;
+  border: 1px solid rgba(56,189,248,0.15) !important;
+  border-radius: 8px !important;
+  padding: 0.8em !important;
+  scrollbar-width: thin !important;
+}
+
+/* ── Grid Noise Overlay ─────────────────────────────────── */
+.reveal-viewport::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Typography ─────────────────────────────────────────── */
+.reveal h1 {
+  font-family: var(--font-head) !important;
+  font-size: 2.8em !important;
+  color: var(--accent) !important;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: var(--glow);
+  margin-bottom: 0.3em;
+}
+
+.reveal h2 {
+  font-family: var(--font-body) !important;
+  font-size: 1.7em !important;
+  font-weight: 600 !important;
+  color: var(--text) !important;
+  letter-spacing: -0.01em;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 0.35em;
+  margin-bottom: 0.6em;
+}
+
+.reveal h2::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 1em;
+  background: var(--accent);
+  margin-right: 12px;
+  vertical-align: middle;
+  border-radius: 3px;
+  box-shadow: var(--glow);
+}
+
+.reveal h3 {
+  font-family: var(--font-body) !important;
+  font-size: 1.1em !important;
+  font-weight: 500 !important;
+  color: var(--accent2) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.5em;
+}
+
+.reveal p, .reveal li {
+  font-family: var(--font-body) !important;
+  font-size: 0.95em !important;
+  font-weight: 300;
+  line-height: 1.75;
+  color: var(--text) !important;
+}
+
+.reveal strong {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+.reveal em {
+  color: var(--accent2) !important;
+  font-style: normal;
+  font-weight: 500;
+}
+
+/* ── Section Title Slides ───────────────────────────────── */
+.reveal .slides section.stack > section:first-child h1,
+.reveal section[data-background] h1 {
+  font-size: 3.5em !important;
+}
+
+/* Section divider slides (# headings) */
+.reveal section h1:only-child,
+.reveal section > h1:first-child:last-child {
+  text-align: center;
+  margin: auto;
+}
+
+/* ── Code Blocks ────────────────────────────────────────── */
+.reveal pre {
+  background: #0d1117 !important;
+  border: 1px solid var(--border) !important;
+  border-left: 3px solid var(--accent) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--glow), inset 0 1px 0 rgba(255,255,255,0.04) !important;
+  padding: 1.2em !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.72em !important;
+  line-height: 1.65 !important;
+  max-height: 420px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.reveal pre::before {
+  content: 'Python';
+  position: absolute;
+  top: 8px;
+  right: 14px;
+  font-family: var(--font-body);
+  font-size: 0.65em;
+  color: var(--accent);
+  opacity: 0.6;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.reveal code {
+  font-family: var(--font-mono) !important;
+  background: rgba(56,189,248,0.08) !important;
+  color: var(--accent) !important;
+  padding: 2px 8px !important;
+  border-radius: 5px !important;
+  font-size: 0.88em !important;
+}
+
+.reveal pre code {
+  background: transparent !important;
+  color: #e2e8f0 !important;
+  padding: 0 !important;
+}
+
+/* Syntax highlighting colors */
+.reveal pre .hljs-keyword  { color: #c792ea; }
+.reveal pre .hljs-string   { color: #c3e88d; }
+.reveal pre .hljs-number   { color: #f78c6c; }
+.reveal pre .hljs-comment  { color: #546e7a; font-style: italic; }
+.reveal pre .hljs-built_in { color: #82aaff; }
+.reveal pre .hljs-function { color: #82aaff; }
+
+/* ── Lists ──────────────────────────────────────────────── */
+.reveal ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.reveal ul li {
+  padding: 0.3em 0 0.3em 1.6em;
+  position: relative;
+}
+
+.reveal ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.85em;
+  top: 0.4em;
+}
+
+.reveal ol li {
+  padding: 0.3em 0;
+  counter-increment: list;
+}
+
+/* ── Tables ─────────────────────────────────────────────── */
+.reveal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82em;
+  margin: 1em 0;
+}
+
+.reveal table thead tr {
+  background: rgba(56,189,248,0.12);
+  border-bottom: 2px solid var(--accent);
+}
+
+.reveal table th {
+  color: var(--accent) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.7em 1em !important;
+  font-size: 0.85em;
+}
+
+.reveal table td {
+  padding: 0.6em 1em !important;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  color: var(--text) !important;
+}
+
+.reveal table tbody tr:hover {
+  background: rgba(56,189,248,0.05);
+  transition: background 0.2s;
+}
+
+.reveal table td:first-child {
+  color: var(--accent2) !important;
+  font-weight: 500;
+}
+
+/* ── Columns Layout ─────────────────────────────────────── */
+.reveal .columns {
+  gap: 2em;
+}
+
+.reveal .column {
+  background: rgba(17,24,39,0.6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2em 1.5em;
+  backdrop-filter: blur(8px);
+}
+
+/* ── Fragments ──────────────────────────────────────────── */
+.reveal .fragment {
+  font-family: var(--font-body);
+  font-size: 0.9em;
+  font-weight: 300;
+  color: var(--text);
+  background: rgba(56,189,248,0.06);
+  border-left: 3px solid var(--accent2);
+  border-radius: 0 8px 8px 0;
+  padding: 0.5em 1em;
+  margin: 0.4em 0;
+  display: block;
+}
+
+.reveal .fragment.visible {
+  border-left-color: var(--accent);
+}
+
+/* ── Callout / Note ─────────────────────────────────────── */
+.callout-note,
+.callout {
+  background: rgba(56,189,248,0.06) !important;
+  border: 1px solid var(--border) !important;
+  border-left: 4px solid var(--accent) !important;
+  border-radius: 0 var(--radius) var(--radius) 0 !important;
+  padding: 1em 1.2em !important;
+  margin: 1em 0 !important;
+}
+
+/* ── Progress Bar ───────────────────────────────────────── */
+.reveal .progress {
+  background: rgba(56,189,248,0.1) !important;
+  height: 3px !important;
+}
+
+.reveal .progress span {
+  background: linear-gradient(90deg, var(--accent), var(--accent2)) !important;
+  box-shadow: 0 0 12px var(--accent) !important;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1) !important;
+}
+
+/* ── Slide Number ───────────────────────────────────────── */
+.reveal .slide-number {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--accent) !important;
+  font-family: var(--font-mono) !important;
+  font-size: 0.7em !important;
+  padding: 4px 10px !important;
+  bottom: 14px !important;
+  right: 14px !important;
+}
+
+/* ── Navigation Controls ────────────────────────────────── */
+.reveal .controls button {
+  color: var(--accent) !important;
+  opacity: 0.6;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.reveal .controls button:hover {
+  opacity: 1 !important;
+  transform: scale(1.2);
+}
+
+/* ── Title Slide ────────────────────────────────────────── */
+.reveal .slides > section:first-child {
+  text-align: center !important;
+}
+
+.reveal .slides > section:first-child h1 {
+  font-size: 2.5em !important;
+  margin-bottom: 0.2em;
+}
+
+.reveal .slides > section:first-child p.subtitle {
+  color: var(--accent2) !important;
+  font-size: 1.1em !important;
+  font-weight: 300;
+  margin: 0.2em 0 0.8em;
+}
+
+.reveal .slides > section:first-child p.author {
+  color: var(--text-muted) !important;
+  font-size: 0.85em !important;
+  font-family: var(--font-mono);
+}
+
+/* ── Badges / Tags ──────────────────────────────────────── */
+.badge {
+  display: inline-block;
+  background: rgba(56,189,248,0.12);
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.72em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin: 2px 3px;
+  letter-spacing: 0.05em;
+}
+
+.badge-green  { border-color: var(--accent3); color: var(--accent3); background: rgba(52,211,153,0.1); }
+.badge-purple { border-color: var(--accent2); color: var(--accent2); background: rgba(129,140,248,0.1); }
+.badge-red    { border-color: var(--danger);  color: var(--danger);  background: rgba(248,113,113,0.1); }
+
+/* ── Metric Cards ───────────────────────────────────────── */
+.metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2em 1.5em;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.metric-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--glow);
+}
+
+.metric-card .value {
+  font-family: var(--font-head);
+  font-size: 2.2em;
+  color: var(--accent);
+  display: block;
+  line-height: 1;
+}
+
+.metric-card .label {
+  font-size: 0.75em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.3em;
+}
+
+/* ── Pipeline Stepper ───────────────────────────────────── */
+.pipeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1em;
+  padding: 0.7em 1em;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.pipeline-step:hover {
+  background: rgba(56,189,248,0.05);
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  background: var(--accent);
+  color: var(--bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  font-weight: 600;
+  flex-shrink: 0;
+  box-shadow: var(--glow);
+}
+
+.step-content strong {
+  display: block;
+  font-size: 0.9em;
+  color: var(--text) !important;
+  margin-bottom: 0.15em;
+}
+
+.step-content span {
+  font-size: 0.78em;
+  color: var(--text-muted);
+}
+
+/* ── Checklist ──────────────────────────────────────────── */
+.checklist li::before {
+  content: '✓' !important;
+  color: var(--accent3) !important;
+  font-weight: 700;
+}
+
+/* ── Center Helper ──────────────────────────────────────── */
+.center { text-align: center !important; }
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+.reveal pre::-webkit-scrollbar { width: 6px; height: 6px; }
+.reveal pre::-webkit-scrollbar-track { background: transparent; }
+.reveal pre::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+.reveal pre::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Animations ─────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: var(--glow); }
+  50%       { box-shadow: var(--glow-strong); }
+}
+
+@keyframes borderFlow {
+  0%   { border-color: var(--accent); }
+  50%  { border-color: var(--accent2); }
+  100% { border-color: var(--accent); }
+}
+
+.reveal .slides section.present h1,
+.reveal .slides section.present h2 {
+  animation: fadeSlideUp 0.5s cubic-bezier(0.4,0,0.2,1) both;
+}
+
+.reveal .slides section.present > *:nth-child(2) { animation-delay: 0.08s; }
+.reveal .slides section.present > *:nth-child(3) { animation-delay: 0.16s; }
+.reveal .slides section.present > *:nth-child(4) { animation-delay: 0.24s; }
+
+/* ── Pyodide Run Button ─────────────────────────────────── */
+.reveal button.btn-run,
+.reveal .pyodide-run-button,
+button[class*="run"] {
+  background: linear-gradient(135deg, var(--accent), var(--accent2)) !important;
+  color: var(--bg) !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.82em !important;
+  padding: 0.5em 1.4em !important;
+  cursor: pointer !important;
+  transition: opacity 0.2s, transform 0.15s !important;
+}
+
+.reveal button.btn-run:hover,
+.reveal .pyodide-run-button:hover {
+  opacity: 0.85 !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ── iFrame ─────────────────────────────────────────────── */
+.reveal iframe {
+  border-radius: var(--radius);
+  border: 1px solid var(--border) !important;
+}
